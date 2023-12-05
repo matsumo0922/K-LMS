@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "289419640315",
+    "project_id": "k-lms-a81a3",
+    "storage_bucket": "k-lms-a81a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:289419640315:android:2bf75e905dc81152279f5e",
+        "android_client_info": {
+          "package_name": "caios.android.klms"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAntQQZyYQbdiwNpgcKAsbCUnT3dOxG8II"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:289419640315:android:71747442c92f0efe279f5e",
+        "android_client_info": {
+          "package_name": "caios.android.klms.debug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAntQQZyYQbdiwNpgcKAsbCUnT3dOxG8II"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
