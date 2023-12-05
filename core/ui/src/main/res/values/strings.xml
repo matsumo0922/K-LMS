@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Common -->
+    <string name="common_ok">OK</string>
+    <string name="common_cancel">キャンセル</string>
+    <string name="common_allow">許可</string>
+    <string name="common_denied">拒否</string>
+    <string name="common_retry">再試行</string>
+    <string name="common_reload">再読み込み</string>
+    <string name="common_back">戻る</string>
+    <string name="common_close">閉じる</string>
+    <string name="common_next">次へ</string>
+    <string name="common_finish">完了</string>
+    <string name="common_skip">スキップ</string>
+    <string name="common_loading">処理中…</string>
+    <string name="common_caution">注意</string>
+    <string name="common_error">エラー</string>
+    <string name="common_warning">警告</string>
+    <string name="common_save">保存</string>
+    <string name="common_unknown">不明</string>
+    <string name="common_details">詳細</string>
+    <string name="common_delete">削除</string>
+    <string name="common_download">ダウンロード</string>
+    <string name="common_downloaded">ダウンロードしました</string>
+    <string name="common_see_more">もっと見る</string>
+
+    <!-- Common Error -->
+    <string name="error_executed">エラーが発生しました</string>
+    <string name="error_unknown">不明なエラーが発生しました</string>
+    <string name="error_no_data">データがありません</string>
+    <string name="error_network">通信エラーが発生しました</string>
+    <string name="error_paging">ページネーションを継続できません</string>
+    <string name="error_developing_feature">開発中の機能です</string>
+    <string name="error_billing">購入情報を取得できませんでした</string>
+
+    <!-- Common Unit -->
+    <string name="unit_day_before">%1$d日前</string>
+    <string name="unit_hour_before">%1$d時間前</string>
+    <string name="unit_minute_before">%1$d分前</string>
+    <string name="unit_second_before">%1$d秒前</string>
+    <string name="unit_jpy">￥%,d</string>
+
+    <!-- Notify -->
+    <string name="notify_download_channel_name">ダウンロード</string>
+    <string name="notify_download_channel_description">ダウンロードの進捗状況を通知します</string>
+    <string name="notify_download_title">ダウンロード中…</string>
+    <string name="notify_download_message">イラストのダウンロードを実行中です（残り%1$d枚）</string>
+
+    <!-- Library -->
+    <string name="library_navigation_home">ホーム</string>
+    <string name="library_navigation_course">コース</string>
+    <string name="library_navigation_mail">メール</string>
+    <string name="library_navigation_timetable">時間割</string>
+    <string name="library_navigation_following">フォロー中</string>
+    <string name="library_navigation_supporting">支援中</string>
+    <string name="library_navigation_payments">決済履歴</string>
+    <string name="library_navigation_setting">設定</string>
+    <string name="library_navigation_about">アプリについて</string>
+    <string name="library_navigation_plus_description">コーヒー1杯程度の金額で、全ての機能にアクセスできるようになります！</string>
+    <string name="library_navigation_plus_purchased_description">あなたは FANBOX Viewer+ ユーザーです。快適な音楽視聴をお楽しみください！</string>
+
+    <!-- Settings -->
+    <string name="setting_title">設定</string>
+    <string name="setting_top_theme">テーマ</string>
+    <string name="setting_top_theme_app">アプリのテーマ</string>
+    <string name="setting_top_theme_app_description">アプリのテーマを変更します。</string>
+    <string name="setting_top_theme_app_light">ライトテーマ</string>
+    <string name="setting_top_theme_app_dark">ダークテーマ</string>
+    <string name="setting_top_theme_app_system">システムのテーマ</string>
+    <string name="setting_top_general">一般</string>
+    <string name="setting_top_information">情報</string>
+    <string name="setting_top_information_id">CAIOS ID</string>
+    <string name="setting_top_information_version">アプリバージョン</string>
+    <string name="setting_top_others">その他</string>
+    <string name="setting_top_others_open_source_license">オープンソースライセンス</string>
+    <string name="setting_top_others_open_source_license_description">OSSライブラリのライセンスを表示します。</string>
+    <string name="setting_top_others_developer_mode">開発モード</string>
+    <string name="setting_top_others_developer_mode_description">[Warning] Do not enable this mode if you are not a developer.</string>
+    <string name="setting_theme_title">テーマ</string>
+    <string name="setting_theme_theme_dynamic_color">Dynamic Color</string>
+    <string name="setting_theme_theme_dynamic_color_description">ホームに設定している壁紙などから色を自動抽出する Dynamic Color を使用します。Android 12 以降でのみ利用可能です。</string>
+    <string name="setting_theme_color">テーマカラー</string>
+    <string name="setting_theme_color_description">アプリのテーマカラーを設定します。Dynamic Color と同時使用はできません。</string>
+    <string name="setting_developer_title">開発モード</string>
+    <string name="setting_developer_warning">You are trying to turn on this mode.Please enter the developer\'s PIN.\n\n[Warning] When this mode is turned on, you will not be able to receive any support.</string>
+
+    <!-- About -->
+    <string name="about_title">アプリについて</string>
+    <string name="about_name">K-LMS</string>
+    <string name="about_developer_name">CAIOS</string>
+    <string name="about_developer_prefix">Developed and designed by</string>
+    <string name="about_special_thanks">SPECIAL THANKS</string>
+    <string name="about_special_thanks_contributor">GitHub コントリビューターの皆様</string>
+    <string name="about_special_thanks_contributor_description">このアプリをより良いものへと開発を手伝ってくださっている、コントリビューターの皆様に感謝します。</string>
+    <string name="about_contribute">CONTRIBUTE</string>
+    <string name="about_contribute_description">このアプリは OSS となっており、GPL でライセンスされています。コントリビュートはいつでも誰でも歓迎です。特に英語と中国語への翻訳を手伝ってくれる方を探しています。</string>
+    <string name="about_support">SUPPORT</string>
+    <string name="about_support_version_history">更新履歴</string>
+    <string name="about_support_rate_app">アプリを評価</string>
+    <string name="about_support_opinion">ご意見・ご要望</string>
+    <string name="about_support_donate">寄付</string>
+
+    <!-- Billing -->
+    <string name="billing_plus_title">K-LMS+</string>
+    <string name="billing_plus_description">K-LMS+ は、コーヒー1杯程度の金額で全ての機能にアクセスできるようになる有料サービスです。</string>
+    <string name="billing_plus_purchase_button">%1$s で購入</string>
+    <string name="billing_plus_verify_button">購入を復元</string>
+    <string name="billing_plus_consume_button">購入を消費</string>
+    <string name="billing_plus_toast_require_plus">この機能はK-LMS+でのみ使用することができます</string>
+    <string name="billing_plus_toast_purchased">購入しました</string>
+    <string name="billing_plus_toast_purchased_error">購入に失敗しました</string>
+    <string name="billing_plus_toast_consumed">消費しました</string>
+    <string name="billing_plus_toast_consumed_error">消費に失敗しました</string>
+    <string name="billing_plus_toast_verify">購入を復元しました</string>
+    <string name="billing_plus_toast_verify_error">購入情報が見つかりませんでした</string>
+    <string name="billing_plus_item_hide_ads">広告を非表示</string>
+    <string name="billing_plus_item_hide_ads_description">アプリ内の広告を全て非表示にし、もっと快適に投稿を楽しめる！</string>
+    <string name="billing_plus_item_download">一括ダウンロード</string>
+    <string name="billing_plus_item_download_description">クリエイターの投稿を一括でダウンロードして、ほかの媒体でも楽しもう！</string>
+    <string name="billing_plus_item_widget">ホームウィジェット</string>
+    <string name="billing_plus_item_widget_description">ホーム画面にウィジェットを追加し、ホームから投稿をチェックできる！</string>
+    <string name="billing_plus_item_material_you">Material You</string>
+    <string name="billing_plus_item_material_you_description">全てのバージョンで Material You によるカスタムテーマで自分好みにカスタマイズ！</string>
+    <string name="billing_plus_item_accent_color">アクセントカラー</string>
+    <string name="billing_plus_item_accent_color_description">アプリのアクセントカラーを自由に設定！。</string>
+    <string name="billing_plus_item_feature">新機能の追加</string>
+    <string name="billing_plus_item_feature_description">新機能が追加された際にいち早く体験！</string>
+    <string name="billing_plus_item_support">最優先サポート</string>
+    <string name="billing_plus_item_support_description">いつでも最優先でサポート！</string>
+
+    <!-- Report -->
+    <string name="report_crush_title">Oops! Something went wrong</string>
+    <string name="report_crush_description">技術的な要因により、K-LMS がクラッシュしました。以下のレポートを開発者に送付してください。</string>
+    <string name="report_crush_copy">コピー</string>
+    <string name="report_crush_toast_copy">コピーしました</string>
+
+    <!-- Welcome -->
+    <string name="welcome_title">K-LMS</string>
+    <string name="welcome_description">このアプリは慶應義塾大学のLMSシステム「K-LMS」の\n非公式クライアントアプリケーションです</string>
+    <string name="welcome_privacy_policy">プライバシーポリシー</string>
+    <string name="welcome_team_of_service">利用規約</string>
+    <string name="welcome_agree">に同意する</string>
+    <string name="welcome_button_next">はじめる</string>
+    <string name="welcome_permission_title">権限</string>
+    <string name="welcome_permission_message">アプリの利用には以下の権限が必要です\n下のボタンを押して権限を許可してください</string>
+    <string name="welcome_permission_ready_title">準備完了</string>
+    <string name="welcome_permission_ready_message">アプリの利用に必要な権限がすべて許可されました</string>
+    <string name="welcome_permission_storage">ストレージ</string>
+    <string name="welcome_permission_storage_message">コンテンツを保存するため</string>
+    <string name="welcome_permission_notification">通知</string>
+    <string name="welcome_permission_notification_message">通知を表示するため</string>
+    <string name="welcome_permission_allowed">ALLOWED</string>
+    <string name="welcome_permission_denied">DENIED</string>
+    <string name="welcome_permission_optional">OPTIONAL</string>
+    <string name="welcome_permission_allow_button">許可</string>
+    <string name="welcome_permission_complete_button">完了</string>
+</resources>

@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.KLMS" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="NightAdjusted.Theme.Klms" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+    </style>
+
+    <style name="PlatformAdjusted.Theme.Klms" parent="NightAdjusted.Theme.Klms">
+        <item name="android:statusBarColor">#000</item>
+    </style>
+
+    <!-- The final theme we use -->
+    <style name="Theme.Klms" parent="PlatformAdjusted.Theme.Klms" />
+
+    <style name="NightAdjusted.Theme.Splash" parent="Theme.SplashScreen">
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+    </style>
+
+    <style name="Theme.Klms.Splash" parent="NightAdjusted.Theme.Splash">
+        <item name="postSplashScreenTheme">@style/Theme.Klms</item>
+    </style>
+
 </resources>

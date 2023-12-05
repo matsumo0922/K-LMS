@@ -111,6 +111,7 @@ dependencies {
     implementation(project(":feature:library"))
     implementation(project(":feature:welcome"))
     implementation(project(":feature:setting"))
+    implementation(project(":feature:report"))
 
     implementation(libs.bundles.ui.implementation)
     implementation(libs.bundles.ktor)
