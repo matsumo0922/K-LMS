@@ -25,6 +25,9 @@ kotlinxImmutable = "0.3.7"
 androidxCore = "1.12.0"
 androidxCoreSplash = "1.0.1"
 androidxActivity = "1.8.2"
+androidxLifecycle = "2.8.0-alpha02"
+androidxPaging = "3.3.0-alpha02-0.5.1"
+androidxDataStore = "1.1.0-beta02"
 
 # KMP
 kmpCompose = "1.6.1"
@@ -67,7 +70,7 @@ twitterComposeRule = "0.0.26"
 firebase = "32.7.4"
 leakCanary = "2.12"
 flipper = "0.240.0"
-napier = "2.7.1"
+kermit = "2.0.3"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "gradle" }
@@ -112,6 +115,11 @@ androidx-core = { module = "androidx.core:core-ktx", version.ref = "androidxCore
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "androidxCoreSplash" }
 androidx-activity = { module = "androidx.activity:activity-ktx", version.ref = "androidxActivity" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
+androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
+androidx-paging-compose = { module = "app.cash.paging:paging-compose-common", version.ref = "androidxPaging" }
+androidx-datastore = { module = "androidx.datastore:datastore", version.ref = "androidxDataStore" }
+androidx-datastore-proto = { module = "androidx.datastore:datastore-core", version.ref = "androidxDataStore" }
+androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences-core", version.ref = "androidxDataStore" }
 
 # Compose
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version = "2024.02.02" }
@@ -184,9 +192,9 @@ coil3-network = { module = "io.coil-kt.coil3:coil-network", version.ref = "coil3
 coil3-gif = { module = "io.coil-kt.coil3:coil-gif", version.ref = "coil3" }
 ksoup = { module = "com.fleeksoft.ksoup:ksoup", version.ref = "ksoup" }
 uuid = { module = "com.benasher44:uuid", version.ref = "uuid" }
+desugar = { module = "com.android.tools:desugar_jdk_libs", version = "2.0.4" }
 webview-compose = { module = "io.github.kevinnzou:compose-webview-multiplatform", version.ref = "composeWebView" }
 window-size = { module = "dev.chrisbanes.material3:material3-window-size-class-multiplatform", version.ref = "windowSize" }
-desugar = { module = "com.android.tools:desugar_jdk_libs", version = "2.0.4" }
 placeholder = { module = "com.eygraber:compose-placeholder-material3", version = "1.0.7" }
 libraries-core = { module = "com.mikepenz:aboutlibraries-core", version.ref = "libraries" }
 libraries-ui = { module = "com.mikepenz:aboutlibraries-compose", version.ref = "libraries" }
@@ -199,7 +207,7 @@ facebook-flipper-leakcanary = { module = "com.facebook.flipper:flipper-leakcanar
 facebook-soloader = { module = "com.facebook.soloader:soloader", version = "0.10.5" }
 facebook-noop = { module = "com.facebook.flipper:flipper-noop", version.ref = "flipper" }
 leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakCanary" }
-napier = { module = "io.github.aakira:napier", version.ref = "napier" }
+kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 
 [bundles]
 infra-api = [
@@ -209,13 +217,17 @@ infra-api = [
     "kotlinx-serialization-json",
     "kotlinx-collections-immutable",
     "uuid",
-    "napier",
+    "kermit",
 ]
 
 ui-common-api = [
     "coil3-compose",
     "coil3-gif",
     "window-size",
+    "cupertino",
+    "cupertino-native",
+    "cupertino-adaptive",
+    "cupertino-icons",
 ]
 
 billing = [
@@ -229,13 +241,6 @@ firebase = [
     "firebase-messaging",
     "firebase-config",
     "firebase-dynamiclinks",
-]
-
-cupertino = [
-    "cupertino",
-    "cupertino-native",
-    "cupertino-adaptive",
-    "cupertino-icons",
 ]
 
 ktor = [

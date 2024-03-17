@@ -79,6 +79,12 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                // data store
+                implementation(libs.androidx.datastore)
+                implementation(libs.androidx.datastore.proto)
+                api(libs.androidx.datastore.preferences)
+
+                // ui
                 api(compose.runtime)
                 api(compose.runtimeSaveable)
                 api(compose.foundation)
@@ -99,6 +105,12 @@ kotlin {
                 api(libs.bundles.koin)
                 api(libs.bundles.ktor)
                 api(libs.bundles.decompose)
+                
+                api(libs.androidx.lifecycle.runtime.compose)
+                api(libs.androidx.paging.compose)
+
+                api(libs.calf.ui)
+                api(libs.placeholder)
             }
         }
 
@@ -111,6 +123,10 @@ kotlin {
                 implementation(libs.androidx.core.splashscreen)
                 implementation(libs.androidx.activity)
                 implementation(libs.androidx.activity.compose)
+
+                implementation(libs.accompanist.systemuicontroller)
+
+                api(libs.koin.android)
             }
         }
 
