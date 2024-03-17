@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1054634161697",
+    "project_id": "k-lms-5827c",
+    "storage_bucket": "k-lms-5827c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1054634161697:android:7422ceca4e6b950f5c9560",
+        "android_client_info": {
+          "package_name": "me.matsumo.klms"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCK7QmYNusadI47Th0lyNBf_q2VCuJg6tQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1054634161697:android:22f2b6beac670da25c9560",
+        "android_client_info": {
+          "package_name": "me.matsumo.klms.debug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCK7QmYNusadI47Th0lyNBf_q2VCuJg6tQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

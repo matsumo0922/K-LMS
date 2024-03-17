@@ -1,0 +1,258 @@
+[versions]
+# Application
+versionName = "1.0.0"
+versionCode = "1"
+
+# SDK
+minSdk = "26"
+targetSdk = "34"
+compileSdk = "34"
+
+# Gradle
+gradle = "8.3.0"
+
+# Kotlin
+kotlin = "1.9.23"
+kotlinCompiler = "1.5.3"
+
+# KotlinX
+kotlinxCoroutines = "1.8.0"
+kotlinxDatetime = "0.5.0"
+kotlinxSerializationJson = "1.6.2"
+kotlinxImmutable = "0.3.7"
+
+# AndroidX
+androidxCore = "1.12.0"
+androidxCoreSplash = "1.0.1"
+androidxActivity = "1.8.2"
+
+# KMP
+kmpCompose = "1.6.1"
+kmpComplete = "1.1.0"
+kmpSwiftKlib = "0.5.1"
+mokoPermissions = "0.17.0"
+mokoBiometry = "0.4.0"
+calf = "0.3.1"
+
+# Google
+playServiceAds = "23.0.0"
+playServiceOss = "17.0.1"
+material = "1.11.0"
+accompanist = "0.33.2-alpha"
+ksp = "1.9.23-1.0.19"
+gms = "4.4.1"
+
+# Billing
+billing = "6.2.0"
+
+# Navigation
+decompose = "3.0.0-alpha08"
+essenty = "2.0.0-alpha07"
+
+# Others
+koin = "3.5.1"
+ktor = "2.3.9"
+coil3 = "3.0.0-alpha06"
+ksoup = "0.1.2"
+uuid = "0.8.2"
+composeWebView = "1.8.8"
+windowSize = "0.5.0"
+detekt = "1.23.4"
+libraries = "10.9.1"
+buildKonfig = "0.15.1"
+cupertino = "0.1.0-alpha03"
+twitterComposeRule = "0.0.26"
+
+# Debugs
+firebase = "32.7.4"
+leakCanary = "2.12"
+flipper = "0.240.0"
+napier = "2.7.1"
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "gradle" }
+android-library = { id = "com.android.library", version.ref = "gradle" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version = "1.9.0" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+gms = { id = "com.google.gms.google-services", version.ref = "gms" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+firebase-crashlytics = { id = "com.google.firebase.crashlytics", version = "2.9.9" }
+libraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "libraries" }
+kmp = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kmpCompose = { id = "org.jetbrains.compose", version.ref = "kmpCompose" }
+kmpComplete = { id = "com.louiscad.complete-kotlin", version.ref = "kmpComplete" }
+kmpSwiftKlib = { id = "io.github.ttypic.swiftklib", version.ref = "kmpSwiftKlib" }
+
+[libraries]
+## Dependency of the include build-logic
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+gms-services = { group = "com.google.gms", name = "google-services", version = "4.4.1" }
+build-konfig-gradlePlugin = { group = "com.codingfeline.buildkonfig", name = "buildkonfig-gradle-plugin", version.ref = "buildKonfig" }
+detekt-gradlePlugin = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt" }
+detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }
+
+# Kotlin
+kotlin-bom = { module = "org.jetbrains.kotlin:kotlin-bom", version.ref = "kotlin" }
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect" }
+
+# KotlinX
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
+kotlinx-coroutines-guava = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-guava", version.ref = "kotlinxCoroutines" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
+kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinxDatetime" }
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+kotlinx-collections-immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable", version.ref = "kotlinxImmutable" }
+
+# AndroidX
+androidx-core = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
+androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "androidxCoreSplash" }
+androidx-activity = { module = "androidx.activity:activity-ktx", version.ref = "androidxActivity" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
+
+# Compose
+androidx-compose-bom = { module = "androidx.compose:compose-bom", version = "2024.02.02" }
+androidx-compose-runtime = { module = "androidx.compose.runtime:runtime" }
+androidx-compose-ui = { module = "androidx.compose.ui:ui" }
+androidx-compose-ui-util = { module = "androidx.compose.ui:ui-util" }
+androidx-compose-ui-binding = { module = "androidx.compose.ui:ui-viewbinding" }
+androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+androidx-compose-animation = { module = "androidx.compose.animation:animation" }
+androidx-compose-animation-graphics = { module = "androidx.compose.animation:animation-graphics" }
+
+# Billing
+billing = { module = "com.android.billingclient:billing", version.ref = "billing" }
+billing-ktx = { module = "com.android.billingclient:billing-ktx", version.ref = "billing" }
+
+# MOKO
+moko-permissions = { module = "dev.icerock.moko:permissions", version.ref = "mokoPermissions" }
+moko-permissions-compose = { module = "dev.icerock.moko:permissions-compose", version.ref = "mokoPermissions" }
+moko-biometry = { module = "dev.icerock.moko:biometry", version.ref = "mokoBiometry" }
+moko-biometry-compose = { module = "dev.icerock.moko:biometry-compose", version.ref = "mokoBiometry" }
+calf-ui = { module = "com.mohamedrejeb.calf:calf-ui", version.ref = "calf" }
+
+# Cupertino
+cupertino = { module = "io.github.alexzhirkevich:cupertino", version.ref = "cupertino" }
+cupertino-native = { module = "io.github.alexzhirkevich:cupertino-native", version.ref = "cupertino" }
+cupertino-adaptive = { module = "io.github.alexzhirkevich:cupertino-adaptive", version.ref = "cupertino" }
+cupertino-icons = { module = "io.github.alexzhirkevich:cupertino-icons-extended", version.ref = "cupertino" }
+
+# Google
+play-service-oss = { module = "com.google.android.gms:play-services-oss-licenses", version.ref = "playServiceOss" }
+play-service-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "playServiceAds" }
+google-material = { module = "com.google.android.material:material", version.ref = "material" }
+accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
+
+# Firebase
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase" }
+firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx" }
+firebase-crushlytics = { module = "com.google.firebase:firebase-crashlytics-ktx" }
+firebase-messaging = { module = "com.google.firebase:firebase-messaging-ktx" }
+firebase-appindexing = { module = "com.google.firebase:firebase-appindexing" }
+firebase-config = { module = "com.google.firebase:firebase-config-ktx" }
+firebase-dynamiclinks = { module = "com.google.firebase:firebase-dynamic-links-ktx" }
+
+# Navigation
+decompose = { module = "com.arkivanov.decompose:decompose", version.ref = "decompose" }
+decompose-compose = { module = "com.arkivanov.decompose:extensions-compose", version.ref = "decompose" }
+essenty-parcelable = { module = "com.arkivanov.essenty:parcelable", version.ref = "essenty" }
+essenty-lifecycle = { module = "com.arkivanov.essenty:lifecycle-coroutines", version.ref = "essenty" }
+
+# Koin
+koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin" }
+koin-core = { module = "io.insert-koin:koin-core"  }
+koin-android = { module = "io.insert-koin:koin-android" }
+koin-compose = { module = "io.insert-koin:koin-compose" }
+koin-annotation = { module = "io.insert-koin:koin-annotation" }
+
+# Ktor
+ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
+ktor-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktor-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
+ktor-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-serialization-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktot-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
+
+# Others
+coil3-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil3" }
+coil3-network = { module = "io.coil-kt.coil3:coil-network", version.ref = "coil3" }
+coil3-gif = { module = "io.coil-kt.coil3:coil-gif", version.ref = "coil3" }
+ksoup = { module = "com.fleeksoft.ksoup:ksoup", version.ref = "ksoup" }
+uuid = { module = "com.benasher44:uuid", version.ref = "uuid" }
+webview-compose = { module = "io.github.kevinnzou:compose-webview-multiplatform", version.ref = "composeWebView" }
+window-size = { module = "dev.chrisbanes.material3:material3-window-size-class-multiplatform", version.ref = "windowSize" }
+desugar = { module = "com.android.tools:desugar_jdk_libs", version = "2.0.4" }
+placeholder = { module = "com.eygraber:compose-placeholder-material3", version = "1.0.7" }
+libraries-core = { module = "com.mikepenz:aboutlibraries-core", version.ref = "libraries" }
+libraries-ui = { module = "com.mikepenz:aboutlibraries-compose", version.ref = "libraries" }
+twitter-compose-rule = { module = "com.twitter.compose.rules:detekt", version.ref = "twitterComposeRule" }
+
+# Debugs
+facebook-flipper = { module = "com.facebook.flipper:flipper", version.ref = "flipper" }
+facebook-flipper-network = { module = "com.facebook.flipper:flipper-network-plugin", version.ref = "flipper" }
+facebook-flipper-leakcanary = { module = "com.facebook.flipper:flipper-leakcanary2-plugin", version.ref = "flipper" }
+facebook-soloader = { module = "com.facebook.soloader:soloader", version = "0.10.5" }
+facebook-noop = { module = "com.facebook.flipper:flipper-noop", version.ref = "flipper" }
+leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakCanary" }
+napier = { module = "io.github.aakira:napier", version.ref = "napier" }
+
+[bundles]
+infra-api = [
+    "kotlin-stdlib",
+    "kotlin-reflect",
+    "kotlinx-datetime",
+    "kotlinx-serialization-json",
+    "kotlinx-collections-immutable",
+    "uuid",
+    "napier",
+]
+
+ui-common-api = [
+    "coil3-compose",
+    "coil3-gif",
+    "window-size",
+]
+
+billing = [
+    "billing",
+    "billing-ktx",
+]
+
+firebase = [
+    "firebase-analytics",
+    "firebase-crushlytics",
+    "firebase-messaging",
+    "firebase-config",
+    "firebase-dynamiclinks",
+]
+
+cupertino = [
+    "cupertino",
+    "cupertino-native",
+    "cupertino-adaptive",
+    "cupertino-icons",
+]
+
+ktor = [
+    "ktor-core",
+    "ktor-cio",
+    "ktor-content-negotiation",
+    "ktor-serialization-json",
+    "ktot-logging",
+]
+
+koin = [
+    "koin-core",
+    "koin-compose",
+]
+
+decompose = [
+    "decompose",
+    "decompose-compose",
+    "essenty-lifecycle",
+]
