@@ -3,24 +3,23 @@ import SwiftUI
 import ComposeApp
 
 @main
-struct iosApp: App {
+struct iOSApp: App {
+
+    @Environment(\.scenePhase)
+    private var scenePhase
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            GeometryReader { geo in
+                ComposeViewController()
+                    .edgesIgnoringSafeArea(.all)
+                    .onTapGesture {
+                        UIApplication.shared.sendAction(
+                            #selector(UIResponder.resignFirstResponder),
+                            to: nil, from: nil, for: nil
+                        )
+                    }
+            }
         }
     }
-}
-
-struct ContentView: View {
-    var body: some View {
-        ComposeView().ignoresSafeArea(.all)
-    }
-}
-
-struct ComposeView: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> UIViewController {
-        MainKt.MainViewController()
-    }
-
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
 }

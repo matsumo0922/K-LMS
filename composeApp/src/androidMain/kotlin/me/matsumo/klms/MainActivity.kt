@@ -14,6 +14,7 @@ import androidx.core.view.WindowCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.arkivanov.decompose.DefaultComponentContext
+import com.arkivanov.decompose.defaultComponentContext
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import me.matsumo.klms.core.model.ThemeConfig
 import me.matsumo.klms.core.repository.UserDataRepository
@@ -27,7 +28,7 @@ class MainActivity : FragmentActivity(), KoinComponent {
     @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
-        val lmsComponent = DefaultLmsComponent(DefaultComponentContext(lifecycle))
+        val lmsComponent = DefaultLmsComponent(defaultComponentContext())
 
         super.onCreate(savedInstanceState)
 

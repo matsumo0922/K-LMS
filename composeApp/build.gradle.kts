@@ -105,10 +105,8 @@ kotlin {
                 api(libs.bundles.koin)
                 api(libs.bundles.ktor)
                 api(libs.bundles.decompose)
-                
-                api(libs.androidx.lifecycle.runtime.compose)
-                api(libs.androidx.paging.compose)
 
+                api(libs.androidx.paging.compose)
                 api(libs.calf.ui)
                 api(libs.placeholder)
             }
