@@ -7,13 +7,16 @@ import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.value.Value
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.screen.library.LibraryComponent
+import me.matsumo.klms.screen.welcome.WelcomeLoginComponent
 
 interface LmsComponent {
 
     val childStack: Value<ChildStack<*, Child>>
 
     sealed class Child {
-        class Library(val component: LibraryComponent) : Child()
+        data class Library(val component: LibraryComponent) : Child()
+
+        data class WelcomeLogin(val component: WelcomeLoginComponent) : Child()
     }
 }
 
@@ -35,6 +38,7 @@ class DefaultLmsComponent(
     private fun childFactory(navigation: Navigation, componentContext: ComponentContext): LmsComponent.Child {
         return when (navigation) {
             is Navigation.Library -> LmsComponent.Child.Library(LibraryComponent(componentContext))
+            is Navigation.WelcomeLogin -> LmsComponent.Child.WelcomeLogin(WelcomeLoginComponent(componentContext))
         }
     }
 
@@ -43,5 +47,8 @@ class DefaultLmsComponent(
 
         @Serializable
         data object Library : Navigation
+
+        @Serializable
+        data object WelcomeLogin : Navigation
     }
 }

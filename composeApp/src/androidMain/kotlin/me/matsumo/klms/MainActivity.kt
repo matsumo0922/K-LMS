@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -27,10 +28,10 @@ class MainActivity : FragmentActivity(), KoinComponent {
 
     @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
         val splashScreen = installSplashScreen()
         val lmsComponent = DefaultLmsComponent(defaultComponentContext())
-
-        super.onCreate(savedInstanceState)
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
@@ -38,7 +39,7 @@ class MainActivity : FragmentActivity(), KoinComponent {
             val windowSize = calculateWindowSizeClass()
             val systemUiController = rememberSystemUiController()
 
-            val userData by userDataRepository.userData.collectAsStateWithLifecycle(initialValue = null)
+            val userData by userDataRepository.userData.collectAsState(null)
             val isSystemInDarkTheme = isSystemInDarkTheme()
 
             splashScreen.setKeepOnScreenCondition { userData == null }

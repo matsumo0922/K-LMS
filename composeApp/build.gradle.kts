@@ -121,6 +121,8 @@ kotlin {
                 implementation(libs.androidx.core.splashscreen)
                 implementation(libs.androidx.activity)
                 implementation(libs.androidx.activity.compose)
+                implementation(libs.androidx.lifecycle.runtime)
+                implementation(libs.androidx.lifecycle.runtime.compose)
 
                 implementation(libs.accompanist.systemuicontroller)
 
