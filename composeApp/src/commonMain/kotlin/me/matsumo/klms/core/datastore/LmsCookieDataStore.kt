@@ -2,7 +2,6 @@ package me.matsumo.klms.core.datastore
 
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import co.touchlab.kermit.Logger
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
@@ -10,7 +9,7 @@ import kotlinx.coroutines.flow.map
 class LmsCookieDataStore(
     private val preferenceHelper: PreferenceHelper,
 ) {
-    private val cookiePreference = preferenceHelper.create(PreferencesName.KLMS_COOKIE)
+    private val cookiePreference = preferenceHelper.create(PreferencesName.LMS_COOKIE)
 
     val data: Flow<String> = cookiePreference.data.map { it[stringPreferencesKey(KEY_COOKIE)] ?: "" }
 
@@ -22,6 +21,10 @@ class LmsCookieDataStore(
 
     suspend fun get(): String? {
         return cookiePreference.data.firstOrNull()?.get(stringPreferencesKey(KEY_COOKIE))
+    }
+
+    suspend fun clear() {
+        save("")
     }
 
     suspend fun addCookies(cookies: List<String>) {
@@ -36,9 +39,11 @@ class LmsCookieDataStore(
     }
 
     suspend fun getCookies(): List<String> {
-        return (get()?.split(";")?.filter { it.isNotBlank() } ?: emptyList()).also {
-            Logger.d("CookieDataStore getCookies: ${it.joinToString(";")}")
-        }
+        return (get()?.split(";")?.filter { it.isNotBlank() } ?: emptyList())
+    }
+
+    suspend fun getCookiesMap(): Map<String, String> {
+        return getCookies().toCookiesMap()
     }
 
     private fun List<String>.toCookiesMap(): Map<String, String> {

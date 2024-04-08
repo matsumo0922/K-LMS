@@ -10,6 +10,10 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import me.matsumo.klms.core.repository.CookiesRepository
+import me.matsumo.klms.core.repository.LmsAuthRepository
+import me.matsumo.klms.core.repository.LmsAuthRepositoryImpl
+import me.matsumo.klms.core.repository.LmsRepository
+import me.matsumo.klms.core.repository.LmsRepositoryImpl
 import me.matsumo.klms.core.repository.UserDataRepository
 import me.matsumo.klms.core.repository.UserDataRepositoryImpl
 import org.koin.dsl.module
@@ -51,7 +55,23 @@ val repositoryModule = module {
 
     single<UserDataRepository> {
         UserDataRepositoryImpl(
-            lmsDataStore = get()
+            lmsUserDataStore = get()
+        )
+    }
+
+    single<LmsAuthRepository> {
+        LmsAuthRepositoryImpl(
+            client = get(),
+            loginDataStore = get(),
+            cookieDataStore = get(),
+            ioDispatcher = get()
+        )
+    }
+
+    single<LmsRepository> {
+        LmsRepositoryImpl(
+            client = get(),
+            ioDispatcher = get()
         )
     }
 }

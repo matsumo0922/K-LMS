@@ -8,8 +8,8 @@ import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.extensions.compose.stack.Children
 import me.matsumo.klms.core.model.UserData
 import me.matsumo.klms.core.theme.MMTheme
-import me.matsumo.klms.screen.library.LibraryComponent
 import me.matsumo.klms.screen.library.LibraryRoute
+import me.matsumo.klms.screen.welcome.WelcomeLoginRoute
 
 @Composable
 fun LmsApp(
@@ -28,6 +28,7 @@ fun LmsApp(
         ) {
             when (val child = it.instance) {
                 is LmsComponent.Child.Library -> LibraryRoute(child.component)
+                is LmsComponent.Child.WelcomeLogin -> WelcomeLoginRoute(child.component)
             }
         }
     }

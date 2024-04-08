@@ -1,6 +1,7 @@
 package me.matsumo.klms.core.datastore.di
 
 import me.matsumo.klms.core.datastore.LmsCookieDataStore
+import me.matsumo.klms.core.datastore.LmsLoginDataStore
 import me.matsumo.klms.core.datastore.LmsUserDataStore
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -19,6 +20,14 @@ val dataStoreModule = module {
     single {
         LmsCookieDataStore(
             preferenceHelper = get(),
+        )
+    }
+
+    single {
+        LmsLoginDataStore(
+            preferenceHelper = get(),
+            formatter = get(),
+            ioDispatcher = get(),
         )
     }
 }

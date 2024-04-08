@@ -26,50 +26,50 @@ interface UserDataRepository {
 }
 
 class UserDataRepositoryImpl(
-    private val lmsDataStore: LmsUserDataStore,
+    private val lmsUserDataStore: LmsUserDataStore,
 ) : UserDataRepository {
 
     private val _updatePlusMode = Channel<Boolean>(Channel.BUFFERED)
 
     override val updatePlusMode: Flow<Boolean> = _updatePlusMode.receiveAsFlow()
 
-    override val userData: Flow<UserData> = lmsDataStore.userData
+    override val userData: Flow<UserData> = lmsUserDataStore.userData
 
     override suspend fun setDefault() {
-        lmsDataStore.setDefault()
+        lmsUserDataStore.setDefault()
     }
 
     override suspend fun setLmsId(id: String) {
-        lmsDataStore.setLmsId(id)
+        lmsUserDataStore.setLmsId(id)
     }
 
     override suspend fun setAgreedPrivacyPolicy(isAgreed: Boolean) {
-        lmsDataStore.setAgreedPrivacyPolicy(isAgreed)
+        lmsUserDataStore.setAgreedPrivacyPolicy(isAgreed)
     }
 
     override suspend fun setAgreedTermsOfService(isAgreed: Boolean) {
-        lmsDataStore.setAgreedTermsOfService(isAgreed)
+        lmsUserDataStore.setAgreedTermsOfService(isAgreed)
     }
 
     override suspend fun setThemeConfig(themeConfig: ThemeConfig) {
-        lmsDataStore.setThemeConfig(themeConfig)
+        lmsUserDataStore.setThemeConfig(themeConfig)
     }
 
     override suspend fun setThemeColorConfig(themeColorConfig: ThemeColorConfig) {
-        lmsDataStore.setThemeColorConfig(themeColorConfig)
+        lmsUserDataStore.setThemeColorConfig(themeColorConfig)
     }
 
     override suspend fun setDeveloperMode(isDeveloperMode: Boolean) {
-        lmsDataStore.setDeveloperMode(isDeveloperMode)
+        lmsUserDataStore.setDeveloperMode(isDeveloperMode)
     }
 
     override suspend fun setUseDynamicColor(useDynamicColor: Boolean) {
-        lmsDataStore.setUseDynamicColor(useDynamicColor)
+        lmsUserDataStore.setUseDynamicColor(useDynamicColor)
     }
 
     override suspend fun setPlusMode(isPlusMode: Boolean) {
         if (userData.first().isPlusMode != isPlusMode) {
-            lmsDataStore.setPlusMode(isPlusMode)
+            lmsUserDataStore.setPlusMode(isPlusMode)
             _updatePlusMode.send(isPlusMode)
 
             if (!isPlusMode) {

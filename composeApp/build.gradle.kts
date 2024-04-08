@@ -109,6 +109,8 @@ kotlin {
                 api(libs.androidx.paging.compose)
                 api(libs.calf.ui)
                 api(libs.placeholder)
+                
+                implementation(libs.ksoup)
             }
         }
 
