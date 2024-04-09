@@ -133,11 +133,11 @@ data class CalendarEventEntity(
 
     // If the event is a user-level reservation, this will contain ...
     @SerialName("user")
-    val user: User? = null,
+    val user: UserEntity? = null,
 
     // If the event is a group-level reservation, this will contain ...
     @SerialName("group")
-    val group: Group? = null,
+    val group: GroupEntity? = null,
 
     @SerialName("important_dates")
     val importantDates: Boolean,

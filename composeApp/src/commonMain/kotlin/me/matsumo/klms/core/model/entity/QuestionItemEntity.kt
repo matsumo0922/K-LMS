@@ -3,7 +3,7 @@ package me.matsumo.klms.core.model.entity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@kotlinx.serialization.Serializable
+@Serializable
 data class QuestionItemEntity(
     // The question title
     @SerialName("title")
@@ -19,7 +19,7 @@ data class QuestionItemEntity(
 
     // Feedback for the question.
     @SerialName("feedback")
-    val feedback: QuestionFeedback? = null,
+    val feedback: QuestionFeedbackEntity? = null,
 
     // Question type slug
     @SerialName("interaction_type_slug")
@@ -27,15 +27,11 @@ data class QuestionItemEntity(
 
     // Object containing question data
     @SerialName("interaction_data")
-    val interactionData: Any? = null, // Placeholder
-
-    // Additional properties for some question types
-    @SerialName("properties")
-    val properties: Any? = null, // Placeholder
+    val interactionData: String? = null, // Placeholder
 
     // How to score the question
     @SerialName("scoring_data")
-    val scoringData: Any? = null, // Placeholder
+    val scoringData: String? = null, // Placeholder
 
     // Feedback provided for each answer choice
     @SerialName("answer_feedback")
@@ -44,4 +40,4 @@ data class QuestionItemEntity(
     // Algorithm used to score the question
     @SerialName("scoring_algorithm")
     val scoringAlgorithm: String
-)
+) : EntryEntity

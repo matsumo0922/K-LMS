@@ -19,7 +19,7 @@ data class PageRevisionEntity(
 
     // The User who saved this revision
     @SerialName("edited_by")
-    val editedBy: User?, // You'll likely have a 'User' data class
+    val editedBy: UserEntity?, // You'll likely have a 'User' data class
 
     // Fields not always included
     @SerialName("url")

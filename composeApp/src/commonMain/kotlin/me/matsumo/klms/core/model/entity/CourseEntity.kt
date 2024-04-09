@@ -54,8 +54,8 @@ data class CourseEntity(
     val enrollmentTermId: Int,
 
     // A list of grading periods associated with the course
-    @SerialName("grading_periods")
-    val gradingPeriods: Any? = null, // Placeholder type - you'll need to define its structure
+    //@SerialName("grading_periods")
+    // val gradingPeriods: Any? = null, // Placeholder type - you'll need to define its structure
 
     // the grading standard associated with the course
     @SerialName("grading_standard_id")
@@ -83,7 +83,7 @@ data class CourseEntity(
 
     // A list of enrollments linking the ...
     @SerialName("enrollments")
-    val enrollments: Any? = null, // Placeholder - structure needed
+    val enrollments: EnrollmentEntity? = null, // Placeholder - structure needed
 
     // optional: the total number of active and invited students ...
     @SerialName("total_students")
@@ -91,7 +91,7 @@ data class CourseEntity(
 
     // course calendar
     @SerialName("calendar")
-    val calendar: CalendarLink? = null,
+    val calendar: CalendarLinkEntity? = null,
 
     // the type of page that users will see ...
     @SerialName("default_view")
@@ -107,11 +107,11 @@ data class CourseEntity(
 
     // optional: the enrollment term object for the course ...
     @SerialName("term")
-    val term: Any? = null, // Placeholder type needed
+    val term: TermEntity? = null, // Placeholder type needed
 
     // optional: information on progress through the course ...
     @SerialName("course_progress")
-    val courseProgress: Any? = null, // Placeholder type needed
+    val courseProgress: CourseProgressEntity? = null, // Placeholder type needed
 
     // weight final grade based on assignment group percentages
     @SerialName("apply_assignment_group_weights")
@@ -184,24 +184,13 @@ data class CourseEntity(
 
     // optional: Set of restrictions applied to all ...
     @SerialName("blueprint_restrictions")
-    val blueprintRestrictions: BlueprintRestrictions? = null,
+    val blueprintRestrictions: BlueprintRestrictionEntity? = null,
 
     // optional: Sets of restrictions differentiated by object type ...
     @SerialName("blueprint_restrictions_by_object_type")
-    val blueprintRestrictionsByObjectType: BlueprintRestrictionsByObjectType? = null,
+    val blueprintRestrictionsByObjectType: BlueprintRestrictionEntity? = null,
 
     // optional: whether the course is set as a template ...
     @SerialName("template")
     val template: Boolean? = null
-) {
-
-    @Serializable
-    data class BlueprintRestrictions(
-        val content: Boolean,
-        val points: Boolean,
-        @SerialName("due_dates")
-        val dueDates: Boolean,
-        @SerialName("availability_dates")
-        val availabilityDates: Boolean
-    )
-}
+)

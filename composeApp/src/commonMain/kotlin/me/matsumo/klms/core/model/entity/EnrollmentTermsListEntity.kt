@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class EnrollmentTermsListEntity(
     @SerialName("enrollment_terms")
-    val enrollmentTerms: List<EnrollmentTerm>
+    val enrollmentTerms: List<EnrollmentTermEntity>
 )
 
 // ... (You'll need the 'EnrollmentTerm' data class from the previous example)

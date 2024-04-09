@@ -28,6 +28,13 @@ data class EPubExportEntity(
     // Current state of the ePub export: ...
     @SerialName("workflow_state")
     val workflowState: String
-)
+) {
+
+    @Serializable
+    data class Attachment(
+        @SerialName("url")
+        val url: Int,
+    )
+}
 
 // You may need a  data class for the 'attachment' object if it has its own structure.

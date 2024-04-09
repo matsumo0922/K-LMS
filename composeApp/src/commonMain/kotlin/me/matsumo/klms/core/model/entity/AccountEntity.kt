@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Account(
+data class AccountEntity(
     // the ID of the Account object
     @SerialName("id") val id: Int,
     // The display name of the account

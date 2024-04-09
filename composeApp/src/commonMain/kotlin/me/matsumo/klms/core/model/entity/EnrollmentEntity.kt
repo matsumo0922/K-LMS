@@ -115,7 +115,7 @@ data class EnrollmentEntity(
 
     // A description of the user.
     @SerialName("user")
-    val user: User,
+    val user: UserEntity,
 
     // The user's override grade ...
     @SerialName("override_grade")

@@ -3,7 +3,7 @@ package me.matsumo.klms.core.model.entity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@kotlinx.serialization.Serializable
+@Serializable
 data class OriginalityReportEntity(
     // The id of the OriginalityReport
     @SerialName("id")
@@ -26,8 +26,8 @@ data class OriginalityReportEntity(
     val originalityReportUrl: String?,
 
     // ToolSetting object
-    @SerialName("tool_setting")
-    val toolSetting: ToolSetting?,
+    // @SerialName("tool_setting")
+    // val toolSetting: ToolSetting?,
 
     // An error message (if any)
     @SerialName("error_message")

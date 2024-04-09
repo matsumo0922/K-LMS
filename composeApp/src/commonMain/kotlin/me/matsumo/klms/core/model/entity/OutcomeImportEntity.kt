@@ -39,11 +39,11 @@ data class OutcomeImportEntity(
 
     //  The user that initiated the outcome_import.
     @SerialName("user")
-    val user: User?, // You'll likely have a 'User' data class
+    val user: UserEntity?, // You'll likely have a 'User' data class
 
     // An array of row number / error message pairs.
     @SerialName("processing_errors")
-    val processingErrors: List<List<Any>> // Using 'Any' as a placeholder until you have a specific structure
+    val processingErrors: List<List<Map<Int, String>>> // Using 'Any' as a placeholder until you have a specific structure
 )
 
 // You'll have the 'OutcomeImportData' class from a previous example

@@ -31,11 +31,11 @@ data class ContentShareEntity(
 
     // The user who shared the content. ...
     @SerialName("sender")
-    val sender: User? = null,
+    val sender: UserEntity? = null,
 
     // An Array of users the content is shared with. ...
     @SerialName("receivers")
-    val receivers: List<User> = emptyList(),
+    val receivers: List<UserEntity> = emptyList(),
 
     // The course the content was originally shared from.
     @SerialName("source_course")

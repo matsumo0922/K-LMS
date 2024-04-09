@@ -69,7 +69,7 @@ data class FileEntity(
     val lockedForUser: Boolean,
 
     @SerialName("lock_info")
-    val lockInfo: Any? = null, // Placeholder type for 'lock_info' if needed
+    val lockInfo: LockInfoEntity? = null, // Placeholder type for 'lock_info' if needed
 
     @SerialName("lock_explanation")
     val lockExplanation: String? = null,

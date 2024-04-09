@@ -87,7 +87,7 @@ data class DiscussionTopicEntity(
 
     // (Optional) Information for the user about the lock ...
     @SerialName("lock_info")
-    val lockInfo: Any? = null, // Placeholder type - needs more structure
+    val lockInfo: LockInfoEntity? = null, // Placeholder type - needs more structure
 
     // (Optional) An explanation of why this is locked for the user ...
     @SerialName("lock_explanation")

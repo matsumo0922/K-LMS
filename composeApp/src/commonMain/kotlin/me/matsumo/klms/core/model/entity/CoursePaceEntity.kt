@@ -56,7 +56,7 @@ data class CoursePaceEntity(
 
     // list of modules and items for this course pace
     @SerialName("modules")
-    val modules: List<Module>? = null,
+    val modules: List<ModuleEntity>? = null,
 
     // progress of pace publishing
     @SerialName("progress")

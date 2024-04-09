@@ -3,7 +3,7 @@ package me.matsumo.klms.core.model.entity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@kotlinx.serialization.Serializable
+@Serializable
 data class BankEntryItemEntity(
     // The type of item.
     @SerialName("entry_type")
@@ -13,7 +13,7 @@ data class BankEntryItemEntity(
     @SerialName("archived")
     val archived: Boolean,
 
-    // The item.
+    // the item (either a QuestionItem or StimulusItem, depending on entry_type)
     @SerialName("entry")
-    val entry: EntryItem? = null
+    val entry: EntryEntity? = null
 )

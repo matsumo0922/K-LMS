@@ -3,7 +3,7 @@ package me.matsumo.klms.core.model.entity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@kotlinx.serialization.Serializable
+@Serializable
 data class NamesAndRoleMessage(
     @SerialName("https://purl.imsglobal.org/spec/lti/claim/message_type")
     val messageType: String, // Always 'LtiResourceLinkRequest'

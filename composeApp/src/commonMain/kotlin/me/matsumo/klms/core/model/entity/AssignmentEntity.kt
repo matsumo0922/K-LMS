@@ -111,7 +111,7 @@ data class AssignmentEntity(
     // the number of submissions that need grading split out by section
     @SerialName("needs_grading_count_by_section") val needsGradingCountBySection: List<NeedsGradingCountEntity>?,
     // Optional settings for rubric evaluation
-    @SerialName("rubric_settings") val rubricSettings: RubricSettingsEntity?,
+    //@SerialName("rubric_settings") val rubricSettings: RubricSettingsEntity?,
     // A list of scoring criteria and ratings for each rubric criterion
     @SerialName("rubric") val rubric: List<RubricCriteriaEntity>?,
     // an array of student IDs who can see this assignment

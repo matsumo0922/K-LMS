@@ -22,7 +22,7 @@ data class OutcomeLinkEntity(
 
     // An abbreviated Outcome object
     @SerialName("outcome")
-    val outcome: Outcome?,
+    val outcome: OutcomeEntity?,
 
     // Whether this outcome has been used to assess a student
     @SerialName("assessed")

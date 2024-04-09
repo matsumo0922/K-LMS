@@ -3,7 +3,7 @@ package me.matsumo.klms.core.model.entity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@kotlinx.serialization.Serializable
+@Serializable
 data class QuizReportEntity(
     // The ID of the quiz report
     @SerialName("id")
@@ -47,7 +47,7 @@ data class QuizReportEntity(
 
     // File object if the report has finished generating
     @SerialName("file")
-    val file: File?,  // Placeholder
+    val file: FileEntity?,  // Placeholder
 
     // URL for retrieving progress if not yet generated
     @SerialName("progress_url")
@@ -55,5 +55,5 @@ data class QuizReportEntity(
 
     // Progress object if being generated
     @SerialName("progress")
-    val progress: Progress?  // Placeholder
+    val progress: ProgressEntity?  // Placeholder
 )

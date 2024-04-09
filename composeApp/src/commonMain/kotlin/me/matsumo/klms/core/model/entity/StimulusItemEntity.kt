@@ -24,4 +24,4 @@ data class StimulusItemEntity(
     // Where the stimulus appears ('top' or 'left')
     @SerialName("orientation")
     val orientation: String
-)
+) : EntryEntity

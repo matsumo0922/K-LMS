@@ -50,8 +50,8 @@ data class ConversationEntity(
     val audience: List<Int>? = null,
 
     // Most relevant shared contexts ...
-    @SerialName("audience_contexts")
-    val audienceContexts: Any? = null, // Placeholder type: You'll need more info on its structure
+    // @SerialName("audience_contexts")
+    // val audienceContexts: Any? = null, // Placeholder type: You'll need more info on its structure
 
     // URL to appropriate icon for this conversation ...
     @SerialName("avatar_url")
@@ -59,7 +59,7 @@ data class ConversationEntity(
 
     // Array of users participating in the conversation ...
     @SerialName("participants")
-    val participants: List<User>? = null,
+    val participants: List<UserEntity>? = null,
 
     // indicates whether the conversation is visible ...
     @SerialName("visible")

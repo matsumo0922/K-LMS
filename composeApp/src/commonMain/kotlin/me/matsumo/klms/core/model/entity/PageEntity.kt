@@ -3,7 +3,7 @@ package me.matsumo.klms.core.model.entity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@kotlinx.serialization.Serializable
+@Serializable
 data class PageEntity(
     // The ID of the page
     @SerialName("page_id")
@@ -35,7 +35,7 @@ data class PageEntity(
 
     // The User who last edited the page
     @SerialName("last_edited_by")
-    val lastEditedBy: User?, // You'll likely have a 'User' data class
+    val lastEditedBy: UserEntity?, // You'll likely have a 'User' data class
 
     // The page content (HTML)
     @SerialName("body")

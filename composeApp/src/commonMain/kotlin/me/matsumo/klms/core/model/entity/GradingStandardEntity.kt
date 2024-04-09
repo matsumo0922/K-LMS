@@ -23,7 +23,7 @@ data class GradingStandardEntity(
 
     // A list of GradingSchemeEntry that make up the Grading Standard ...
     @SerialName("grading_scheme")
-    val gradingScheme: List<GradingSchemeEntry>
+    val gradingScheme: List<GradingSchemeEntryEntity>
 )
 
 // You'll need the GradingSchemeEntry data class from our previous example

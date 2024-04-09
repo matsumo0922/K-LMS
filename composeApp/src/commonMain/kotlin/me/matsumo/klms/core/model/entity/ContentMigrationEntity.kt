@@ -47,17 +47,5 @@ data class ContentMigrationEntity(
 
     // file uploading data ...
     @SerialName("pre_attachment")
-    val preAttachment: PreAttachment  // You'll need a data class to represent this
-) {
-    @Serializable
-    data class PreAttachment(
-        @SerialName("upload_url")
-        val uploadUrl: String,
-
-        @SerialName("message")
-        val message: String,
-
-        @SerialName("upload_params")
-        val uploadParams: Map<String, Any> // Placeholder type: You'll need to refine this
-    )
-}
+    val preAttachment: String?
+)

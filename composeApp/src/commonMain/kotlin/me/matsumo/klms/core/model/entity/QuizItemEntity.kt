@@ -33,11 +33,7 @@ data class QuizItemEntity(
     @SerialName("status")
     val status: String,
 
-    // Additional properties ...
-    @SerialName("properties")
-    val properties: Any? = null, // Placeholder
-
     // The specific data associated with the quiz item.
     @SerialName("entry")
-    val entry: EntryItem?
+    val entry: EntryEntity?
 )

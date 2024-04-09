@@ -9,7 +9,7 @@ data class ModuleItemSequenceEntity(
     val items: List<ModuleItemSequenceNode>,
 
     @SerialName("modules")
-    val modules: List<Module>
+    val modules: List<ModuleEntity>
 ) {
 
     @Serializable
@@ -33,7 +33,7 @@ data class ModuleItemSequenceEntity(
         val locked: Boolean,
 
         @SerialName("assignment_sets")
-        val assignmentSets: List<Any>, // Placeholder - model based on structure
+        val assignmentSets: List<AssignmentEntity>, // Placeholder - model based on structure
 
         @SerialName("selected_set_id")
         val selectedSetId: Int? = null,

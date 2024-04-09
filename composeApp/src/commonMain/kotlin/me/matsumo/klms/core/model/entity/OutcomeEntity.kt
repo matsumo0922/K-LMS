@@ -3,7 +3,7 @@ package me.matsumo.klms.core.model.entity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@kotlinx.serialization.Serializable
+@Serializable
 data class OutcomeEntity(
     // The ID of the outcome
     @SerialName("id")
@@ -54,7 +54,7 @@ data class OutcomeEntity(
 
     // Possible ratings
     @SerialName("ratings")
-    val ratings: List<Rating>?,
+    val ratings: List<RubricRatingEntity>?,
 
     // Whether the current user can update the outcome
     @SerialName("can_edit")

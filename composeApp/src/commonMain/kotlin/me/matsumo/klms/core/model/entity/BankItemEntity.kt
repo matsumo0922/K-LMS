@@ -20,4 +20,4 @@ data class BankItemEntity(
     // The number of items in the bank, excluding stimuli
     @SerialName("item_entry_count")
     val itemEntryCount: Int
-)
+) : EntryEntity

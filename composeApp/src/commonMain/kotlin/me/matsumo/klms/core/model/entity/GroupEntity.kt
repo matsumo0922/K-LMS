@@ -66,11 +66,21 @@ data class GroupEntity(
 
     // optional: the permissions the user has for the group. ...
     @SerialName("permissions")
-    val permissions: PermissionsEntity? = null,
+    val permissions: Permissions? = null,
 
     // optional: A list of users that are members in the group. ...
     @SerialName("users")
-    val users: List<User>? = null
-)
+    val users: List<UserEntity>? = null
+) {
+    @Serializable
+    data class Permissions(
+        @SerialName("create_discussion_topic")
+        val createDiscussionTopic: Boolean,
+
+        // optional: the permissions the user has for the group. ...
+        @SerialName("create_announcement")
+        val createAnnouncement: Boolean,
+    )
+}
 
 // You'll likely need 'Permissions' and 'User' data classes defined as well
