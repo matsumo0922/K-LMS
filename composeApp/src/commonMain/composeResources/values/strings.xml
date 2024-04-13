@@ -44,9 +44,11 @@
 
     <!-- Navigation -->
     <string name="navigation_home">Home</string>
-    <string name="navigation_articles">Articles</string>
-    <string name="navigation_about">About</string>
-    <string name="navigation_github">GitHub</string>
+    <string name="navigation_calendar">カレンダー</string>
+    <string name="navigation_message">メッセージ</string>
+    <string name="navigation_timetable">時間割</string>
+    <string name="navigation_settings">設定</string>
+    <string name="navigation_about">アプリについて</string>
 
     <!-- Welcome -->
     <string name="welcome_title">K-LMS</string>
@@ -59,6 +61,8 @@
     <string name="welcome_login_message">このアプリを利用するには Keio.jp アカウントで\nログインする必要があります</string>
     <string name="welcome_login_ready_title">ログイン済み</string>
     <string name="welcome_login_ready_message">Keio.jp アカウントでログイン済みです</string>
+    <string name="welcome_login_email">メールアドレス</string>
+    <string name="welcome_login_password">パスワード</string>
     <string name="welcome_login_toast_success">ログインしました</string>
     <string name="welcome_login_toast_failed">ログインに失敗しました</string>
     <string name="welcome_login_button_login">ログイン</string>

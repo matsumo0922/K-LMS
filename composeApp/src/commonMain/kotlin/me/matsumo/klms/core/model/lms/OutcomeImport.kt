@@ -13,7 +13,7 @@ data class OutcomeImport(
     val workflowState: String,
     val data: OutcomeImportData?,
     val progress: Int,
-    val user: User?,
+    val user: LmsUser?,
     val processingErrors: List<List<Map<Int, String>>>,
 )
 

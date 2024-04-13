@@ -13,9 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.arkivanov.decompose.DefaultComponentContext
-import com.arkivanov.decompose.defaultComponentContext
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import me.matsumo.klms.core.model.ThemeConfig
 import me.matsumo.klms.core.repository.UserDataRepository
@@ -31,7 +28,6 @@ class MainActivity : FragmentActivity(), KoinComponent {
         super.onCreate(savedInstanceState)
 
         val splashScreen = installSplashScreen()
-        val lmsComponent = DefaultLmsComponent(defaultComponentContext())
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
@@ -52,7 +48,6 @@ class MainActivity : FragmentActivity(), KoinComponent {
 
                 LmsApp(
                     modifier = Modifier.fillMaxSize(),
-                    component =lmsComponent,
                     userData = userData!!,
                     windowWidthSize = windowSize.widthSizeClass,
                 )

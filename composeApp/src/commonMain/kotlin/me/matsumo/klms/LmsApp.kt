@@ -4,31 +4,38 @@ import androidx.compose.foundation.background
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import com.arkivanov.decompose.extensions.compose.stack.Children
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import me.matsumo.klms.core.extensions.koinViewModel
 import me.matsumo.klms.core.model.UserData
 import me.matsumo.klms.core.theme.MMTheme
-import me.matsumo.klms.screen.library.LibraryRoute
-import me.matsumo.klms.screen.welcome.WelcomeLoginRoute
+import me.matsumo.klms.core.ui.AsyncLoadContents
+import org.koin.compose.KoinContext
 
 @Composable
 fun LmsApp(
-    component: LmsComponent,
     userData: UserData,
     windowWidthSize: WindowWidthSizeClass,
     modifier: Modifier = Modifier,
 ) {
-    MMTheme(
-        themeConfig = userData.themeConfig,
-        windowWidthSize = windowWidthSize,
-    ) {
-        Children(
-            modifier = modifier.background(MaterialTheme.colorScheme.surface),
-            stack = component.childStack,
+    KoinContext {
+        MMTheme(
+            themeConfig = userData.themeConfig,
+            windowWidthSize = windowWidthSize,
         ) {
-            when (val child = it.instance) {
-                is LmsComponent.Child.Library -> LibraryRoute(child.component)
-                is LmsComponent.Child.WelcomeLogin -> WelcomeLoginRoute(child.component)
+            val viewModel = koinViewModel(LmsViewModel::class)
+            val screenState by viewModel.screenState.collectAsStateWithLifecycle()
+
+            AsyncLoadContents(
+                modifier = modifier.background(MaterialTheme.colorScheme.surface),
+                screenState = screenState,
+            ) {
+                LmsScreen(
+                    uiState = it,
+                    onRequestLmsId = viewModel::initLmsId,
+                    onRequestUpdateState = viewModel::updateState,
+                )
             }
         }
     }

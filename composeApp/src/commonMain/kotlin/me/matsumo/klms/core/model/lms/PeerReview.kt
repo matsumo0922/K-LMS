@@ -11,8 +11,8 @@ data class PeerReview(
     val id: Int,
     val userId: Int,
     val workflowState: String,
-    val user: User?,
-    val assessor: User?,
+    val user: LmsUser?,
+    val assessor: LmsUser?,
     val submissionComments: List<SubmissionComment>?,
 )
 

@@ -1,4 +1,4 @@
-package me.matsumo.klms.core.utils
+package me.matsumo.klms.core.extensions
 
 import co.touchlab.kermit.Logger
 import io.ktor.client.call.body

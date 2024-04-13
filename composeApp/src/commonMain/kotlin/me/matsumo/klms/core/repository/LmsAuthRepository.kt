@@ -12,22 +12,23 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 import me.matsumo.klms.core.datastore.LmsCookieDataStore
 import me.matsumo.klms.core.datastore.LmsLoginDataStore
+import me.matsumo.klms.core.extensions.suspendRunCatching
 import me.matsumo.klms.core.model.LoginData
 import me.matsumo.klms.core.repository.api.ApiClient
-import me.matsumo.klms.core.utils.suspendRunCatching
+import me.matsumo.klms.core.repository.api.UserApi
 
 interface LmsAuthRepository {
 
     val loginData: Flow<LoginData>
     val isLoggedIn: StateFlow<Boolean>
 
-    fun login()
-    fun logout()
+    suspend fun login()
+    suspend fun logout()
+    suspend fun checkLogin()
 
-    fun setLoginParams(
+    suspend fun setLoginParams(
         email: String,
         password: String,
         token: String,
@@ -47,39 +48,39 @@ class LmsAuthRepositoryImpl(
     override val loginData: Flow<LoginData> = loginDataStore.loginData
     override val isLoggedIn: StateFlow<Boolean> = _isLoggedIn.asStateFlow()
 
-    override fun login() {
-        scope.launch {
-            suspendRunCatching {
-                cookieDataStore.clear()
+    override suspend fun login() {
+        cookieDataStore.clear()
 
-                val loginData = loginDataStore.loginData.first()
-                val csrfToken = getCsrfToken()
+        val loginData = loginDataStore.loginData.first()
+        val csrfToken = getCsrfToken()
 
-                val (mUrl, mParams) = getMicrosoftLoginUrl(csrfToken)
-                val (kUrl, kParams) = getKeioLoginUrl(mUrl, mParams)
+        val (mUrl, mParams) = getMicrosoftLoginUrl(csrfToken)
+        val (kUrl, kParams) = getKeioLoginUrl(mUrl, mParams)
 
-                val loginCsrfToken = getLoginCsrfToken(kUrl, kParams)
+        val loginCsrfToken = getLoginCsrfToken(kUrl, kParams)
 
-                val (kLoginUrl, kLoginParams) = keioLogin(loginData.email, loginData.password, loginCsrfToken)
-                val (mLoginUrl, mLoginParams) = microsoftLogin(kLoginUrl, kLoginParams)
-                val (loginUrl, loginParams) = validateLogin(mLoginUrl, mLoginParams)
+        val (kLoginUrl, kLoginParams) = keioLogin(loginData.email, loginData.password, loginCsrfToken)
+        val (mLoginUrl, mLoginParams) = microsoftLogin(kLoginUrl, kLoginParams)
+        val (loginUrl, loginParams) = validateLogin(mLoginUrl, mLoginParams)
 
-                login(loginUrl, loginParams)
-            }
-        }
+        login(loginUrl, loginParams)
     }
 
-    override fun logout() {
-        scope.launch {
+    override suspend fun logout() {
             cookieDataStore.clear()
-        }
     }
 
-    override fun setLoginParams(email: String, password: String, token: String) {
-        scope.launch {
-            loginDataStore.setEmail(email)
-            loginDataStore.setPassword(password)
-            loginDataStore.setToken(token)
+    override suspend fun setLoginParams(email: String, password: String, token: String) {
+        loginDataStore.setEmail(email)
+        loginDataStore.setPassword(password)
+        loginDataStore.setToken(token)
+    }
+
+    override suspend fun checkLogin() {
+        suspendRunCatching {
+            UserApi(client).getSelf()
+        }.also {
+            _isLoggedIn.value = it.isSuccess
         }
     }
 

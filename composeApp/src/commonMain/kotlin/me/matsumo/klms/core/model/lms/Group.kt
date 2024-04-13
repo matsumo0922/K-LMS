@@ -21,7 +21,7 @@ data class Group(
     val sisImportId: Int? = null,
     val storageQuotaMb: Int,
     val permissions: Permissions? = null,
-    val users: List<User>? = null,
+    val users: List<LmsUser>? = null,
 ) {
     @Serializable
     data class Permissions(

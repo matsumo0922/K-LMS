@@ -8,7 +8,7 @@ data class PageRevision(
     val revisionId: Int,
     val updatedAt: String,
     val latest: Boolean,
-    val editedBy: User?,
+    val editedBy: LmsUser?,
     val url: String?,
     val title: String?,
     val body: String?,

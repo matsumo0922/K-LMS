@@ -9,7 +9,7 @@ targetSdk = "34"
 compileSdk = "34"
 
 # Gradle
-gradle = "8.3.0"
+gradle = "8.3.2"
 
 # Kotlin
 kotlin = "1.9.23"
@@ -25,9 +25,12 @@ kotlinxImmutable = "0.3.7"
 androidxCore = "1.12.0"
 androidxCoreSplash = "1.0.1"
 androidxActivity = "1.8.2"
-androidxLifecycle = "2.8.0-alpha03"
-androidxPaging = "3.3.0-alpha02-0.5.1"
-androidxDataStore = "1.1.0-beta02"
+androidxDataStore = "1.1.0-rc01"
+
+# Jetbrains Compose
+kmpLifecycle = "2.8.0-dev1580"
+kmpNavigation = "2.8.0-dev1580"
+kmpPaging = "3.3.0-alpha02-0.5.1"
 
 # KMP
 kmpCompose = "1.6.1"
@@ -67,7 +70,7 @@ cupertino = "0.1.0-alpha03"
 twitterComposeRule = "0.0.26"
 
 # Debugs
-firebase = "32.8.0"
+firebase = "32.8.1"
 leakCanary = "2.13"
 flipper = "0.247.0"
 kermit = "2.0.3"
@@ -115,17 +118,12 @@ androidx-core = { module = "androidx.core:core-ktx", version.ref = "androidxCore
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "androidxCoreSplash" }
 androidx-activity = { module = "androidx.activity:activity-ktx", version.ref = "androidxActivity" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
-androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidxLifecycle" }
-androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
-androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidxLifecycle" }
-androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
-androidx-paging-compose = { module = "app.cash.paging:paging-compose-common", version.ref = "androidxPaging" }
 androidx-datastore = { module = "androidx.datastore:datastore", version.ref = "androidxDataStore" }
 androidx-datastore-proto = { module = "androidx.datastore:datastore-core", version.ref = "androidxDataStore" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences-core", version.ref = "androidxDataStore" }
 
 # Compose
-androidx-compose-bom = { module = "androidx.compose:compose-bom", version = "2024.03.00" }
+androidx-compose-bom = { module = "androidx.compose:compose-bom", version = "2024.04.00" }
 androidx-compose-runtime = { module = "androidx.compose.runtime:runtime" }
 androidx-compose-ui = { module = "androidx.compose.ui:ui" }
 androidx-compose-ui-util = { module = "androidx.compose.ui:ui-util" }
@@ -134,6 +132,12 @@ androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 androidx-compose-animation = { module = "androidx.compose.animation:animation" }
 androidx-compose-animation-graphics = { module = "androidx.compose.animation:animation-graphics" }
+
+# Kmp Compose
+kmp-lifecycle-runtime-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "kmpLifecycle" }
+kmp-lifecycle-viewmodel-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "kmpLifecycle" }
+kmp-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "kmpNavigation" }
+kmp-paging-compose = { module = "app.cash.paging:paging-compose-common", version.ref = "kmpPaging" }
 
 # Billing
 billing = { module = "com.android.billingclient:billing", version.ref = "billing" }

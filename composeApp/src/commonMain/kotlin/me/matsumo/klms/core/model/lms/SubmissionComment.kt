@@ -8,7 +8,7 @@ data class SubmissionComment(
     val id: Int,
     val authorId: Int,
     val authorName: String,
-    val author: User?,
+    val author: LmsUser?,
     val comment: String,
     val createdAt: String,
     val editedAt: String?,

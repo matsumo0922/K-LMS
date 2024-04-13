@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.UserEntity
 
 @Serializable
-data class User(
+data class LmsUser(
     val id: Int,
     val name: String,
     val sortableName: String,
@@ -25,8 +25,8 @@ data class User(
     val bio: String?,
 )
 
-fun UserEntity.translate(): User {
-    return User(
+fun UserEntity.translate(): LmsUser {
+    return LmsUser(
         id = id,
         name = name,
         sortableName = sortableName,

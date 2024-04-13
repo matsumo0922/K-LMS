@@ -13,11 +13,9 @@ import me.matsumo.klms.core.repository.CookiesRepository
 import me.matsumo.klms.core.repository.LmsAuthRepository
 import me.matsumo.klms.core.repository.LmsAuthRepositoryImpl
 import me.matsumo.klms.core.repository.LmsRepository
-import me.matsumo.klms.core.repository.LmsRepositoryImpl
 import me.matsumo.klms.core.repository.UserDataRepository
 import me.matsumo.klms.core.repository.UserDataRepositoryImpl
 import me.matsumo.klms.core.repository.api.ApiClient
-import me.matsumo.klms.core.repository.api.CoursesApi
 import org.koin.dsl.module
 
 @OptIn(ExperimentalSerializationApi::class)
@@ -77,16 +75,8 @@ val repositoryModule = module {
     }
 
     single<LmsRepository> {
-        LmsRepositoryImpl(
+        LmsRepository(
             client = get(),
-            ioDispatcher = get(),
-        )
-    }
-
-    single {
-        CoursesApi(
-            client = get(),
-            ioDispatcher = get(),
         )
     }
 }

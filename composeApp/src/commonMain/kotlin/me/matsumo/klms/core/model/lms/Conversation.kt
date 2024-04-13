@@ -17,7 +17,7 @@ data class Conversation(
     val properties: List<String> = emptyList(),
     val audience: List<Int> = emptyList(),
     val avatarUrl: String,
-    val participants: List<User> = emptyList(),
+    val participants: List<LmsUser> = emptyList(),
     val visible: Boolean,
     val contextName: String,
 )

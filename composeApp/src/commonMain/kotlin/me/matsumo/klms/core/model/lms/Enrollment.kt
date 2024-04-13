@@ -32,7 +32,7 @@ data class Enrollment(
     val totalActivityTime: Int,
     val htmlUrl: String,
     val grades: Grade,
-    val user: User,
+    val user: LmsUser,
     val overrideGrade: String? = null,
     val overrideScore: Double? = null,
     val unpostedCurrentGrade: String? = null,

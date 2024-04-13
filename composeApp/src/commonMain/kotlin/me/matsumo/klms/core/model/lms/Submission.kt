@@ -22,7 +22,7 @@ data class Submission(
     val userId: Int,
     val graderId: Int,
     val gradedAt: String?,
-    val user: User?,
+    val user: LmsUser?,
     val late: Boolean,
     val assignmentVisible: Boolean,
     val excused: Boolean,

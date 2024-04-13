@@ -12,7 +12,7 @@ data class Page(
     val updatedAt: String,
     val hideFromStudents: Boolean,
     val editingRoles: String,
-    val lastEditedBy: User?,
+    val lastEditedBy: LmsUser?,
     val body: String?,
     val published: Boolean,
     val publishAt: String?,

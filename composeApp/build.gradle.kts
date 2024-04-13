@@ -106,11 +106,17 @@ kotlin {
                 api(libs.bundles.ktor)
                 api(libs.bundles.decompose)
 
-                api(libs.androidx.paging.compose)
+                api(libs.kmp.paging.compose)
+                api(libs.kmp.navigation.compose)
+                api(libs.kmp.lifecycle.runtime.compose)
+                api(libs.kmp.lifecycle.viewmodel.compose)
+
                 api(libs.calf.ui)
                 api(libs.placeholder)
                 
                 implementation(libs.ksoup)
+                implementation(libs.moko.permissions)
+                implementation(libs.moko.permissions.compose)
             }
         }
 
@@ -123,8 +129,6 @@ kotlin {
                 implementation(libs.androidx.core.splashscreen)
                 implementation(libs.androidx.activity)
                 implementation(libs.androidx.activity.compose)
-                implementation(libs.androidx.lifecycle.runtime)
-                implementation(libs.androidx.lifecycle.runtime.compose)
 
                 implementation(libs.accompanist.systemuicontroller)
 
