@@ -30,7 +30,7 @@ class DefaultLmsComponent(
         source = navigation,
         serializer = Navigation.serializer(),
         initialStack = { listOf(Navigation.Library) },
-        childFactory = ::childFactory
+        childFactory = ::childFactory,
     )
 
     override val childStack: Value<ChildStack<*, LmsComponent.Child>> = stack

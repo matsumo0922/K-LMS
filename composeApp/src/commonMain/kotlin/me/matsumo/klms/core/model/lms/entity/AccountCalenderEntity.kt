@@ -1,6 +1,5 @@
 package me.matsumo.klms.core.model.lms.entity
 
-
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -31,5 +30,5 @@ data class AccountCalendarEntity(
     // API path to create events for the account
     @SerialName("create_calendar_event_url") val createCalendarEventUrl: String,
     // url to open the more options event editor
-    @SerialName("new_calendar_event_url") val newCalendarEventUrl: String
+    @SerialName("new_calendar_event_url") val newCalendarEventUrl: String,
 )

@@ -15,5 +15,5 @@ data class BlueprintTemplateEntity(
     // Number of associated courses for the template
     @SerialName("associated_course_count") val associatedCourseCount: Int,
     // Details of the latest migration
-    @SerialName("latest_migration") val latestMigration: String?
+    @SerialName("latest_migration") val latestMigration: String?,
 )

@@ -1,22 +1,17 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.ProvisionalGradeEntity
 
 @Serializable
 data class ProvisionalGrade(
-        val provisionalGradeId: Int,
-
-        val score: Double, 
-        val grade: String,
-
-        val gradeMatchesCurrentSubmission: Boolean,
-
-        val gradedAt: String,
-
-        val final: Boolean,
-
-        val speedgraderUrl: String
+    val provisionalGradeId: Int,
+    val score: Double,
+    val grade: String,
+    val gradeMatchesCurrentSubmission: Boolean,
+    val gradedAt: String,
+    val final: Boolean,
+    val speedgraderUrl: String,
 )
 
 fun ProvisionalGradeEntity.translate(): ProvisionalGrade {
@@ -26,6 +21,7 @@ fun ProvisionalGradeEntity.translate(): ProvisionalGrade {
         grade = grade,
         gradeMatchesCurrentSubmission = gradeMatchesCurrentSubmission,
         gradedAt = gradedAt,
-        final = final
+        final = final,
+        speedgraderUrl = speedgraderUrl,
     )
 }

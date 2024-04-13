@@ -7,7 +7,6 @@ import kotlinx.serialization.Serializable
 data class ColumnDatumEntity(
     @SerialName("content")
     val content: String,
-
     @SerialName("user_id")
-    val userId: Int
+    val userId: Int,
 )

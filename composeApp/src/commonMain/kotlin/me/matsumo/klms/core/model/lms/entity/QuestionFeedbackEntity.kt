@@ -7,10 +7,8 @@ import kotlinx.serialization.Serializable
 data class QuestionFeedbackEntity(
     @SerialName("neutral")
     val neutral: String,
-
     @SerialName("correct")
     val correct: String,
-
     @SerialName("incorrect")
-    val incorrect: String
+    val incorrect: String,
 )

@@ -1,12 +1,10 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.datetime.Instant
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.AccountEntity
 
 @Serializable
-data class Account(
+data class LmsAccount(
     val id: Int,
     val name: String,
     val uuid: String,
@@ -20,11 +18,11 @@ data class Account(
     val integrationId: String,
     val sisImportId: Int?,
     val ltiGuid: String,
-    val workflowState: String
+    val workflowState: String,
 )
 
-fun AccountEntity.translate(): Account {
-    return Account(
+fun AccountEntity.translate(): LmsAccount {
+    return LmsAccount(
         id = id,
         name = name,
         uuid = uuid,
@@ -38,6 +36,6 @@ fun AccountEntity.translate(): Account {
         integrationId = integrationId,
         sisImportId = sisImportId,
         ltiGuid = ltiGuid,
-        workflowState = workflowState
+        workflowState = workflowState,
     )
 }

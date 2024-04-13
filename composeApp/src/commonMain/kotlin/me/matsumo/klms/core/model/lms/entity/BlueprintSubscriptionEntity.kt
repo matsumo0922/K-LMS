@@ -11,7 +11,8 @@ data class BlueprintSubscriptionEntity(
     // The ID of the blueprint template the associated course is subscribed to.
     @SerialName("template_id") val templateId: Int,
     // The blueprint course subscribed to.
-    @SerialName("blueprint_course") val blueprintCourse: me.matsumo.klms.core.model.lms.entity.BlueprintSubscriptionEntity.BlueprintCourse
+    @SerialName("blueprint_course") val blueprintCourse:
+    me.matsumo.klms.core.model.lms.entity.BlueprintSubscriptionEntity.BlueprintCourse,
 ) {
     @Serializable
     data class BlueprintCourse(
@@ -22,6 +23,6 @@ data class BlueprintSubscriptionEntity(
         // The course code of the blueprint course.
         @SerialName("course_code") val courseCode: String,
         // The term name of the blueprint course.
-        @SerialName("term_name") val termName: String
+        @SerialName("term_name") val termName: String,
     )
 }

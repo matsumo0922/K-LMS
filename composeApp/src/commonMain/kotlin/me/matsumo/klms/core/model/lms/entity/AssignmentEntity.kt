@@ -103,15 +103,18 @@ data class AssignmentEntity(
     // all dates associated with the assignment, if applicable
     @SerialName("all_dates") val allDates: List<AssignmentDateEntity>?,
     // assignment's settings for external tools if submission_types include 'external_tool'
-    @SerialName("external_tool_tag_attributes") val externalToolTagAttributes: me.matsumo.klms.core.model.lms.entity.ExternalToolTagAttributesEntity?,
+    @SerialName("external_tool_tag_attributes") val externalToolTagAttributes:
+    me.matsumo.klms.core.model.lms.entity.ExternalToolTagAttributesEntity?,
     // If retrieving a single assignment and 'can_submit' is included in the 'include' parameter, flags whether user has the right to submit the assignment
     @SerialName("can_submit") val canSubmit: Boolean?,
     // Settings to control what kinds of matches should be considered by Turnitin
-    @SerialName("turnitin_settings") val turnitinSettings: me.matsumo.klms.core.model.lms.entity.TurnitinSettingsEntity?,
+    @SerialName("turnitin_settings") val turnitinSettings:
+    me.matsumo.klms.core.model.lms.entity.TurnitinSettingsEntity?,
     // the number of submissions that need grading split out by section
-    @SerialName("needs_grading_count_by_section") val needsGradingCountBySection: List<me.matsumo.klms.core.model.lms.entity.NeedsGradingCountEntity>?,
+    @SerialName("needs_grading_count_by_section") val needsGradingCountBySection:
+    List<me.matsumo.klms.core.model.lms.entity.NeedsGradingCountEntity>?,
     // Optional settings for rubric evaluation
-    //@SerialName("rubric_settings") val rubricSettings: RubricSettingsEntity?,
+    // @SerialName("rubric_settings") val rubricSettings: RubricSettingsEntity?,
     // A list of scoring criteria and ratings for each rubric criterion
     @SerialName("rubric") val rubric: List<me.matsumo.klms.core.model.lms.entity.RubricCriteriaEntity>?,
     // an array of student IDs who can see this assignment
@@ -157,5 +160,5 @@ data class AssignmentEntity(
     // (optional, Third Party unique identifier for Assignment)
     @SerialName("integration_id") val integrationId: String?,
     // (optional, Third Party integration data for assignment)
-    @SerialName("integration_data") val integrationData: Map<String, String>?
+    @SerialName("integration_data") val integrationData: Map<String, String>?,
 )

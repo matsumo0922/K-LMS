@@ -9,40 +9,24 @@ import me.matsumo.klms.core.model.lms.entity.AssignmentOverrideEntity
 @Serializable
 data class AssignmentEvent(
     val id: String,
-
     val title: String,
-
     val startAt: String,
-
     val endAt: String,
-
     val description: String,
-
     val contextCode: String,
-
     val workflowState: String,
-
     val url: String,
-
     val htmlUrl: String,
-
     val allDayDate: Instant,
-
     val allDay: Boolean,
-
     val createdAt: String,
-
     val updatedAt: String,
-
     val assignment: AssignmentEntity? = null,
     val assignmentOverrides: AssignmentOverrideEntity? = null,
     val importantDates: Boolean,
-
     val rrule: String,
-
     val seriesHead: Boolean? = null,
-
-    val seriesNaturalLanguage: String? = null
+    val seriesNaturalLanguage: String? = null,
 )
 
 fun AssignmentEventEntity.translate(): AssignmentEvent {
@@ -64,6 +48,6 @@ fun AssignmentEventEntity.translate(): AssignmentEvent {
         assignmentOverrides = assignmentOverrides,
         importantDates = importantDates,
         rrule = rrule,
-        seriesHead = seriesHead
+        seriesHead = seriesHead,
     )
 }

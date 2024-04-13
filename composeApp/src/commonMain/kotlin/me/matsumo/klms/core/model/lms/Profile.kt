@@ -1,41 +1,26 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.ProfileEntity
 
 @Serializable
 data class Profile(
-        val id: Int,
-
-        val name: String,
-
-        val shortName: String,
-
-        val sortableName: String,
-
-        val title: String?,
-
-        val bio: String?,
-
-        val primaryEmail: String,
-
-        val loginId: String,
-
-        val sisUserId: String?,
-
-        val ltiUserId: String?,
-
-        val avatarUrl: String,
-
-        val calendar: CalendarEventEntity?,
-
-        val timeZone: String?,
-
-        val locale: String?,
-
-        val k5User: Boolean?,
-
-        val useClassicFontInK5: Boolean?
+    val id: Int,
+    val name: String,
+    val shortName: String,
+    val sortableName: String,
+    val title: String?,
+    val bio: String?,
+    val primaryEmail: String,
+    val loginId: String,
+    val sisUserId: String?,
+    val ltiUserId: String?,
+    val avatarUrl: String,
+    val calendar: CalendarEvent?,
+    val timeZone: String?,
+    val locale: String?,
+    val k5User: Boolean?,
+    val useClassicFontInK5: Boolean?,
 )
 
 fun ProfileEntity.translate(): Profile {
@@ -51,9 +36,10 @@ fun ProfileEntity.translate(): Profile {
         sisUserId = sisUserId,
         ltiUserId = ltiUserId,
         avatarUrl = avatarUrl,
-        calendar = calendar,
+        calendar = calendar?.translate(),
         timeZone = timeZone,
         locale = locale,
-        k5User = k5User
+        k5User = k5User,
+        useClassicFontInK5 = useClassicFontInK5,
     )
 }

@@ -13,5 +13,5 @@ data class LockInfoEntity(
     @SerialName("lock_at") val lockAt: String?,
     // (Optional) Context module causing the lock.
     @SerialName("context_module") val contextModule: String?,
-    @SerialName("manually_locked") val manuallyLocked: Boolean
+    @SerialName("manually_locked") val manuallyLocked: Boolean,
 )

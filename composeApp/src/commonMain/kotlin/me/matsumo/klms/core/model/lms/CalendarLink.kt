@@ -5,11 +5,11 @@ import me.matsumo.klms.core.model.lms.entity.CalendarLinkEntity
 
 @Serializable
 data class CalendarLink(
-        val ics: String
+    val ics: String,
 )
 
 fun CalendarLinkEntity.translate(): CalendarLink {
     return CalendarLink(
-        ics = ics
+        ics = ics,
     )
 }

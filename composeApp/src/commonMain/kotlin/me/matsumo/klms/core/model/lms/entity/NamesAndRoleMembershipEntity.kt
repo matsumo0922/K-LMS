@@ -5,61 +5,46 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class NamesAndRoleMembershipEntity(
-    @SerialName("status")
-    val status: String,
-
-    @SerialName("name")
-    val name: String? = null, // Optional
-
-    @SerialName("picture")
-    val picture: String? = null, // Optional
-
-    @SerialName("given_name")
-    val givenName: String? = null, // Optional
-
-    @SerialName("family_name")
-    val familyName: String? = null, // Optional
-
     @SerialName("email")
-    val email: String? = null, // Optional
-
+    val email: String,
+    @SerialName("family_name")
+    val familyName: String,
+    @SerialName("given_name")
+    val givenName: String,
     @SerialName("lis_person_sourcedid")
-    val lisPersonSourcedid: String? = null, // Optional
-
-    @SerialName("user_id")
-    val userId: String,
-
+    val lisPersonSourcedid: String,
+    @SerialName("message")
+    val message: List<Message>,
+    @SerialName("name")
+    val name: String,
+    @SerialName("picture")
+    val picture: String,
     @SerialName("roles")
     val roles: List<String>,
-
-    @SerialName("message")
-    val message: List<me.matsumo.klms.core.model.lms.entity.NamesAndRoleMembershipEntity.Message>? = null  // Optional
+    @SerialName("status")
+    val status: String,
+    @SerialName("user_id")
+    val userId: String,
 ) {
-
     @Serializable
     data class Message(
-        @SerialName("https://purl.imsglobal.org/spec/lti/claim/message_type")
+        @SerialName("custom")
+        val custom: Custom,
+        @SerialName("message_type")
         val messageType: String,
-
+        @SerialName("canvas_user_id")
+        val canvasUserId: Int,
+        @SerialName("canvas_user_login_id")
+        val canvasUserLoginId: String,
         @SerialName("locale")
         val locale: String,
-
-        @SerialName("https://www.instructure.com/canvas_user_id")
-        val canvasUserId: Int,
-
-        @SerialName("https://www.instructure.com/canvas_user_login_id")
-        val canvasUserLoginId: String,
-
-        @SerialName("https://purl.imsglobal.org/spec/lti/claim/custom")
-        val custom: me.matsumo.klms.core.model.lms.entity.NamesAndRoleMembershipEntity.CustomParameters
-    )
-
-    @Serializable
-    data class CustomParameters(
-        @SerialName("message_locale")
-        val messageLocale: String,
-
-        @SerialName("person_address_timezone")
-        val personAddressTimezone: String
-    )
+    ) {
+        @Serializable
+        data class Custom(
+            @SerialName("message_locale")
+            val messageLocale: String,
+            @SerialName("person_address_timezone")
+            val personAddressTimezone: String,
+        )
+    }
 }

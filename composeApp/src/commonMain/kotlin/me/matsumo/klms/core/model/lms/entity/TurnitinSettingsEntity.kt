@@ -20,5 +20,5 @@ data class TurnitinSettingsEntity(
     // The type of small matches to exclude ('percent' or 'words')
     @SerialName("exclude_small_matches_type") val excludeSmallMatchesType: String,
     // The value for small matches exclusion
-    @SerialName("exclude_small_matches_value") val excludeSmallMatchesValue: Int
+    @SerialName("exclude_small_matches_value") val excludeSmallMatchesValue: Int,
 )

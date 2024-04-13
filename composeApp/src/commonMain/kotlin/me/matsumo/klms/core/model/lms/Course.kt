@@ -1,107 +1,61 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.CourseEntity
+import me.matsumo.klms.core.model.lms.entity.EnrollmentEntity
 
 @Serializable
 data class Course(
-        val id: Int,
-
-        val sisCourseId: String? = null,
-
-        val uuid: String,
-
-        val integrationId: String? = null,
-
-        val sisImportId: Int? = null,
-
-        val name: String,
-
-        val courseCode: String,
-
-        val originalName: String? = null,
-
-        val workflowState: String,
-
-        val accountId: Int,
-
-        val rootAccountId: Int,
-
-        val enrollmentTermId: Int,
-
-            
-        val gradingStandardId: Int,
-
-        val gradePassbackSetting: String,
-
-        val createdAt: String,
-
-        val startAt: String? = null,
-
-        val endAt: String? = null,
-
-        val locale: String,
-
-        val enrollments: EnrollmentEntity? = null, 
-        val totalStudents: Int? = null,
-
-        val calendar: CalendarLinkEntity? = null,
-
-        val defaultView: String,
-
-        val syllabusBody: String? = null,
-
-        val needsGradingCount: Int? = null,
-
-        val term: TermEntity? = null, 
-        val courseProgress: CourseProgressEntity? = null, 
-        val applyAssignmentGroupWeights: Boolean,
-
-        val permissions: Map<String, Boolean>? = null, 
+    val id: Int,
+    val sisCourseId: String? = null,
+    val uuid: String,
+    val integrationId: String? = null,
+    val sisImportId: Int? = null,
+    val name: String,
+    val courseCode: String,
+    val originalName: String? = null,
+    val workflowState: String,
+    val accountId: Int,
+    val rootAccountId: Int,
+    val enrollmentTermId: Int,
+    val gradingStandardId: Int,
+    val gradePassbackSetting: String,
+    val createdAt: String,
+    val startAt: String? = null,
+    val endAt: String? = null,
+    val locale: String,
+    val enrollments: EnrollmentEntity? = null,
+    val totalStudents: Int? = null,
+    val calendar: CalendarLink? = null,
+    val defaultView: String,
+    val syllabusBody: String? = null,
+    val needsGradingCount: Int? = null,
+    val term: Term? = null,
+    val courseProgress: CourseProgress? = null,
+    val applyAssignmentGroupWeights: Boolean,
+    val permissions: Map<String, Boolean>? = null,
     val isPublic: Boolean,
-
     val isPublicToAuthUsers: Boolean,
-
     val publicSyllabus: Boolean,
-
     val publicSyllabusToAuth: Boolean,
-
-        val publicDescription: String? = null,
-
+    val publicDescription: String? = null,
     val storageQuotaMb: Int,
-
     val storageQuotaUsedMb: Int,
-
     val hideFinalGrades: Boolean,
-
     val license: String,
-
     val allowStudentAssignmentEdits: Boolean,
-
     val allowWikiComments: Boolean,
-
     val allowStudentForumAttachments: Boolean,
-
     val openEnrollment: Boolean,
-
     val selfEnrollment: Boolean,
-
     val restrictEnrollmentsToCourseDates: Boolean,
-
     val courseFormat: String,
-
-        val accessRestrictedByDate: Boolean,
-
-        val timeZone: String,
-
-        val blueprint: Boolean? = null,
-
-        val blueprintRestrictions: BlueprintRestrictionEntity? = null,
-
-        val blueprintRestrictionsByObjectType: BlueprintRestrictionEntity? = null,
-
-        val template: Boolean? = null
+    val accessRestrictedByDate: Boolean,
+    val timeZone: String,
+    val blueprint: Boolean? = null,
+    val blueprintRestrictions: BlueprintRestriction? = null,
+    val blueprintRestrictionsByObjectType: BlueprintRestriction? = null,
+    val template: Boolean? = null,
 )
 
 fun CourseEntity.translate(): Course {
@@ -126,12 +80,12 @@ fun CourseEntity.translate(): Course {
         locale = locale,
         enrollments = enrollments,
         totalStudents = totalStudents,
-        calendar = calendar,
+        calendar = calendar?.translate(),
         defaultView = defaultView,
         syllabusBody = syllabusBody,
         needsGradingCount = needsGradingCount,
-        term = term,
-        courseProgress = courseProgress,
+        term = term?.translate(),
+        courseProgress = courseProgress?.translate(),
         applyAssignmentGroupWeights = applyAssignmentGroupWeights,
         permissions = permissions,
         isPublic = isPublic,
@@ -153,7 +107,7 @@ fun CourseEntity.translate(): Course {
         accessRestrictedByDate = accessRestrictedByDate,
         timeZone = timeZone,
         blueprint = blueprint,
-        blueprintRestrictions = blueprintRestrictions,
-        blueprintRestrictionsByObjectType = blueprintRestrictionsByObjectType
+        blueprintRestrictions = blueprintRestrictions?.translate(),
+        blueprintRestrictionsByObjectType = blueprintRestrictionsByObjectType?.translate(),
     )
 }

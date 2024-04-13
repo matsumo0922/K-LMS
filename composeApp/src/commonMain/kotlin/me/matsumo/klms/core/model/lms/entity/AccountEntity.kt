@@ -32,5 +32,5 @@ data class AccountEntity(
     // The account's identifier that is sent as context_id in LTI launches.
     @SerialName("lti_guid") val ltiGuid: String,
     // The state of the account. Can be 'active' or 'deleted'.
-    @SerialName("workflow_state") val workflowState: String
+    @SerialName("workflow_state") val workflowState: String,
 )

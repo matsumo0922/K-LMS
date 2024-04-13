@@ -37,5 +37,5 @@ data class AssignmentOverrideEntity(
     // the overridden unlock at
     @SerialName("unlock_at") val unlockAt: String?,
     // the overridden lock at, if any
-    @SerialName("lock_at") val lockAt: String?
+    @SerialName("lock_at") val lockAt: String?,
 )

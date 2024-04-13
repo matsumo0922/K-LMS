@@ -5,27 +5,17 @@ import me.matsumo.klms.core.model.lms.entity.CommMessageEntity
 
 @Serializable
 data class CommMessage(
-        val id: Int,
-
-        val createdAt: String,
-
-        val sentAt: String,
-
-        val workflowState: String,
-
-        val from: String,
-
-        val fromName: String,
-
-        val to: String,
-
-        val replyTo: String,
-
-        val subject: String,
-
-        val body: String,
-
-        val htmlBody: String
+    val id: Int,
+    val createdAt: String,
+    val sentAt: String,
+    val workflowState: String,
+    val from: String,
+    val fromName: String,
+    val to: String,
+    val replyTo: String,
+    val subject: String,
+    val body: String,
+    val htmlBody: String,
 )
 
 fun CommMessageEntity.translate(): CommMessage {

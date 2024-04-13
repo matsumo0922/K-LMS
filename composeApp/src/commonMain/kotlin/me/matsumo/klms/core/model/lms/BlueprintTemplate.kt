@@ -5,11 +5,11 @@ import me.matsumo.klms.core.model.lms.entity.BlueprintTemplateEntity
 
 @Serializable
 data class BlueprintTemplate(
-        val id: Int,
-        val courseId: Int,
-        val lastExportCompletedAt: String,
-        val associatedCourseCount: Int,
-        val latestMigration: String?
+    val id: Int,
+    val courseId: Int,
+    val lastExportCompletedAt: String,
+    val associatedCourseCount: Int,
+    val latestMigration: String?,
 )
 
 fun BlueprintTemplateEntity.translate(): BlueprintTemplate {
@@ -18,6 +18,6 @@ fun BlueprintTemplateEntity.translate(): BlueprintTemplate {
         courseId = courseId,
         lastExportCompletedAt = lastExportCompletedAt,
         associatedCourseCount = associatedCourseCount,
-        latestMigration = latestMigration
+        latestMigration = latestMigration,
     )
 }

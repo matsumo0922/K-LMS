@@ -8,8 +8,7 @@ data class QuizStatisticsQuestionStatisticsEntity(
     // Number of students with non-blank answers
     @SerialName("responses")
     val responses: Int,
-
     // Statistics for each pre-defined answer
     @SerialName("answers")
-    val answers: List<me.matsumo.klms.core.model.lms.entity.QuizStatisticsAnswerStatisticsEntity>?
+    val answers: List<me.matsumo.klms.core.model.lms.entity.QuizStatisticsAnswerStatisticsEntity>?,
 )

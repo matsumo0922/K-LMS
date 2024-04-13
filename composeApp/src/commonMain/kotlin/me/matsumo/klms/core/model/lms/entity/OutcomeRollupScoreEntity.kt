@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class OutcomeRollupScore(
+data class OutcomeRollupScoreEntity(
     // The rollup score
     @SerialName("score")
     val score: Double?, // Using Double to accommodate decimal scores
@@ -12,8 +12,7 @@ data class OutcomeRollupScore(
     // The number of alignment scores
     @SerialName("count")
     val count: Int,
-
     // Links related to the outcome
     @SerialName("links")
-    val links: me.matsumo.klms.core.model.lms.entity.OutcomeLinkEntity
+    val links: OutcomeLinkEntity,
 )

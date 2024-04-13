@@ -6,13 +6,10 @@ import me.matsumo.klms.core.model.lms.entity.EntryEntity
 
 @Serializable
 data class BankItem(
-        val title: String,
-
-        val archived: Boolean,
-
-        val entryCount: Int,
-
-        val itemEntryCount: Int
+    val title: String,
+    val archived: Boolean,
+    val entryCount: Int,
+    val itemEntryCount: Int,
 ) : EntryEntity
 
 fun BankItemEntity.translate(): BankItem {
@@ -20,6 +17,6 @@ fun BankItemEntity.translate(): BankItem {
         title = title,
         archived = archived,
         entryCount = entryCount,
-        itemEntryCount = itemEntryCount
+        itemEntryCount = itemEntryCount,
     )
 }

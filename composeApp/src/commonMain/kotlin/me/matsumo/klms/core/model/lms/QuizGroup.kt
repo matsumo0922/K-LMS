@@ -1,23 +1,17 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.QuizGroupEntity
 
 @Serializable
 data class QuizGroup(
-        val id: Int,
-
-        val quizId: Int,
-
-        val name: String,
-
-        val pickCount: Int,
-
-        val questionPoints: Int,
-
-        val assessmentQuestionBankId: Int,
-
-        val position: Int
+    val id: Int,
+    val quizId: Int,
+    val name: String,
+    val pickCount: Int,
+    val questionPoints: Int,
+    val assessmentQuestionBankId: Int,
+    val position: Int,
 )
 
 fun QuizGroupEntity.translate(): QuizGroup {
@@ -27,6 +21,7 @@ fun QuizGroupEntity.translate(): QuizGroup {
         name = name,
         pickCount = pickCount,
         questionPoints = questionPoints,
-        assessmentQuestionBankId = assessmentQuestionBankId
+        assessmentQuestionBankId = assessmentQuestionBankId,
+        position = position,
     )
 }

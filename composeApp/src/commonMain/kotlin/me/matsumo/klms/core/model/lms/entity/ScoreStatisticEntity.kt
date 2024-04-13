@@ -17,5 +17,5 @@ data class ScoreStatisticEntity(
     // Median score
     @SerialName("median") val median: Int,
     // Lower quartile score
-    @SerialName("lower_q") val lowerQ: Int
+    @SerialName("lower_q") val lowerQ: Int,
 )

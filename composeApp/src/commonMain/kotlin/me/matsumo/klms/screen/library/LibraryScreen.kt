@@ -8,5 +8,4 @@ fun LibraryRoute(
     component: LibraryComponent,
     modifier: Modifier = Modifier,
 ) {
-
 }

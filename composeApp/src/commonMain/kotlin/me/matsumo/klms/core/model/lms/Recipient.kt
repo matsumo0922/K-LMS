@@ -1,19 +1,18 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.RecipientEntity
 
 @Serializable
 data class Recipient(
-    val id: String, 
+    val id: String,
     val name: String,
-
-    val fullName: String?, 
+    val fullName: String?,
     val type: String,
-
-    val userCount: Int?,  
-    val commonCourses: CourseEntity?, 
-    val commonGroups:  GroupEntity? )
+    val userCount: Int?,
+    val commonCourses: Course?,
+    val commonGroups: Group?,
+)
 
 fun RecipientEntity.translate(): Recipient {
     return Recipient(
@@ -22,6 +21,7 @@ fun RecipientEntity.translate(): Recipient {
         fullName = fullName,
         type = type,
         userCount = userCount,
-        commonCourses = commonCourses
+        commonCourses = commonCourses?.translate(),
+        commonGroups = commonGroups?.translate(),
     )
 }

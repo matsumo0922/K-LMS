@@ -1,23 +1,17 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.EPortfolioPageEntity
 
 @Serializable
 data class EPortfolioPage(
-        val id: Int,
-
-        val eportfolioId: Int,
-
-        val position: Int,
-
-        val name: String,
-
-        val content: String,
-
-        val createdAt: String,
-
-        val updatedAt: String
+    val id: Int,
+    val eportfolioId: Int,
+    val position: Int,
+    val name: String,
+    val content: String,
+    val createdAt: String,
+    val updatedAt: String,
 )
 
 fun EPortfolioPageEntity.translate(): EPortfolioPage {
@@ -27,6 +21,7 @@ fun EPortfolioPageEntity.translate(): EPortfolioPage {
         position = position,
         name = name,
         content = content,
-        createdAt = createdAt
+        createdAt = createdAt,
+        updatedAt = updatedAt,
     )
 }

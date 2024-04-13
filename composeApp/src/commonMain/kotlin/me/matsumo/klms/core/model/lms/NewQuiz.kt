@@ -1,33 +1,22 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.NewQuizEntity
 
 @Serializable
 data class NewQuiz(
-        val id: String,
-
-        val title: String,
-
-        val instructions: String,
-
-        val assignmentGroupId: String,
-
-        val pointsPossible: Int,
-
-        val dueAt: String,
-
-        val lockAt: String? = null,
-
-        val unlockAt: String,
-
-        val published: Boolean,
-
-        val gradingType: String,
-
-        val quizSettings: QuizSettingsEntity? = null
+    val id: String,
+    val title: String,
+    val instructions: String,
+    val assignmentGroupId: String,
+    val pointsPossible: Int,
+    val dueAt: String,
+    val lockAt: String? = null,
+    val unlockAt: String,
+    val published: Boolean,
+    val gradingType: String,
+    val quizSettings: QuizSettings? = null,
 )
-
 
 fun NewQuizEntity.translate(): NewQuiz {
     return NewQuiz(
@@ -40,6 +29,7 @@ fun NewQuizEntity.translate(): NewQuiz {
         lockAt = lockAt,
         unlockAt = unlockAt,
         published = published,
-        gradingType = gradingType
+        gradingType = gradingType,
+        quizSettings = quizSettings?.translate(),
     )
 }

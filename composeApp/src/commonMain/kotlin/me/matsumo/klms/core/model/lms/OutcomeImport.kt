@@ -1,29 +1,21 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.OutcomeImportEntity
 
 @Serializable
 data class OutcomeImport(
-        val id: Int,
-
-        val learningOutcomeGroupId: Int?,
-
-        val createdAt: String,
-
-        val endedAt: String?,
-
-        val updatedAt: String,
-
-        val workflowState: String,
-
-        val data: OutcomeImportDataEntity?,
-
-        val progress: Int, 
-        val user: UserEntity?, 
-        val processingErrors: List<List<Map<Int, String>>> )
-
-
+    val id: Int,
+    val learningOutcomeGroupId: Int?,
+    val createdAt: String,
+    val endedAt: String?,
+    val updatedAt: String,
+    val workflowState: String,
+    val data: OutcomeImportData?,
+    val progress: Int,
+    val user: User?,
+    val processingErrors: List<List<Map<Int, String>>>,
+)
 
 fun OutcomeImportEntity.translate(): OutcomeImport {
     return OutcomeImport(
@@ -33,9 +25,9 @@ fun OutcomeImportEntity.translate(): OutcomeImport {
         endedAt = endedAt,
         updatedAt = updatedAt,
         workflowState = workflowState,
-        data = data,
+        data = data?.translate(),
         progress = progress,
-        user = user,
-        processingErrors = processingErrors
+        user = user?.translate(),
+        processingErrors = processingErrors,
     )
 }

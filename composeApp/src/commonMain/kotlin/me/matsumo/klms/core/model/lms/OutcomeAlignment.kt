@@ -1,19 +1,16 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable@Serializable
+import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.OutcomeAlignmentEntity
 
+@Serializable
 data class OutcomeAlignment(
     val id: Int,
-
     val assignmentId: Int?,
-
     val assessmentId: Int?,
-
-    val submissionTypes: List<String>?, 
+    val submissionTypes: List<String>?,
     val url: String,
-
-    val title: String
+    val title: String,
 )
 
 fun OutcomeAlignmentEntity.translate(): OutcomeAlignment {
@@ -22,6 +19,7 @@ fun OutcomeAlignmentEntity.translate(): OutcomeAlignment {
         assignmentId = assignmentId,
         assessmentId = assessmentId,
         submissionTypes = submissionTypes,
-        url = url
+        url = url,
+        title = title,
     )
 }

@@ -1,18 +1,17 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import io.ktor.http.content.Version
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.SubmissionHistoryEntity
 
 @Serializable
 data class SubmissionHistory(
     val submissionId: Int,
-
-    val versions: List<SubmissionVersionEntity>?
+    val versions: List<SubmissionVersion>,
 )
 
 fun SubmissionHistoryEntity.translate(): SubmissionHistory {
     return SubmissionHistory(
-        submissionId = submissionId
+        submissionId = submissionId,
+        versions = versions?.map { it.translate() } ?: emptyList(),
     )
 }

@@ -13,5 +13,5 @@ data class BlueprintRestrictionEntity(
     // Restriction on due dates for assignments and graded learning objects
     @SerialName("due_dates") val dueDates: Boolean,
     // Restriction on availability dates for an object
-    @SerialName("availability_dates") val availabilityDates: Boolean
+    @SerialName("availability_dates") val availabilityDates: Boolean,
 )

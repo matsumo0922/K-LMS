@@ -1,17 +1,17 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.QuizStatisticsQuestionStatisticsEntity
 
 @Serializable
 data class QuizStatisticsQuestionStatistics(
-        val responses: Int,
-
-        val answers: List<QuizStatisticsAnswerStatisticsEntity>?
+    val responses: Int,
+    val answers: List<QuizStatisticsAnswerStatistics>,
 )
 
 fun QuizStatisticsQuestionStatisticsEntity.translate(): QuizStatisticsQuestionStatistics {
     return QuizStatisticsQuestionStatistics(
-        responses = responses
+        responses = responses,
+        answers = answers?.map { it.translate() } ?: emptyList(),
     )
 }

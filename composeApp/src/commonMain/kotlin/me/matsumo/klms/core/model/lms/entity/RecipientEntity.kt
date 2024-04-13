@@ -10,19 +10,17 @@ data class RecipientEntity(
 
     @SerialName("name")
     val name: String,
-
     @SerialName("full_name")
     val fullName: String?, // Assuming this can be optional
 
     @SerialName("type")
     val type: String,
-
     @SerialName("user_count")
-    val userCount: Int?,  // Assuming user count is optional for groups
+    val userCount: Int?, // Assuming user count is optional for groups
 
     @SerialName("common_courses")
     val commonCourses: me.matsumo.klms.core.model.lms.entity.CourseEntity?, // Placeholder
 
     @SerialName("common_groups")
-    val commonGroups:  me.matsumo.klms.core.model.lms.entity.GroupEntity? // Placeholder
+    val commonGroups: me.matsumo.klms.core.model.lms.entity.GroupEntity?, // Placeholder
 )

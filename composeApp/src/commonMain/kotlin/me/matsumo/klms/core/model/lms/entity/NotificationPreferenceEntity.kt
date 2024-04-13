@@ -7,13 +7,10 @@ import kotlinx.serialization.Serializable
 data class NotificationPreferenceEntity(
     @SerialName("href")
     val href: String,
-
     @SerialName("notification")
     val notification: String,
-
     @SerialName("category")
     val category: String,
-
     @SerialName("frequency")
-    val frequency: String
+    val frequency: String,
 )

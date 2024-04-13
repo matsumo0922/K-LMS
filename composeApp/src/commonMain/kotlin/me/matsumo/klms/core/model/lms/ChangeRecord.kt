@@ -5,13 +5,13 @@ import me.matsumo.klms.core.model.lms.entity.ChangeRecordEntity
 
 @Serializable
 data class ChangeRecord(
-        val assetId: Int,
-        val assetType: String,
-        val assetName: String,
-        val changeType: String,
-        val htmlUrl: String,
-        val locked: Boolean,
-        val exceptions: List<ExceptionRecord>
+    val assetId: Int,
+    val assetType: String,
+    val assetName: String,
+    val changeType: String,
+    val htmlUrl: String,
+    val locked: Boolean,
+    val exceptions: List<ExceptionRecord>,
 )
 
 fun ChangeRecordEntity.translate(): ChangeRecord {

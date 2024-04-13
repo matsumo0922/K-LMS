@@ -21,7 +21,7 @@ data class AssignmentOverride(
     val allDay: Boolean?,
     val allDayDate: Instant?,
     val unlockAt: String?,
-    val lockAt: String?
+    val lockAt: String?,
 )
 
 fun AssignmentOverrideEntity.translate(): AssignmentOverride {

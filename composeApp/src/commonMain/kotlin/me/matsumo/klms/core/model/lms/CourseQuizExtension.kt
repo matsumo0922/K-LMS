@@ -1,19 +1,15 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.CourseQuizExtensionEntity
 
 @Serializable
 data class CourseQuizExtension(
-        val userId: Int,
-
-        val extraAttempts: Int,
-
-        val extraTime: Int,
-
-        val manuallyUnlocked: Boolean,
-
-        val endAt: String
+    val userId: Int,
+    val extraAttempts: Int,
+    val extraTime: Int,
+    val manuallyUnlocked: Boolean,
+    val endAt: String,
 )
 
 fun CourseQuizExtensionEntity.translate(): CourseQuizExtension {
@@ -21,6 +17,7 @@ fun CourseQuizExtensionEntity.translate(): CourseQuizExtension {
         userId = userId,
         extraAttempts = extraAttempts,
         extraTime = extraTime,
-        manuallyUnlocked = manuallyUnlocked
+        manuallyUnlocked = manuallyUnlocked,
+        endAt = endAt,
     )
 }

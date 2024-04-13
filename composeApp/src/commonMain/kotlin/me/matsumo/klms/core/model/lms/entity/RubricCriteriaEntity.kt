@@ -22,5 +22,5 @@ data class RubricCriteriaEntity(
     // The ratings associated with this criterion
     @SerialName("ratings") val ratings: List<me.matsumo.klms.core.model.lms.entity.RubricRatingEntity>?,
     // Whether this criterion should be ignored for scoring
-    @SerialName("ignore_for_scoring") val ignoreForScoring: Boolean
+    @SerialName("ignore_for_scoring") val ignoreForScoring: Boolean,
 )

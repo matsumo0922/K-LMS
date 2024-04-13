@@ -1,23 +1,20 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.OutcomeRollupEntity
+import me.matsumo.klms.core.model.lms.entity.OutcomeRollupScoreEntity
 
 @Serializable
 data class OutcomeRollup(
-        val scores: List<OutcomeRollupScore>? = null,
-
+    val scores: List<OutcomeRollupScoreEntity>? = null,
     val name: String,
-
-    val links: Links
+    val links: Links,
 ) {
     @Serializable
     data class Links(
         val course: Int,
-
         val user: Int,
-
-        val section: Int
+        val section: Int,
     )
 }
 
@@ -25,7 +22,10 @@ fun OutcomeRollupEntity.translate(): OutcomeRollup {
     return OutcomeRollup(
         scores = scores,
         name = name,
-        course = course,
-        user = user
+        links = OutcomeRollup.Links(
+            course = links.course,
+            user = links.user,
+            section = links.section,
+        ),
     )
 }

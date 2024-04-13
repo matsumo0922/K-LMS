@@ -11,7 +11,7 @@ import me.matsumo.klms.core.datastore.LmsCookieDataStore
 
 class CookiesRepository(
     private val cookieDataStore: LmsCookieDataStore,
-): CookiesStorage {
+) : CookiesStorage {
 
     private val mutex = Mutex()
 

@@ -1,16 +1,16 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.ScoreStatisticEntity
 
 @Serializable
 data class ScoreStatistic(
-        val min: Int,
-        val max: Int,
-        val mean: Int,
-        val upperQ: Int,
-        val median: Int,
-        val lowerQ: Int
+    val min: Int,
+    val max: Int,
+    val mean: Int,
+    val upperQ: Int,
+    val median: Int,
+    val lowerQ: Int,
 )
 
 fun ScoreStatisticEntity.translate(): ScoreStatistic {
@@ -19,6 +19,7 @@ fun ScoreStatisticEntity.translate(): ScoreStatistic {
         max = max,
         mean = mean,
         upperQ = upperQ,
-        median = median
+        median = median,
+        lowerQ = lowerQ,
     )
 }

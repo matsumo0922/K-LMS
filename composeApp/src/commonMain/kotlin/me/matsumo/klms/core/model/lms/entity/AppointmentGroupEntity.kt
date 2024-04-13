@@ -22,7 +22,8 @@ data class AppointmentGroupEntity(
     // The number of participant who have reserved slots
     @SerialName("participant_count") val participantCount: Int,
     // The start and end times of slots reserved by the current user as well as the id of the calendar event for the reservation
-    @SerialName("reserved_times") val reservedTimes: List<me.matsumo.klms.core.model.lms.entity.AppointmentGroupEntity.ReservedTime>,
+    @SerialName("reserved_times") val reservedTimes:
+    List<me.matsumo.klms.core.model.lms.entity.AppointmentGroupEntity.ReservedTime>,
     // Boolean indicating whether observer users should be able to sign-up for an appointment
     @SerialName("allow_observer_signup") val allowObserverSignup: Boolean,
     // The context codes this appointment group belongs to. Only people in these courses will be eligible to sign up.
@@ -56,12 +57,12 @@ data class AppointmentGroupEntity(
     // When the appointment group was created
     @SerialName("created_at") val createdAt: String,
     // When the appointment group was last updated
-    @SerialName("updated_at") val updatedAt: String
+    @SerialName("updated_at") val updatedAt: String,
 ) {
     @Serializable
     data class ReservedTime(
         @SerialName("id") val id: Int,
         @SerialName("start_at") val startAt: String,
-        @SerialName("end_at") val endAt: String
+        @SerialName("end_at") val endAt: String,
     )
 }

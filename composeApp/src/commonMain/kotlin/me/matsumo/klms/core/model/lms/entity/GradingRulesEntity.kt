@@ -10,5 +10,5 @@ data class GradingRulesEntity(
     // Number of highest scores to be dropped for each user.
     @SerialName("drop_highest") val dropHighest: Int,
     // Assignment IDs that should never be dropped.
-    @SerialName("never_drop") val neverDrop: List<Int>
+    @SerialName("never_drop") val neverDrop: List<Int>,
 )

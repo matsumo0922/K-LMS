@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ItemPropertiesEntity(
     @SerialName("sample_num")
-    val sampleNum: Int? = null
+    val sampleNum: Int? = null,
 )

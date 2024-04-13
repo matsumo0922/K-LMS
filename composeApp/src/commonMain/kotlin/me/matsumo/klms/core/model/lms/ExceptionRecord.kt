@@ -5,13 +5,13 @@ import me.matsumo.klms.core.model.lms.entity.ExceptionRecordEntity
 
 @Serializable
 data class ExceptionRecord(
-        val courseId: Int,
-        val conflictingChanges: List<String>
+    val courseId: Int,
+    val conflictingChanges: List<String>,
 )
 
 fun ExceptionRecordEntity.translate(): ExceptionRecord {
     return ExceptionRecord(
         courseId = courseId,
-        conflictingChanges = conflictingChanges
+        conflictingChanges = conflictingChanges,
     )
 }

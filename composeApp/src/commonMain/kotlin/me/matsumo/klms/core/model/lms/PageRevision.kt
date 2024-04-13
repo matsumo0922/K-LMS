@@ -1,22 +1,17 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.PageRevisionEntity
 
 @Serializable
 data class PageRevision(
-        val revisionId: Int,
-
-        val updatedAt: String,
-
-        val latest: Boolean,
-
-        val editedBy: UserEntity?, 
-        val url: String?,
-
+    val revisionId: Int,
+    val updatedAt: String,
+    val latest: Boolean,
+    val editedBy: User?,
+    val url: String?,
     val title: String?,
-
-    val body: String?
+    val body: String?,
 )
 
 fun PageRevisionEntity.translate(): PageRevision {
@@ -24,8 +19,9 @@ fun PageRevisionEntity.translate(): PageRevision {
         revisionId = revisionId,
         updatedAt = updatedAt,
         latest = latest,
-        editedBy = editedBy,
+        editedBy = editedBy?.translate(),
         url = url,
-        title = title
+        title = title,
+        body = body,
     )
 }

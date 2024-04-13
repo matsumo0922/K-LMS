@@ -1,23 +1,17 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.TabEntity
 
 @Serializable
 data class Tab(
-        val htmlUrl: String,
-
-        val id: String,
-
-        val label: String,
-
-        val type: String,
-
-        val visibility: String? ,
-
-        val hidden: Boolean?,
-
-    val position: Int
+    val htmlUrl: String,
+    val id: String,
+    val label: String,
+    val type: String,
+    val visibility: String?,
+    val hidden: Boolean?,
+    val position: Int,
 )
 
 fun TabEntity.translate(): Tab {
@@ -27,6 +21,7 @@ fun TabEntity.translate(): Tab {
         label = label,
         type = type,
         visibility = visibility,
-        hidden = hidden
+        hidden = hidden,
+        position = position,
     )
 }

@@ -16,5 +16,5 @@ data class BlackoutDateEntity(
     // the end date of the blackout date
     @SerialName("end_date") val endDate: String,
     // title of the blackout date
-    @SerialName("event_title") val eventTitle: String
+    @SerialName("event_title") val eventTitle: String,
 )

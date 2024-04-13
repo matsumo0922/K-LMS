@@ -5,7 +5,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.*
 import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.compose.ui.text.font.FontFamily
 import me.matsumo.klms.core.model.ThemeConfig
 import me.matsumo.klms.core.theme.color.*
 

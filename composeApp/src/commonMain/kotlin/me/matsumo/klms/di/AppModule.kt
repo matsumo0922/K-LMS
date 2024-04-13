@@ -1,20 +1,16 @@
 package me.matsumo.klms.di
 
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
+import me.matsumo.fanbox.BuildKonfig
 import me.matsumo.klms.core.model.LmsConfig
 import org.koin.dsl.module
-
-expect fun getLmsConfig(): LmsConfig
 
 val appModule = module {
 
     single {
-        getLmsConfig()
-    }
-
-    single<CoroutineDispatcher> {
-        Dispatchers.IO
+        LmsConfig(
+            versionCode = BuildKonfig.VERSION_CODE,
+            versionName = BuildKonfig.VERSION_NAME,
+            developerPassword = BuildKonfig.DEVELOPER_PASSWORD,
+        )
     }
 }

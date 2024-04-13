@@ -1,25 +1,19 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.MediaTrackEntity
 
 @Serializable
 data class MediaTrack(
     val id: Int,
-
     val userId: Int,
-
     val mediaObjectId: Int,
-
-    val kind: String, 
+    val kind: String,
     val locale: String,
-
-    val content: String,  
+    val content: String,
     val createdAt: String,
-
     val updatedAt: String,
-
-    val webvttContent: String
+    val webvttContent: String,
 )
 
 fun MediaTrackEntity.translate(): MediaTrack {
@@ -31,6 +25,7 @@ fun MediaTrackEntity.translate(): MediaTrack {
         locale = locale,
         content = content,
         createdAt = createdAt,
-        updatedAt = updatedAt
+        updatedAt = updatedAt,
+        webvttContent = webvttContent,
     )
 }

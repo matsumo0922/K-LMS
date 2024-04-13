@@ -1,20 +1,15 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.MediaCommentEntity
 
 @Serializable
 data class MediaComment(
-    @SerialName("content-type")
     val contentType: String,
-
     val displayName: String,
-
     val mediaId: String,
-
     val mediaType: String,
-
-    val url: String
+    val url: String,
 )
 
 fun MediaCommentEntity.translate(): MediaComment {
@@ -22,6 +17,7 @@ fun MediaCommentEntity.translate(): MediaComment {
         contentType = contentType,
         displayName = displayName,
         mediaId = mediaId,
-        mediaType = mediaType
+        mediaType = mediaType,
+        url = url,
     )
 }

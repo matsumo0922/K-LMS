@@ -18,5 +18,5 @@ data class AccountNotificationEntity(
     // (Deprecated) The roles to send the notification to.  If roles is not passed it defaults to all roles
     @SerialName("roles") val roles: List<String>,
     // The roles to send the notification to.  If roles is not passed it defaults to all roles
-    @SerialName("role_ids") val roleIds: List<Int>
+    @SerialName("role_ids") val roleIds: List<Int>,
 )

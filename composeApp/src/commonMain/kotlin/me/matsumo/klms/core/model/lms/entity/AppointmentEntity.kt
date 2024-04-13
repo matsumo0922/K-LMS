@@ -10,5 +10,5 @@ data class AppointmentEntity(
     // Start time for the appointment
     @SerialName("start_at") val startAt: String,
     // End time for the appointment
-    @SerialName("end_at") val endAt: String
+    @SerialName("end_at") val endAt: String,
 )

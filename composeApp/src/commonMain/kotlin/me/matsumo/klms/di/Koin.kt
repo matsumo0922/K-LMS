@@ -6,9 +6,9 @@ import me.matsumo.klms.core.repository.di.repositoryModule
 import me.matsumo.klms.core.ui.di.uiSubModule
 import me.matsumo.klms.core.utils.di.utilsModule
 import org.koin.core.KoinApplication
-import org.koin.core.context.startKoin
 
 fun KoinApplication.applyModules() {
+    modules(appModule)
     modules(repositoryModule)
     modules(dataStoreModule)
     modules(dataStoreHelperModule)

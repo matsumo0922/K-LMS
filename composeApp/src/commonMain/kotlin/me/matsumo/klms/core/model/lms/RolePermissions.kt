@@ -1,23 +1,17 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.RolePermissionsEntity
 
 @Serializable
 data class RolePermissions(
-        val enabled: Boolean,
-
-        val locked: Boolean,
-
-        val appliesToSelf: Boolean?,
-
-        val appliesToDescendants: Boolean?,
-
-        val readonly: Boolean,
-
-        val explicit: Boolean,
-
-        val priorDefault: Boolean?
+    val enabled: Boolean,
+    val locked: Boolean,
+    val appliesToSelf: Boolean?,
+    val appliesToDescendants: Boolean?,
+    val readonly: Boolean,
+    val explicit: Boolean,
+    val priorDefault: Boolean?,
 )
 
 fun RolePermissionsEntity.translate(): RolePermissions {
@@ -27,6 +21,7 @@ fun RolePermissionsEntity.translate(): RolePermissions {
         appliesToSelf = appliesToSelf,
         appliesToDescendants = appliesToDescendants,
         readonly = readonly,
-        explicit = explicit
+        explicit = explicit,
+        priorDefault = priorDefault,
     )
 }

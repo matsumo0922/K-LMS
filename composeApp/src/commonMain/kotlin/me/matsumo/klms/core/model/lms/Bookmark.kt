@@ -5,11 +5,11 @@ import me.matsumo.klms.core.model.lms.entity.BookmarkEntity
 
 @Serializable
 data class Bookmark(
-        val id: Int,
-        val name: String,
-        val url: String,
-        val position: Int,
-        val data: Map<String, Int>
+    val id: Int,
+    val name: String,
+    val url: String,
+    val position: Int,
+    val data: Map<String, Int>,
 )
 
 fun BookmarkEntity.translate(): Bookmark {
@@ -18,6 +18,6 @@ fun BookmarkEntity.translate(): Bookmark {
         name = name,
         url = url,
         position = position,
-        data = data
+        data = data,
     )
 }

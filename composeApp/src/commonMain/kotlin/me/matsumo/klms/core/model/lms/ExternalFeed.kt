@@ -1,16 +1,16 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.ExternalFeedEntity
 
 @Serializable
 data class ExternalFeed(
-        val id: Int,
-        val displayName: String,
-        val url: String,
-        val headerMatch: String?,
-        val createdAt: String,
-        val verbosity: String
+    val id: Int,
+    val displayName: String,
+    val url: String,
+    val headerMatch: String?,
+    val createdAt: String,
+    val verbosity: String,
 )
 
 fun ExternalFeedEntity.translate(): ExternalFeed {
@@ -19,6 +19,7 @@ fun ExternalFeedEntity.translate(): ExternalFeed {
         displayName = displayName,
         url = url,
         headerMatch = headerMatch,
-        createdAt = createdAt
+        createdAt = createdAt,
+        verbosity = verbosity,
     )
 }

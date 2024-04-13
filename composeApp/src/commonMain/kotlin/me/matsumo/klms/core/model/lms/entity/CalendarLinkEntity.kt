@@ -7,5 +7,5 @@ import kotlinx.serialization.Serializable
 data class CalendarLinkEntity(
     // The URL of the calendar in ICS format
     @SerialName("ics")
-    val ics: String
+    val ics: String,
 )

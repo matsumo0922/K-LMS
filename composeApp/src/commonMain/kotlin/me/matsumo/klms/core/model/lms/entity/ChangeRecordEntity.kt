@@ -19,5 +19,5 @@ data class ChangeRecordEntity(
     // Whether the object is locked in the blueprint
     @SerialName("locked") val locked: Boolean,
     // A list of ExceptionRecords for linked courses that did not receive this update.
-    @SerialName("exceptions") val exceptions: List<ExceptionRecordEntity>
+    @SerialName("exceptions") val exceptions: List<ExceptionRecordEntity>,
 )

@@ -5,10 +5,10 @@ import me.matsumo.klms.core.model.lms.entity.BlueprintRestrictionEntity
 
 @Serializable
 data class BlueprintRestriction(
-        val content: Boolean,
-        val points: Boolean,
-        val dueDates: Boolean,
-        val availabilityDates: Boolean
+    val content: Boolean,
+    val points: Boolean,
+    val dueDates: Boolean,
+    val availabilityDates: Boolean,
 )
 
 fun BlueprintRestrictionEntity.translate(): BlueprintRestriction {
@@ -16,6 +16,6 @@ fun BlueprintRestrictionEntity.translate(): BlueprintRestriction {
         content = content,
         points = points,
         dueDates = dueDates,
-        availabilityDates = availabilityDates
+        availabilityDates = availabilityDates,
     )
 }

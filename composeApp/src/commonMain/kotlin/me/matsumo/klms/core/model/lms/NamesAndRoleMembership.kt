@@ -1,43 +1,35 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.NamesAndRoleMembershipEntity
 
 @Serializable
 data class NamesAndRoleMembership(
-    val status: String,
-
-    val name: String? = null, 
-    val picture: String? = null, 
-    val givenName: String? = null, 
-    val familyName: String? = null, 
-    val email: String? = null, 
-    val lisPersonSourcedid: String? = null, 
-    val userId: String,
-
+    val email: String,
+    val familyName: String,
+    val givenName: String,
+    val lisPersonSourcedid: String,
+    val message: List<Message>,
+    val name: String,
+    val picture: String,
     val roles: List<String>,
-
-    val message: List<Message>? = null  ) {
-
+    val status: String,
+    val userId: String,
+) {
     @Serializable
     data class Message(
-        @SerialName("https:        val messageType: String,
-
+        val custom: Custom,
+        val messageType: String,
+        val canvasUserId: Int,
+        val canvasUserLoginId: String,
         val locale: String,
-
-        @SerialName("https:        val canvasUserId: Int,
-
-        @SerialName("https:        val canvasUserLoginId: String,
-
-        @SerialName("https:        val custom: CustomParameters
-    )
-
-    @Serializable
-    data class CustomParameters(
-        val messageLocale: String,
-
-        val personAddressTimezone: String
-    )
+    ) {
+        @Serializable
+        data class Custom(
+            val messageLocale: String,
+            val personAddressTimezone: String,
+        )
+    }
 }
 
 fun NamesAndRoleMembershipEntity.translate(): NamesAndRoleMembership {
@@ -51,10 +43,17 @@ fun NamesAndRoleMembershipEntity.translate(): NamesAndRoleMembership {
         lisPersonSourcedid = lisPersonSourcedid,
         userId = userId,
         roles = roles,
-        messageType = messageType,
-        locale = locale,
-        canvasUserId = canvasUserId,
-        canvasUserLoginId = canvasUserLoginId,
-        messageLocale = messageLocale
+        message = message.map {
+            NamesAndRoleMembership.Message(
+                messageType = it.messageType,
+                canvasUserId = it.canvasUserId,
+                canvasUserLoginId = it.canvasUserLoginId,
+                locale = it.locale,
+                custom = NamesAndRoleMembership.Message.Custom(
+                    messageLocale = it.custom.messageLocale,
+                    personAddressTimezone = it.custom.personAddressTimezone,
+                ),
+            )
+        },
     )
 }

@@ -1,4 +1,4 @@
-package me.matsumo.klms.core.repository
+package me.matsumo.klms.core.repository.api
 
 import io.ktor.client.HttpClient
 import io.ktor.client.request.forms.submitForm
@@ -9,44 +9,21 @@ import io.ktor.client.request.url
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.Parameters
 import io.ktor.util.InternalAPI
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 
-open class NetworkRepository(
+open class ApiClient(
     private val client: HttpClient,
-    private val baseUrl: String = "",
+    private val ioDispatcher: CoroutineDispatcher,
 ) {
-    suspend fun get(
-        dir: String,
-        base: String = baseUrl,
-        params: Map<String, String> = emptyMap(),
-    ): HttpResponse {
-        return get("$base/$dir", params)
-    }
-
-    suspend fun post(
-        dir: String,
-        base: String = baseUrl,
-        params: Map<String, String> = emptyMap(),
-    ): HttpResponse {
-        return post("$base/$dir", params)
-    }
-
-    suspend fun form(
-        dir: String,
-        base: String = baseUrl,
-        params: Map<String, String> = emptyMap(),
-        formParams: Map<String, String> = emptyMap(),
-    ): HttpResponse {
-        return form("$base/$dir", params, formParams)
-    }
-
     suspend fun get(
         url: String,
         params: Map<String, String> = emptyMap(),
-    ): HttpResponse {
-        return client.get {
-            url(url)
+    ): HttpResponse = withContext(ioDispatcher) {
+        client.get {
+            url(url.buildUrl())
 
             for ((key, value) in params) {
                 parameter(key, value)
@@ -58,9 +35,9 @@ open class NetworkRepository(
     suspend fun post(
         url: String,
         params: Map<String, String> = emptyMap(),
-    ): HttpResponse {
-        return client.post {
-            url(url)
+    ): HttpResponse = withContext(ioDispatcher) {
+        client.post {
+            url(url.buildUrl())
 
             body = buildJsonObject {
                 for ((key, value) in params) {
@@ -74,9 +51,9 @@ open class NetworkRepository(
         url: String,
         params: Map<String, String> = emptyMap(),
         formParams: Map<String, String> = emptyMap(),
-    ): HttpResponse {
-        return client.submitForm(
-            url = url,
+    ): HttpResponse = withContext(ioDispatcher) {
+        client.submitForm(
+            url = url.buildUrl(),
             formParameters = Parameters.build {
                 for ((key, value) in formParams) {
                     append(key, value)
@@ -87,5 +64,13 @@ open class NetworkRepository(
                 parameter(key, value)
             }
         }
+    }
+
+    private fun String.buildUrl(): String {
+        return if (this.take(4) == "http") this else "$API/$this"
+    }
+
+    companion object {
+        private const val API = "https://lms.keio.jp/api/v1"
     }
 }

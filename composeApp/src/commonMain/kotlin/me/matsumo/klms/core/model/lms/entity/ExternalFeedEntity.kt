@@ -16,5 +16,5 @@ data class ExternalFeedEntity(
     // When this external feed was added to Canvas
     @SerialName("created_at") val createdAt: String,
     // The verbosity setting determines how much of the feed's content is imported into Canvas as part of the posting. 'link_only' means that only the title and a link to the item. 'truncate' means that a summary of the first portion of the item body will be used. 'full' means that the full item body will be used.
-    @SerialName("verbosity") val verbosity: String
+    @SerialName("verbosity") val verbosity: String,
 )

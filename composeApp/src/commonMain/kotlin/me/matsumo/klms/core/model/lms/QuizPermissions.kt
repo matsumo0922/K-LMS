@@ -1,23 +1,17 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.QuizPermissionsEntity
 
 @Serializable
 data class QuizPermissions(
-        val read: Boolean,
-
-        val submit: Boolean,
-
-        val create: Boolean,
-
-        val manage: Boolean,
-
-        val readStatistics: Boolean,
-
-        val reviewGrades: Boolean,
-
-        val update: Boolean
+    val read: Boolean,
+    val submit: Boolean,
+    val create: Boolean,
+    val manage: Boolean,
+    val readStatistics: Boolean,
+    val reviewGrades: Boolean,
+    val update: Boolean,
 )
 
 fun QuizPermissionsEntity.translate(): QuizPermissions {
@@ -27,6 +21,7 @@ fun QuizPermissionsEntity.translate(): QuizPermissions {
         create = create,
         manage = manage,
         readStatistics = readStatistics,
-        reviewGrades = reviewGrades
+        reviewGrades = reviewGrades,
+        update = update,
     )
 }

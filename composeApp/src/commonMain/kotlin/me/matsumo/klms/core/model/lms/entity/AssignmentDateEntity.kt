@@ -16,5 +16,5 @@ data class AssignmentDateEntity(
     // The unlock date for the assignment. Must be before the due date if there is a due date.
     @SerialName("unlock_at") val unlockAt: String,
     // The lock date for the assignment. Must be after the due date if there is a due date.
-    @SerialName("lock_at") val lockAt: String
+    @SerialName("lock_at") val lockAt: String,
 )

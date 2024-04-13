@@ -1,27 +1,19 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.PeerReviewEntity
 
 @Serializable
 data class PeerReview(
-        val assessorId: Int,
-
-        val assetId: Int,
-
-        val assetType: String,
-
-        val id: Int,
-
-        val userId: Int,
-
-        val workflowState: String,
-
-        val user: UserEntity?,
-
-        val assessor: UserEntity?,
-
-        val submissionComments: List<SubmissionCommentEntity>?
+    val assessorId: Int,
+    val assetId: Int,
+    val assetType: String,
+    val id: Int,
+    val userId: Int,
+    val workflowState: String,
+    val user: User?,
+    val assessor: User?,
+    val submissionComments: List<SubmissionComment>?,
 )
 
 fun PeerReviewEntity.translate(): PeerReview {
@@ -32,7 +24,8 @@ fun PeerReviewEntity.translate(): PeerReview {
         id = id,
         userId = userId,
         workflowState = workflowState,
-        user = user,
-        assessor = assessor
+        user = user?.translate(),
+        assessor = assessor?.translate(),
+        submissionComments = submissionComments?.map { it.translate() },
     )
 }

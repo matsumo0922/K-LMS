@@ -1,27 +1,27 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.AccountReportEntity
 
 @Serializable
 data class AccountReport(
-        val id: Int,
-        val report: String,
-        val fileUrl: String,
-        val attachment: String?,
-        val status: String,
-        val createdAt: String,
-        val startedAt: String,
-        val endedAt: String,
-        val parameters: Parameters,
-        val progress: Int,
-        val currentLine: Int
+    val id: Int,
+    val report: String,
+    val fileUrl: String,
+    val attachment: String?,
+    val status: String,
+    val createdAt: String,
+    val startedAt: String,
+    val endedAt: String,
+    val parameters: Parameters,
+    val progress: Int,
+    val currentLine: Int,
 ) {
     @Serializable
     data class Parameters(
         val courseId: Int,
         val startAt: String,
-        val endAt: String
+        val endAt: String,
     )
 }
 
@@ -40,7 +40,7 @@ fun AccountReportEntity.translate(): AccountReport {
         parameters = AccountReport.Parameters(
             courseId = parameters.courseId,
             startAt = parameters.startAt,
-            endAt = parameters.endAt
-        )
+            endAt = parameters.endAt,
+        ),
     )
 }

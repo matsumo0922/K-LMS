@@ -1,10 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
 import kotlinx.serialization.Serializable
-import me.matsumo.klms.core.model.entity.DiscussionTopic
-import me.matsumo.klms.core.model.entity.ExternalToolTagAttributes
-import me.matsumo.klms.core.model.entity.NeedsGradingCount
-import me.matsumo.klms.core.model.entity.ScoreStatistic
 import me.matsumo.klms.core.model.lms.entity.AssignmentEntity
 import me.matsumo.klms.core.model.lms.entity.LockInfoEntity
 import me.matsumo.klms.core.model.lms.entity.RubricCriteriaEntity
@@ -86,7 +82,7 @@ data class Assignment(
     val originalAssignmentName: String?,
     val originalQuizId: Int?,
     val integrationId: String?,
-    val integrationData: Map<String, String>?
+    val integrationData: Map<String, String>?,
 )
 
 fun AssignmentEntity.translate(): Assignment {
@@ -165,6 +161,6 @@ fun AssignmentEntity.translate(): Assignment {
         originalAssignmentName = originalAssignmentName,
         originalQuizId = originalQuizId,
         integrationId = integrationId,
-        integrationData = integrationData
+        integrationData = integrationData,
     )
 }

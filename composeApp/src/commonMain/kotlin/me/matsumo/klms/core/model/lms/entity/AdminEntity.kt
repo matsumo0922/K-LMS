@@ -12,5 +12,5 @@ data class AdminEntity(
     // The user the role is assigned to. See the Users API for details.
     @SerialName("user") val user: String?,
     // The status of the account role/user assignment.
-    @SerialName("workflow_state") val workflowState: String
+    @SerialName("workflow_state") val workflowState: String,
 )

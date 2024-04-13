@@ -8,12 +8,10 @@ data class CollaboratorEntity(
     // The unique user or group identifier for the collaborator.
     @SerialName("id")
     val id: Int,
-
     // The type of collaborator (e.g. 'user' or 'group').
     @SerialName("type")
     val type: String,
-
     // The name of the collaborator.
     @SerialName("name")
-    val name: String
+    val name: String,
 )

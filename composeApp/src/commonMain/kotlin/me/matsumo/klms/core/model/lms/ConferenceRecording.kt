@@ -6,14 +6,10 @@ import me.matsumo.klms.core.model.lms.entity.ConferenceRecordingEntity
 @Serializable
 data class ConferenceRecording(
     val durationMinutes: Int,
-
     val title: String,
-
     val updatedAt: String,
-
     val createdAt: String,
-
-    val playbackUrl: String
+    val playbackUrl: String,
 )
 
 fun ConferenceRecordingEntity.translate(): ConferenceRecording {
@@ -22,6 +18,6 @@ fun ConferenceRecordingEntity.translate(): ConferenceRecording {
         title = title,
         updatedAt = updatedAt,
         createdAt = createdAt,
-        playbackUrl = playbackUrl
+        playbackUrl = playbackUrl,
     )
 }

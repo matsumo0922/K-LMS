@@ -5,17 +5,15 @@ import me.matsumo.klms.core.model.lms.entity.CollaboratorEntity
 
 @Serializable
 data class Collaborator(
-        val id: Int,
-
-        val type: String,
-
-        val name: String
+    val id: Int,
+    val type: String,
+    val name: String,
 )
 
 fun CollaboratorEntity.translate(): Collaborator {
     return Collaborator(
         id = id,
         type = type,
-        name = name
+        name = name,
     )
 }

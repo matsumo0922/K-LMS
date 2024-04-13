@@ -25,5 +25,5 @@ data class BlueprintMigrationEntity(
     // Time when the imports were completed
     @SerialName("imports_completed_at") val importsCompletedAt: String,
     // User-specified comment describing changes made in this operation
-    @SerialName("comment") val comment: String
+    @SerialName("comment") val comment: String,
 )

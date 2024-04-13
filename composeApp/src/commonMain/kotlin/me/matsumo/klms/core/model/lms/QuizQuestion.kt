@@ -1,31 +1,21 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.QuizQuestionEntity
 
 @Serializable
 data class QuizQuestion(
-        val id: Int,
-
-        val quizId: Int,
-
-        val position: Int,
-
-        val questionName: String,
-
-        val questionType: String,
-
-        val questionText: String,
-
-        val pointsPossible: Int,
-
-        val correctComments: String,
-
-        val incorrectComments: String,
-
-        val neutralComments: String,
-
-        val answers: List<AnswerEntity>?
+    val id: Int,
+    val quizId: Int,
+    val position: Int,
+    val questionName: String,
+    val questionType: String,
+    val questionText: String,
+    val pointsPossible: Int,
+    val correctComments: String,
+    val incorrectComments: String,
+    val neutralComments: String,
+    val answers: List<QuizeAnswer>?,
 )
 
 fun QuizQuestionEntity.translate(): QuizQuestion {
@@ -39,6 +29,7 @@ fun QuizQuestionEntity.translate(): QuizQuestion {
         pointsPossible = pointsPossible,
         correctComments = correctComments,
         incorrectComments = incorrectComments,
-        neutralComments = neutralComments
+        neutralComments = neutralComments,
+        answers = answers?.map { it.translate() },
     )
 }

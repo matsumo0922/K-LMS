@@ -8,12 +8,10 @@ data class OutcomeRollupLinks(
     // Optional ID of the course
     @SerialName("course")
     val course: Int? = null,
-
     // Optional ID of the user
     @SerialName("user")
     val user: Int? = null,
-
     // Optional ID of the section
     @SerialName("section")
-    val section: Int?  = null
+    val section: Int? = null,
 )

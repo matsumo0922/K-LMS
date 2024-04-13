@@ -11,7 +11,7 @@ data class BlackoutDate(
     val contextType: String,
     val startDate: Instant,
     val endDate: Instant,
-    val eventTitle: String
+    val eventTitle: String,
 )
 
 fun BlackoutDateEntity.translate(): BlackoutDate {
@@ -21,6 +21,6 @@ fun BlackoutDateEntity.translate(): BlackoutDate {
         contextType = contextType,
         startDate = Instant.parse(startDate),
         endDate = Instant.parse(endDate),
-        eventTitle = eventTitle
+        eventTitle = eventTitle,
     )
 }

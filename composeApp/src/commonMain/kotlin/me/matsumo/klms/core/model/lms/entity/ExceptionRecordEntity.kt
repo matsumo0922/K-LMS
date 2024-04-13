@@ -9,5 +9,5 @@ data class ExceptionRecordEntity(
     // The ID of the associated course
     @SerialName("course_id") val courseId: Int,
     // A list of change classes in the associated course's copy of the item that prevented a blueprint change from being applied.
-    @SerialName("conflicting_changes") val conflictingChanges: List<String>
+    @SerialName("conflicting_changes") val conflictingChanges: List<String>,
 )

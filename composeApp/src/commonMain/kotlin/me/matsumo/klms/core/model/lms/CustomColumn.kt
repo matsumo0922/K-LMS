@@ -1,21 +1,16 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.CustomColumnEntity
 
 @Serializable
 data class CustomColumn(
-        val id: Int,
-
-        val teacherNotes: Boolean,
-
-        val title: String,
-
-        val position: Int,
-
-        val hidden: Boolean,
-
-        val readOnly: Boolean
+    val id: Int,
+    val teacherNotes: Boolean,
+    val title: String,
+    val position: Int,
+    val hidden: Boolean,
+    val readOnly: Boolean,
 )
 
 fun CustomColumnEntity.translate(): CustomColumn {
@@ -24,6 +19,7 @@ fun CustomColumnEntity.translate(): CustomColumn {
         teacherNotes = teacherNotes,
         title = title,
         position = position,
-        hidden = hidden
+        hidden = hidden,
+        readOnly = readOnly,
     )
 }

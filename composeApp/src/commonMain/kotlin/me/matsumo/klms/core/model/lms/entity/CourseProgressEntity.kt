@@ -8,16 +8,13 @@ data class CourseProgressEntity(
     // total number of requirements from all modules
     @SerialName("requirement_count")
     val requirementCount: Int,
-
     // total number of requirements the user has completed from ...
     @SerialName("requirement_completed_count")
     val requirementCompletedCount: Int,
-
     // url to next module item that has an unmet requirement. ...
     @SerialName("next_requirement_url")
     val nextRequirementUrl: String? = null,
-
     // date the course was completed. ...
     @SerialName("completed_at")
-    val completedAt: String? = null
+    val completedAt: String? = null,
 )

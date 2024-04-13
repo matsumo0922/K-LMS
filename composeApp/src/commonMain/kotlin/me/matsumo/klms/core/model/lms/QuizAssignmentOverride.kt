@@ -1,21 +1,16 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.QuizAssignmentOverrideEntity
 
 @Serializable
 data class QuizAssignmentOverride(
-        val id: Int?,
-
-        val dueAt: String,
-
-        val unlockAt: String?,
-
-        val lockAt: String?,
-
-        val title: String?,
-
-        val base: Boolean?
+    val id: Int?,
+    val dueAt: String,
+    val unlockAt: String?,
+    val lockAt: String?,
+    val title: String?,
+    val base: Boolean?,
 )
 
 fun QuizAssignmentOverrideEntity.translate(): QuizAssignmentOverride {
@@ -24,6 +19,7 @@ fun QuizAssignmentOverrideEntity.translate(): QuizAssignmentOverride {
         dueAt = dueAt,
         unlockAt = unlockAt,
         lockAt = lockAt,
-        title = title
+        title = title,
+        base = base,
     )
 }

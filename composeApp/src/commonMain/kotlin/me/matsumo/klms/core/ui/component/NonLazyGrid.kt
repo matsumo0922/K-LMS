@@ -12,7 +12,7 @@ fun NonLazyGrid(
     modifier: Modifier = Modifier,
     horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(0.dp),
     verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(0.dp),
-    content: @Composable (Int) -> Unit
+    content: @Composable (Int) -> Unit,
 ) {
     Column(
         modifier = modifier,
@@ -35,7 +35,7 @@ fun NonLazyGrid(
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .weight(1f)
+                            .weight(1f),
                     ) {
                         if (index < itemCount) {
                             content(index)

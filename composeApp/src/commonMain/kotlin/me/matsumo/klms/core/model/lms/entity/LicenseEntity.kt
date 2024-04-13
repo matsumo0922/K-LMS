@@ -8,12 +8,10 @@ data class LicenseEntity(
     // a short string identifying the license
     @SerialName("id")
     val id: String,
-
     // the name of the license
     @SerialName("name")
     val name: String,
-
     // a link to the license text
     @SerialName("url")
-    val url: String
+    val url: String,
 )

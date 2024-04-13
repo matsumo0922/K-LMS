@@ -7,16 +7,12 @@ import kotlinx.serialization.Serializable
 data class ConferenceRecordingEntity(
     @SerialName("duration_minutes")
     val durationMinutes: Int,
-
     @SerialName("title")
     val title: String,
-
     @SerialName("updated_at")
     val updatedAt: String,
-
     @SerialName("created_at")
     val createdAt: String,
-
     @SerialName("playback_url")
-    val playbackUrl: String
+    val playbackUrl: String,
 )

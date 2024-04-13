@@ -16,5 +16,5 @@ data class AnnouncementEntity(
     // When the announcement is scheduled to be posted (if delayed)
     @SerialName("delayed_post_at") val delayedPostAt: String?,
     // The context (e.g., course or group) the announcement is associated with
-    @SerialName("context_code") val contextCode: String
+    @SerialName("context_code") val contextCode: String,
 )

@@ -20,5 +20,5 @@ data class AssignmentGroupEntity(
     // the assignments in this Assignment Group
     @SerialName("assignments") val assignments: List<String>,
     // the grading rules that this Assignment Group has
-    @SerialName("rules") val rules: me.matsumo.klms.core.model.lms.entity.GradingRulesEntity?
+    @SerialName("rules") val rules: me.matsumo.klms.core.model.lms.entity.GradingRulesEntity?,
 )

@@ -15,5 +15,5 @@ data class BookmarkEntity(
     // The position of the bookmark in the user's list.
     @SerialName("position") val position: Int,
     // Additional data associated with the bookmark, such as which tab to open.
-    @SerialName("data") val data: Map<String, Int>
+    @SerialName("data") val data: Map<String, Int>,
 )

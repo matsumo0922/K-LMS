@@ -1,20 +1,19 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.CourseNicknameEntity
 
 @Serializable
 data class CourseNickname(
-        val courseId: Int,
-
-        val name: String,
-
-        val nickname: String
+    val courseId: Int,
+    val name: String,
+    val nickname: String,
 )
 
 fun CourseNicknameEntity.translate(): CourseNickname {
     return CourseNickname(
         courseId = courseId,
-        name = name
+        name = name,
+        nickname = nickname,
     )
 }

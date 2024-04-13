@@ -9,5 +9,5 @@ data class NeedsGradingCountEntity(
     // The section ID
     @SerialName("section_id") val sectionId: String,
     // Number of submissions that need grading
-    @SerialName("needs_grading_count") val needsGradingCount: Int
+    @SerialName("needs_grading_count") val needsGradingCount: Int,
 )

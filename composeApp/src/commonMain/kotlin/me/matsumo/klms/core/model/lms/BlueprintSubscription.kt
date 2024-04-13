@@ -7,14 +7,14 @@ import me.matsumo.klms.core.model.lms.entity.BlueprintSubscriptionEntity
 data class BlueprintSubscription(
     val id: Int,
     val templateId: Int,
-    val blueprintCourse: BlueprintCourse
+    val blueprintCourse: BlueprintCourse,
 ) {
     @Serializable
     data class BlueprintCourse(
         val id: Int,
         val name: String,
         val courseCode: String,
-        val termName: String
+        val termName: String,
     )
 }
 
@@ -26,7 +26,7 @@ fun BlueprintSubscriptionEntity.translate(): BlueprintSubscription {
             id = blueprintCourse.id,
             name = blueprintCourse.name,
             courseCode = blueprintCourse.courseCode,
-            termName = blueprintCourse.termName
-        )
+            termName = blueprintCourse.termName,
+        ),
     )
 }

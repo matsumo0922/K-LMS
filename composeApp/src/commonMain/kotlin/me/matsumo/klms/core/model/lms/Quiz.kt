@@ -1,85 +1,49 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.QuizEntity
 
 @Serializable
 data class Quiz(
-        val id: Int,
-
-        val title: String,
-
-        val htmlUrl: String,
-
-        val mobileUrl: String,
-
-        val previewUrl: String?,
-
-        val description: String?,
-
-        val quizType: String,
-
-        val assignmentGroupId: Int,
-
-        val timeLimit: Int?, 
-        val shuffleAnswers: Boolean,
-
-        val hideResults: String?,
-
-        val showCorrectAnswers: Boolean,
-
-        val showCorrectAnswersLastAttempt: Boolean,
-
-        val showCorrectAnswersAt: String?,
-
-        val hideCorrectAnswersAt: String?,
-
-        val oneTimeResults: Boolean,
-
-        val scoringPolicy: String,
-
-        val allowedAttempts: Int,
-
-        val oneQuestionAtATime: Boolean,
-
-        val questionCount: Int,
-
-        val pointsPossible: Int,
-
-        val cantGoBack: Boolean,
-
-        val accessCode: String?,
-
-        val ipFilter: String?,
-
-        val dueAt: String?,
-
-        val lockAt: String?,
-
-        val unlockAt: String?,
-
-        val published: Boolean,
-
-        val unpublishable: Boolean,
-
-        val lockedForUser: Boolean,
-
-        val lockInfo: LockInfoEntity?,
-
-        val lockExplanation: String?,
-
-        val speedgraderUrl: String?,
-
-        val quizExtensionsUrl: String,
-
-        val permissions: QuizPermissionsEntity?,
-
-        val allDates: List<String>?, 
-        val versionNumber: Int,
-
-        val questionTypes: List<String>,
-
-        val anonymousSubmissions: Boolean
+    val id: Int,
+    val title: String,
+    val htmlUrl: String,
+    val mobileUrl: String,
+    val previewUrl: String?,
+    val description: String?,
+    val quizType: String,
+    val assignmentGroupId: Int,
+    val timeLimit: Int?,
+    val shuffleAnswers: Boolean,
+    val hideResults: String?,
+    val showCorrectAnswers: Boolean,
+    val showCorrectAnswersLastAttempt: Boolean,
+    val showCorrectAnswersAt: String?,
+    val hideCorrectAnswersAt: String?,
+    val oneTimeResults: Boolean,
+    val scoringPolicy: String,
+    val allowedAttempts: Int,
+    val oneQuestionAtATime: Boolean,
+    val questionCount: Int,
+    val pointsPossible: Int,
+    val cantGoBack: Boolean,
+    val accessCode: String?,
+    val ipFilter: String?,
+    val dueAt: String?,
+    val lockAt: String?,
+    val unlockAt: String?,
+    val published: Boolean,
+    val unpublishable: Boolean,
+    val lockedForUser: Boolean,
+    val lockInfo: LockInfo?,
+    val lockExplanation: String?,
+    val speedgraderUrl: String?,
+    val quizExtensionsUrl: String,
+    val permissions: QuizPermissions?,
+    val allDates: List<String>?,
+    val versionNumber: Int,
+    val questionTypes: List<String>,
+    val anonymousSubmissions: Boolean,
 )
 
 fun QuizEntity.translate(): Quiz {
@@ -114,13 +78,14 @@ fun QuizEntity.translate(): Quiz {
         published = published,
         unpublishable = unpublishable,
         lockedForUser = lockedForUser,
-        lockInfo = lockInfo,
+        lockInfo = lockInfo?.translate(),
         lockExplanation = lockExplanation,
         speedgraderUrl = speedgraderUrl,
         quizExtensionsUrl = quizExtensionsUrl,
-        permissions = permissions,
+        permissions = permissions?.translate(),
         allDates = allDates,
         versionNumber = versionNumber,
-        questionTypes = questionTypes
+        questionTypes = questionTypes,
+        anonymousSubmissions = anonymousSubmissions,
     )
 }

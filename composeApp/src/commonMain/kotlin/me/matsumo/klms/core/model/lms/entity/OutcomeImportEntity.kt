@@ -8,31 +8,24 @@ data class OutcomeImportEntity(
     // The unique identifier for the outcome import.
     @SerialName("id")
     val id: Int,
-
     // The unique identifier for the group
     @SerialName("learning_outcome_group_id")
     val learningOutcomeGroupId: Int?,
-
     //  The date the outcome import was created.
     @SerialName("created_at")
     val createdAt: String,
-
     //  The date the outcome import finished.
     @SerialName("ended_at")
     val endedAt: String?,
-
     //  The date the outcome import was last updated.
     @SerialName("updated_at")
     val updatedAt: String,
-
     //  The current state of the outcome import.
     @SerialName("workflow_state")
     val workflowState: String,
-
     //  See the OutcomeImportData specification
     @SerialName("data")
     val data: me.matsumo.klms.core.model.lms.entity.OutcomeImportDataEntity?,
-
     // The progress of the outcome import.
     @SerialName("progress")
     val progress: Int, // Representing percentage as an integer
@@ -43,7 +36,7 @@ data class OutcomeImportEntity(
 
     // An array of row number / error message pairs.
     @SerialName("processing_errors")
-    val processingErrors: List<List<Map<Int, String>>> // Using 'Any' as a placeholder until you have a specific structure
+    val processingErrors: List<List<Map<Int, String>>>, // Using 'Any' as a placeholder until you have a specific structure
 )
 
 // You'll have the 'OutcomeImportData' class from a previous example

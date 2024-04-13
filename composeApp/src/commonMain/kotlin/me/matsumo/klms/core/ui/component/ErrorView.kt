@@ -15,7 +15,6 @@ import androidx.compose.ui.unit.dp
 import k_lms.composeapp.generated.resources.Res
 import k_lms.composeapp.generated.resources.common_reload
 import k_lms.composeapp.generated.resources.error_executed
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import me.matsumo.klms.core.model.ScreenState
 import me.matsumo.klms.core.theme.bold
 import me.matsumo.klms.core.theme.center

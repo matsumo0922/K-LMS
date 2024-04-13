@@ -1,49 +1,31 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.ContentShareEntity
 
 @Serializable
 data class ContentShare(
-        val id: Int,
-
-        val name: String,
-
-        val contentType: String,
-
-        val createdAt: String,
-
-        val updatedAt: String,
-
-        val userId: Int,
-
-        val sender: UserEntity? = null,
-
-        val receivers: List<UserEntity> = emptyList(),
-
-        val sourceCourse: SourceCourse,
-
-        val readState: String,
-
-        val contentExport: ContentExport
+    val id: Int,
+    val name: String,
+    val contentType: String,
+    val createdAt: String,
+    val updatedAt: String,
+    val userId: Int,
+    val sender: User? = null,
+    val receivers: List<User> = emptyList(),
+    val sourceCourse: SourceCourse,
+    val readState: String,
+    val contentExport: ContentExport,
 ) {
-    @Serializable
-    data class User(
-        val id: Int,
-        val displayName: String,
-        val avatarImageUrl: String,
-        val htmlUrl: String
-    )
-
     @Serializable
     data class SourceCourse(
         val id: Int,
-        val name: String
+        val name: String,
     )
 
     @Serializable
     data class ContentExport(
-        val id: Int
+        val id: Int,
     )
 }
 
@@ -55,13 +37,15 @@ fun ContentShareEntity.translate(): ContentShare {
         createdAt = createdAt,
         updatedAt = updatedAt,
         userId = userId,
-        sender = sender,
-        receivers = receivers,
-        sourceCourse = sourceCourse,
+        sender = sender?.translate(),
+        receivers = receivers.map { it.translate() },
+        sourceCourse = ContentShare.SourceCourse(
+            id = sourceCourse.id,
+            name = sourceCourse.name,
+        ),
         readState = readState,
-        id = id,
-        displayName = displayName,
-        avatarImageUrl = avatarImageUrl,
-        id = id
+        contentExport = ContentShare.ContentExport(
+            id = contentExport.id,
+        ),
     )
 }

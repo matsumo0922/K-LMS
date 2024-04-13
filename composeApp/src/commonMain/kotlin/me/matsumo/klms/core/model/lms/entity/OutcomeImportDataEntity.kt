@@ -7,5 +7,5 @@ import kotlinx.serialization.Serializable
 data class OutcomeImportDataEntity(
     // The type of outcome import
     @SerialName("import_type")
-    val importType: String
+    val importType: String,
 )

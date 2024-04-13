@@ -1,14 +1,15 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.QuizAssignmentOverrideSetContainerEntity
 
 @Serializable
 data class QuizAssignmentOverrideSetContainer(
-        val quizAssignmentOverrides: QuizAssignmentOverrideSetEntity? )
+    val quizAssignmentOverrides: QuizAssignmentOverrideSet?,
+)
 
 fun QuizAssignmentOverrideSetContainerEntity.translate(): QuizAssignmentOverrideSetContainer {
     return QuizAssignmentOverrideSetContainer(
-        
+        quizAssignmentOverrides = quizAssignmentOverrides?.translate(),
     )
 }

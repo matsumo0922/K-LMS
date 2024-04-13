@@ -13,8 +13,6 @@ internal fun Project.configureDetekt() {
         parallel = true
         // Detektの設定ファイル
         config.setFrom(files("${project.rootDir}/config/detekt/detekt.yml"))
-        // baseline 設定ファイル
-        baseline = file("${project.rootDir}/config/detekt/baseline.xml")
         // デフォルト設定の上に自分の設定ファイルを適用する
         buildUponDefaultConfig = true
         // ルール違反があった場合にfailさせない

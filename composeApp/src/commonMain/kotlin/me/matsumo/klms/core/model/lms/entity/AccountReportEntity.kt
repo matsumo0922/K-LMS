@@ -26,12 +26,12 @@ data class AccountReportEntity(
     // The progress of the report
     @SerialName("progress") val progress: Int,
     // This is the current line count being written to the report. It updates every 1000 records.
-    @SerialName("current_line") val currentLine: Int
+    @SerialName("current_line") val currentLine: Int,
 ) {
     @Serializable
     data class Parameters(
         @SerialName("course_id") val courseId: Int,
         @SerialName("start_at") val startAt: String,
-        @SerialName("end_at") val endAt: String
+        @SerialName("end_at") val endAt: String,
     )
 }

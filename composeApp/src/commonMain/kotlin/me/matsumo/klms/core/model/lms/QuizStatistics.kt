@@ -1,29 +1,20 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.QuizStatisticsEntity
 
 @Serializable
 data class QuizStatistics(
-        val id: Int,
-
-        val quizId: Int?,
-
-        val multipleAttemptsExist: Boolean,
-
-        val includesAllVersions: Boolean,
-
-        val generatedAt: String,
-
-        val url: String,
-
-        val htmlUrl: String,
-
-        val questionStatistics: List<QuizStatisticsQuestionStatisticsEntity>?,
-
-        val submissionStatistics: QuizStatisticsSubmissionStatisticsEntity?,
-
-        val links: QuizStatisticsLinksEntity?
+    val id: Int,
+    val quizId: Int?,
+    val multipleAttemptsExist: Boolean,
+    val includesAllVersions: Boolean,
+    val generatedAt: String,
+    val url: String,
+    val htmlUrl: String,
+    val questionStatistics: List<QuizStatisticsQuestionStatistics>?,
+    val submissionStatistics: QuizStatisticsSubmissionStatistics?,
+    val links: QuizStatisticsLinks?,
 )
 
 fun QuizStatisticsEntity.translate(): QuizStatistics {
@@ -35,7 +26,8 @@ fun QuizStatisticsEntity.translate(): QuizStatistics {
         generatedAt = generatedAt,
         url = url,
         htmlUrl = htmlUrl,
-        questionStatistics = questionStatistics,
-        submissionStatistics = submissionStatistics
+        questionStatistics = questionStatistics?.map { it.translate() },
+        submissionStatistics = submissionStatistics?.translate(),
+        links = links?.translate(),
     )
 }

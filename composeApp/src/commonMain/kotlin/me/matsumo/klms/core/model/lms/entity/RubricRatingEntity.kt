@@ -12,5 +12,5 @@ data class RubricRatingEntity(
     // Brief description of the rubric rating
     @SerialName("description") val description: String,
     // Detailed description of the rubric rating
-    @SerialName("long_description") val longDescription: String
+    @SerialName("long_description") val longDescription: String,
 )

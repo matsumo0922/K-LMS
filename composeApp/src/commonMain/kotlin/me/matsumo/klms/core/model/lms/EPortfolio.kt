@@ -1,27 +1,19 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.EPortfolioEntity
 
 @Serializable
 data class EPortfolio(
-        val id: Int,
-
-        val userId: Int,
-
-        val name: String,
-
-        val public: Boolean,
-
-        val createdAt: String,
-
-        val updatedAt: String,
-
-        val workflowState: String,
-
-        val deletedAt: String? = null,
-
-        val spamStatus: String? = null
+    val id: Int,
+    val userId: Int,
+    val name: String,
+    val public: Boolean,
+    val createdAt: String,
+    val updatedAt: String,
+    val workflowState: String,
+    val deletedAt: String? = null,
+    val spamStatus: String? = null,
 )
 
 fun EPortfolioEntity.translate(): EPortfolio {
@@ -33,6 +25,7 @@ fun EPortfolioEntity.translate(): EPortfolio {
         createdAt = createdAt,
         updatedAt = updatedAt,
         workflowState = workflowState,
-        deletedAt = deletedAt
+        deletedAt = deletedAt,
+        spamStatus = spamStatus,
     )
 }

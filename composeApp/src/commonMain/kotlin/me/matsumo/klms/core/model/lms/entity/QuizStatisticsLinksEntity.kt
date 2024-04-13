@@ -7,5 +7,5 @@ import kotlinx.serialization.Serializable
 data class QuizStatisticsLinksEntity(
     // API URL to the quiz
     @SerialName("quiz")
-    val quiz: String
+    val quiz: String,
 )

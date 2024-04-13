@@ -10,5 +10,5 @@ data class ExternalToolTagAttributesEntity(
     // Whether or not there is a new tab for the external tool
     @SerialName("new_tab") val newTab: Boolean,
     // the identifier for this tool_tag
-    @SerialName("resource_link_id") val resourceLinkId: String
+    @SerialName("resource_link_id") val resourceLinkId: String,
 )

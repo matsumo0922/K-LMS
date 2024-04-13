@@ -1,19 +1,15 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.PageViewLinksEntity
 
 @Serializable
 data class PageViewLinks(
-        val user: Int,
-
-        val context: Int,
-
-        val asset: Int?,
-
-        val realUser: Int?,
-
-        val account: Int
+    val user: Int,
+    val context: Int,
+    val asset: Int?,
+    val realUser: Int?,
+    val account: Int,
 )
 
 fun PageViewLinksEntity.translate(): PageViewLinks {
@@ -21,6 +17,7 @@ fun PageViewLinksEntity.translate(): PageViewLinks {
         user = user,
         context = context,
         asset = asset,
-        realUser = realUser
+        realUser = realUser,
+        account = account,
     )
 }

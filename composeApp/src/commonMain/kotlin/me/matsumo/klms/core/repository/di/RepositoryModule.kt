@@ -16,8 +16,9 @@ import me.matsumo.klms.core.repository.LmsRepository
 import me.matsumo.klms.core.repository.LmsRepositoryImpl
 import me.matsumo.klms.core.repository.UserDataRepository
 import me.matsumo.klms.core.repository.UserDataRepositoryImpl
+import me.matsumo.klms.core.repository.api.ApiClient
+import me.matsumo.klms.core.repository.api.CoursesApi
 import org.koin.dsl.module
-
 
 @OptIn(ExperimentalSerializationApi::class)
 val repositoryModule = module {
@@ -55,7 +56,7 @@ val repositoryModule = module {
 
     single<UserDataRepository> {
         UserDataRepositoryImpl(
-            lmsUserDataStore = get()
+            lmsUserDataStore = get(),
         )
     }
 
@@ -64,14 +65,28 @@ val repositoryModule = module {
             client = get(),
             loginDataStore = get(),
             cookieDataStore = get(),
-            ioDispatcher = get()
+            ioDispatcher = get(),
+        )
+    }
+
+    single {
+        ApiClient(
+            client = get(),
+            ioDispatcher = get(),
         )
     }
 
     single<LmsRepository> {
         LmsRepositoryImpl(
             client = get(),
-            ioDispatcher = get()
+            ioDispatcher = get(),
+        )
+    }
+
+    single {
+        CoursesApi(
+            client = get(),
+            ioDispatcher = get(),
         )
     }
 }

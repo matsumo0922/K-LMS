@@ -1,26 +1,19 @@
-package me.matsumo.klms.core.model.entity
+package me.matsumo.klms.core.model.lms
 
-import kotlinx.serialization.SerialName
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
+import me.matsumo.klms.core.model.lms.entity.OriginalityReportEntity
 
 @Serializable
 data class OriginalityReport(
-        val id: Int,
-
-        val fileId: Int,
-
-        val originalityScore: Double,
-
-        val originalityReportFileId: Int?,
-
-        val originalityReportUrl: String?,
-
-            
-        val errorMessage: String?,
-
-        val submissionTime: Instant?,
-
-        val rootAccountId: Int,
+    val id: Int,
+    val fileId: Int,
+    val originalityScore: Double,
+    val originalityReportFileId: Int?,
+    val originalityReportUrl: String?,
+    val errorMessage: String?,
+    val submissionTime: Instant?,
+    val rootAccountId: Int,
 )
 
 fun OriginalityReportEntity.translate(): OriginalityReport {
@@ -31,7 +24,7 @@ fun OriginalityReportEntity.translate(): OriginalityReport {
         originalityReportFileId = originalityReportFileId,
         originalityReportUrl = originalityReportUrl,
         errorMessage = errorMessage,
-        submissionTime = Instant.parse(submissionTime),
-        rootAccountId = rootAccountId
+        submissionTime = submissionTime?.let { Instant.parse(it) },
+        rootAccountId = rootAccountId,
     )
 }
