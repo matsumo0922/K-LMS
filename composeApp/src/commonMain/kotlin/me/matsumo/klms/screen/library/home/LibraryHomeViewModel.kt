@@ -3,8 +3,10 @@ package me.matsumo.klms.screen.library.home
 import androidx.compose.runtime.Stable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
 import k_lms.composeapp.generated.resources.Res
 import k_lms.composeapp.generated.resources.error_executed
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
@@ -31,8 +33,8 @@ class LibraryHomeViewModel(
             screenState.value = suspendRunCatching {
                 LibraryHomeUiState(
                     userData = userDataRepository.userData.first(),
-                    courses = lmsRepository.getCourses(),
-                    dashboardCards = lmsRepository.getDashboardCards(),
+                    coursesPaging = lmsRepository.getCourses(),
+                    dashboardCardsPaging = lmsRepository.getDashboardCards(),
                 )
             }.fold(
                 onSuccess = { ScreenState.Idle(it) },
@@ -45,6 +47,6 @@ class LibraryHomeViewModel(
 @Stable
 data class LibraryHomeUiState(
     val userData: UserData,
-    val courses: List<Course>,
-    val dashboardCards: List<DashboardCard>,
+    val coursesPaging: Flow<PagingData<Course>>,
+    val dashboardCardsPaging: Flow<PagingData<DashboardCard>>,
 )

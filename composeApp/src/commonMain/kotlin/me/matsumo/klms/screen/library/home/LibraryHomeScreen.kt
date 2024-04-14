@@ -12,11 +12,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import app.cash.paging.compose.LazyPagingItems
+import app.cash.paging.compose.collectAsLazyPagingItems
 import me.matsumo.klms.core.extensions.koinViewModel
 import me.matsumo.klms.core.model.ScreenState
 import me.matsumo.klms.core.model.UserData
 import me.matsumo.klms.core.model.lms.Course
+import me.matsumo.klms.core.model.lms.DashboardCard
 import me.matsumo.klms.core.ui.AsyncLoadContents
+import me.matsumo.klms.core.ui.LazyPagingItemsLoadContents
 import me.matsumo.klms.screen.library.home.components.LibraryHomeTopBar
 
 @Composable
@@ -37,10 +41,12 @@ fun LibraryHomeRoute(
         modifier = modifier,
         screenState = screenState
     ) {
+        val dashboardCardsPager = it.dashboardCardsPaging.collectAsLazyPagingItems()
+
         LibraryHomeScreen(
             modifier = Modifier.fillMaxSize(),
             userData = it.userData,
-            courses = it.courses,
+            dashboardCardsPager = dashboardCardsPager,
             onClickDrawer = openDrawer,
         )
     }
@@ -50,7 +56,7 @@ fun LibraryHomeRoute(
 @Composable
 private fun LibraryHomeScreen(
     userData: UserData,
-    courses: List<Course>,
+    dashboardCardsPager: LazyPagingItems<DashboardCard>,
     onClickDrawer: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -67,6 +73,11 @@ private fun LibraryHomeScreen(
         },
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
     ) {
+        LazyPagingItemsLoadContents(
+            modifier = Modifier.fillMaxSize(),
+            lazyPagingItems = dashboardCardsPager,
+        ) {
 
+        }
     }
 }

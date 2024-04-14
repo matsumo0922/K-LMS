@@ -11,6 +11,8 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
+import me.matsumo.klms.core.model.lms.Paging
+import me.matsumo.klms.core.model.lms.getLmsPagination
 
 @OptIn(ExperimentalSerializationApi::class)
 val formatter = Json {
@@ -28,7 +30,7 @@ suspend inline fun <reified T> HttpResponse.parse(
     val requestUrl = request.url
     val isOK = this.status.value in allowRange
 
-    Logger.d("[${ if (isOK) "SUCCESS" else "FAILED" }] Ktor Request: $requestUrl")
+    Logger.d("[${if (isOK) "SUCCESS" else "FAILED"}] Ktor Request: $requestUrl")
     Logger.d("[RESPONSE] ${this.bodyAsText().replace("\n", "")}")
 
     return if (isOK) this.body<T>() else null
@@ -42,7 +44,7 @@ suspend inline fun <reified T> HttpResponse.parseList(
     val requestUrl = request.url
     val isOK = this.status.value in allowRange
 
-    Logger.d("[${ if (isOK) "SUCCESS" else "FAILED" }] Ktor Request: $requestUrl")
+    Logger.d("[${if (isOK) "SUCCESS" else "FAILED"}] Ktor Request: $requestUrl")
     Logger.d("[RESPONSE] ${this.bodyAsText().replace("\n", "")}")
 
     if (!isOK) return null
@@ -60,4 +62,15 @@ fun HttpResponse.isSuccess(allowRange: IntRange = 200..299): Boolean {
 fun HttpResponse.requireSuccess(allowRange: IntRange = 200..299): HttpResponse {
     if (!isSuccess(allowRange)) error("Request failed: ${this.status.value}")
     return this
+}
+
+suspend fun <T> HttpResponse.parsePaging(
+    translate: suspend (HttpResponse) -> T,
+): Paging<T> {
+    val pagination = headers.getLmsPagination()
+
+    return Paging(
+        data = translate.invoke(this),
+        pagination = pagination,
+    )
 }

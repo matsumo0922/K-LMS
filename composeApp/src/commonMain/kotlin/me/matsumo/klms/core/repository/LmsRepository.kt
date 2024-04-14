@@ -1,14 +1,20 @@
 package me.matsumo.klms.core.repository
 
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
 import me.matsumo.klms.core.repository.api.ApiClient
 import me.matsumo.klms.core.repository.api.CoursesApi
 import me.matsumo.klms.core.repository.api.UserApi
 
 class LmsRepository(
     private val client: ApiClient,
+    private val ioDispatcher: CoroutineDispatcher,
 ) {
+    private val scope = CoroutineScope(SupervisorJob() + ioDispatcher)
+
     private val userApi = UserApi(client)
-    private val coursesApi = CoursesApi(client)
+    private val coursesApi = CoursesApi(client, scope)
 
     // UserApi
     suspend fun getSelfUser() = userApi.getSelfUser()

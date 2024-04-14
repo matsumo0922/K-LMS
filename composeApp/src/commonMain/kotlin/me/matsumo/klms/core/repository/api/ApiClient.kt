@@ -8,6 +8,7 @@ import io.ktor.client.request.post
 import io.ktor.client.request.url
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.Parameters
+import io.ktor.http.Url
 import io.ktor.util.InternalAPI
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
@@ -28,6 +29,8 @@ open class ApiClient(
             for ((key, value) in params) {
                 parameter(key, value)
             }
+
+            parameter("per_page", PER_PAGE)
         }
     }
 
@@ -71,6 +74,7 @@ open class ApiClient(
     }
 
     companion object {
-        private const val API = "https://lms.keio.jp/api/v1"
+        const val API = "https://lms.keio.jp/api/v1"
+        const val PER_PAGE = 20
     }
 }

@@ -71,6 +71,7 @@ val repositoryModule = module {
     single<LmsRepository> {
         LmsRepository(
             client = get(),
+            ioDispatcher = get(),
         )
     }
 }

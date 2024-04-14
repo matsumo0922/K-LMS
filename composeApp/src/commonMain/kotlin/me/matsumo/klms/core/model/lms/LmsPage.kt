@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.PageEntity
 
 @Serializable
-data class Page(
+data class LmsPage(
     val pageId: Int,
     val url: String,
     val title: String,
@@ -23,8 +23,8 @@ data class Page(
     val lockExplanation: String?,
 )
 
-fun PageEntity.translate(): Page {
-    return Page(
+fun PageEntity.translate(): LmsPage {
+    return LmsPage(
         pageId = pageId,
         url = url,
         title = title,

@@ -10,11 +10,16 @@ data class LmsPagination(
     val last: String?,
 )
 
-fun Headers.getLmsPagination(): LmsPagination? {
-    val links = this["Link"] ?: return null
-    val items = links.split(",").map { it.trim() }
+data class Paging <out T> (
+    val data: T,
+    val pagination: LmsPagination,
+)
 
+fun Headers.getLmsPagination(): LmsPagination {
     var pagination = LmsPagination(null, null, null, null, null)
+
+    val links = this["Link"] ?: return pagination
+    val items = links.split(",").map { it.trim() }
 
     for (item in items) {
         val parts = item.split(";")
