@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.RoleEntity
 
@@ -12,8 +13,8 @@ data class Role(
     val isAccountRole: Boolean,
     val account: LmsAccount?,
     val workflowState: String,
-    val createdAt: String,
-    val lastUpdatedAt: String,
+    val createdAt: Instant,
+    val lastUpdatedAt: Instant,
     val permissions: RolePermissions,
 )
 
@@ -26,8 +27,8 @@ fun RoleEntity.translate(): Role {
         isAccountRole = isAccountRole,
         account = account?.translate(),
         workflowState = workflowState,
-        createdAt = createdAt,
-        lastUpdatedAt = lastUpdatedAt,
+        createdAt = Instant.parse(createdAt),
+        lastUpdatedAt = Instant.parse(lastUpdatedAt),
         permissions = permissions.translate(),
     )
 }

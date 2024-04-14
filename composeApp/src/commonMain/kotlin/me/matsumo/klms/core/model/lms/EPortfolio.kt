@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.EPortfolioEntity
 
@@ -9,10 +10,10 @@ data class EPortfolio(
     val userId: Int,
     val name: String,
     val public: Boolean,
-    val createdAt: String,
-    val updatedAt: String,
+    val createdAt: Instant,
+    val updatedAt: Instant,
     val workflowState: String,
-    val deletedAt: String? = null,
+    val deletedAt: Instant? = null,
     val spamStatus: String? = null,
 )
 
@@ -22,10 +23,10 @@ fun EPortfolioEntity.translate(): EPortfolio {
         userId = userId,
         name = name,
         public = public,
-        createdAt = createdAt,
-        updatedAt = updatedAt,
+        createdAt = Instant.parse(createdAt),
+        updatedAt = Instant.parse(updatedAt),
         workflowState = workflowState,
-        deletedAt = deletedAt,
+        deletedAt = deletedAt?.let { Instant.parse(it) },
         spamStatus = spamStatus,
     )
 }

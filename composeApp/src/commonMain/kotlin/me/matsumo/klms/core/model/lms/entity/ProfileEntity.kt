@@ -40,7 +40,7 @@ data class ProfileEntity(
     val avatarUrl: String,
     // Calendar details - Placeholder
     @SerialName("calendar")
-    val calendar: me.matsumo.klms.core.model.lms.entity.CalendarEventEntity?,
+    val calendar: CalendarIcs?,
     // Optional: The user's preferred timezone
     @SerialName("time_zone")
     val timeZone: String?,
@@ -53,4 +53,11 @@ data class ProfileEntity(
     // Optional: Whether to use classic font on dashboard (if K5 user)
     @SerialName("use_classic_font_in_k5")
     val useClassicFontInK5: Boolean?,
-)
+) {
+    @Serializable
+    data class CalendarIcs(
+        // The ICS file for the user's calendar
+        @SerialName("ics")
+        val ics: String,
+    )
+}

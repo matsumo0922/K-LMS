@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.EnrollmentEntity
 
@@ -23,12 +24,12 @@ data class Enrollment(
     val associatedUserId: Int? = null,
     val role: String,
     val roleId: Int,
-    val createdAt: String,
-    val updatedAt: String,
-    val startAt: String,
-    val endAt: String,
-    val lastActivityAt: String,
-    val lastAttendedAt: String? = null,
+    val createdAt: Instant,
+    val updatedAt: Instant,
+    val startAt: Instant,
+    val endAt: Instant,
+    val lastActivityAt: Instant,
+    val lastAttendedAt: Instant? = null,
     val totalActivityTime: Int,
     val htmlUrl: String,
     val grades: Grade,
@@ -71,12 +72,12 @@ fun EnrollmentEntity.translate(): Enrollment {
         associatedUserId = associatedUserId,
         role = role,
         roleId = roleId,
-        createdAt = createdAt,
-        updatedAt = updatedAt,
-        startAt = startAt,
-        endAt = endAt,
-        lastActivityAt = lastActivityAt,
-        lastAttendedAt = lastAttendedAt,
+        createdAt = Instant.parse(createdAt),
+        updatedAt = Instant.parse(updatedAt),
+        startAt = Instant.parse(startAt),
+        endAt = Instant.parse(endAt),
+        lastActivityAt = Instant.parse(lastActivityAt),
+        lastAttendedAt = lastAttendedAt?.let { Instant.parse(it) },
         totalActivityTime = totalActivityTime,
         htmlUrl = htmlUrl,
         grades = grades.translate(),

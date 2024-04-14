@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.CommunicationChannelEntity
 
@@ -11,7 +12,7 @@ data class CommunicationChannel(
     val position: Int,
     val userId: Int,
     val bounceCount: Int,
-    val lastBounceAt: String,
+    val lastBounceAt: Instant,
     val workflowState: String,
 )
 
@@ -23,7 +24,7 @@ fun CommunicationChannelEntity.translate(): CommunicationChannel {
         position = position,
         userId = userId,
         bounceCount = bounceCount,
-        lastBounceAt = lastBounceAt,
+        lastBounceAt = Instant.parse(lastBounceAt),
         workflowState = workflowState,
     )
 }

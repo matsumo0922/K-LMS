@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.AppointmentGroupEntity
 
@@ -7,8 +8,8 @@ import me.matsumo.klms.core.model.lms.entity.AppointmentGroupEntity
 data class AppointmentGroup(
     val id: Int,
     val title: String,
-    val startAt: String,
-    val endAt: String,
+    val startAt: Instant,
+    val endAt: Instant,
     val description: String,
     val locationName: String,
     val locationAddress: String,
@@ -29,14 +30,14 @@ data class AppointmentGroup(
     val participantType: String,
     val url: String,
     val htmlUrl: String,
-    val createdAt: String,
-    val updatedAt: String,
+    val createdAt: Instant,
+    val updatedAt: Instant,
 ) {
     @Serializable
     data class ReservedTime(
         val id: Int,
-        val startAt: String,
-        val endAt: String,
+        val startAt: Instant,
+        val endAt: Instant,
     )
 }
 
@@ -44,8 +45,8 @@ fun AppointmentGroupEntity.translate(): AppointmentGroup {
     return AppointmentGroup(
         id = id,
         title = title,
-        startAt = startAt,
-        endAt = endAt,
+        startAt = Instant.parse(startAt),
+        endAt = Instant.parse(endAt),
         description = description,
         locationName = locationName,
         locationAddress = locationAddress,
@@ -53,8 +54,8 @@ fun AppointmentGroupEntity.translate(): AppointmentGroup {
         reservedTimes = reservedTimes.map {
             AppointmentGroup.ReservedTime(
                 id = it.id,
-                startAt = it.startAt,
-                endAt = it.endAt,
+                startAt = Instant.parse(it.startAt),
+                endAt = Instant.parse(it.endAt),
             )
         },
         allowObserverSignup = allowObserverSignup,
@@ -72,7 +73,7 @@ fun AppointmentGroupEntity.translate(): AppointmentGroup {
         participantType = participantType,
         url = url,
         htmlUrl = htmlUrl,
-        createdAt = createdAt,
-        updatedAt = updatedAt,
+        createdAt = Instant.parse(createdAt),
+        updatedAt = Instant.parse(updatedAt),
     )
 }

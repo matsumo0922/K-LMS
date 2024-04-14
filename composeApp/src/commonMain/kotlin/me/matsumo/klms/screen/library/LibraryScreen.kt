@@ -1,12 +1,14 @@
 package me.matsumo.klms.screen.library
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
@@ -19,8 +21,9 @@ import androidx.navigation.navOptions
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.launch
 import me.matsumo.klms.core.extensions.koinViewModel
+import me.matsumo.klms.core.model.ScreenState
 import me.matsumo.klms.core.model.UserData
-import me.matsumo.klms.core.model.lms.LmsAccount
+import me.matsumo.klms.core.model.lms.LmsProfile
 import me.matsumo.klms.core.model.lms.LmsUser
 import me.matsumo.klms.core.ui.AsyncLoadContents
 import me.matsumo.klms.screen.library.calendar.navigateToLibraryCalendar
@@ -38,6 +41,12 @@ fun LibraryRoute(
 ) {
     val screenState by viewModel.screenState.collectAsStateWithLifecycle()
 
+    LaunchedEffect(true) {
+        if (screenState !is ScreenState.Idle) {
+            viewModel.fetch()
+        }
+    }
+
     AsyncLoadContents(
         modifier = modifier,
         screenState = screenState,
@@ -45,7 +54,7 @@ fun LibraryRoute(
         LibraryScreen(
             modifier = Modifier.fillMaxSize(),
             userData = it.userData,
-            account = it.account,
+            profile = it.profile,
             user = it.user,
         )
     }
@@ -54,7 +63,7 @@ fun LibraryRoute(
 @Composable
 private fun LibraryScreen(
     userData: UserData,
-    account: LmsAccount?,
+    profile: LmsProfile?,
     user: LmsUser?,
     modifier: Modifier = Modifier,
 ) {
@@ -67,7 +76,7 @@ private fun LibraryScreen(
         drawerState = drawerState,
         drawerContent = {
             LibraryDrawer(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.fillMaxHeight(),
                 state = drawerState,
                 account = null,
                 currentDestination = navController.currentBackStackEntryAsState().value?.destination,
@@ -79,7 +88,7 @@ private fun LibraryScreen(
     ) {
         Column {
             LibraryNavHost(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.weight(1f),
                 navController = navController,
                 openDrawer = {
                     scope.launch {

@@ -64,6 +64,7 @@ fun rememberBottomSheetNavigator(
 }
 
 @OptIn(ExperimentalMaterialApi::class)
+@Navigator.Name("bottom_sheet")
 class BottomSheetNavigator(
     val sheetState: ModalBottomSheetState
 ) : Navigator<BottomSheetNavigator.Destination>() {

@@ -1,13 +1,14 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.CommMessageEntity
 
 @Serializable
 data class CommMessage(
     val id: Int,
-    val createdAt: String,
-    val sentAt: String,
+    val createdAt: Instant,
+    val sentAt: Instant,
     val workflowState: String,
     val from: String,
     val fromName: String,
@@ -21,8 +22,8 @@ data class CommMessage(
 fun CommMessageEntity.translate(): CommMessage {
     return CommMessage(
         id = id,
-        createdAt = createdAt,
-        sentAt = sentAt,
+        createdAt = Instant.parse(createdAt),
+        sentAt = Instant.parse(sentAt),
         workflowState = workflowState,
         from = from,
         fromName = fromName,

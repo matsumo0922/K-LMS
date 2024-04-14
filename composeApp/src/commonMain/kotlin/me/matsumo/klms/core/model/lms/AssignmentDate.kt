@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.AssignmentDateEntity
 
@@ -8,9 +9,9 @@ data class AssignmentDate(
     val id: Int?,
     val base: Boolean?,
     val title: String,
-    val dueAt: String,
-    val unlockAt: String,
-    val lockAt: String,
+    val dueAt: Instant,
+    val unlockAt: Instant,
+    val lockAt: Instant,
 )
 
 fun AssignmentDateEntity.translate(): AssignmentDate {
@@ -18,8 +19,8 @@ fun AssignmentDateEntity.translate(): AssignmentDate {
         id = id,
         base = base,
         title = title,
-        dueAt = dueAt,
-        unlockAt = unlockAt,
-        lockAt = lockAt,
+        dueAt = Instant.parse(dueAt),
+        unlockAt = Instant.parse(unlockAt),
+        lockAt = Instant.parse(lockAt),
     )
 }

@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.QuizSubmissionEntity
 
@@ -9,9 +10,9 @@ data class QuizSubmission(
     val quizId: Int,
     val userId: Int,
     val submissionId: Int,
-    val startedAt: String,
-    val finishedAt: String,
-    val endAt: String,
+    val startedAt: Instant,
+    val finishedAt: Instant,
+    val endAt: Instant,
     val attempt: Int,
     val extraAttempts: Int,
     val extraTime: Int,
@@ -32,9 +33,9 @@ fun QuizSubmissionEntity.translate(): QuizSubmission {
         quizId = quizId,
         userId = userId,
         submissionId = submissionId,
-        startedAt = startedAt,
-        finishedAt = finishedAt,
-        endAt = endAt,
+        startedAt = Instant.parse(startedAt),
+        finishedAt = Instant.parse(finishedAt),
+        endAt = Instant.parse(endAt),
         attempt = attempt,
         extraAttempts = extraAttempts,
         extraTime = extraTime,

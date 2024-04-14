@@ -1,21 +1,22 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.ResultEntity
 
 @Serializable
-data class Result(
+data class LmsResult(
     val id: String,
     val passed: Boolean,
-    val assessedAt: String,
+    val assessedAt: Instant,
     val links: ResultLinks,
 )
 
-fun ResultEntity.translate(): Result {
-    return Result(
+fun ResultEntity.translate(): LmsResult {
+    return LmsResult(
         id = id,
         passed = passed,
-        assessedAt = assessedAt,
+        assessedAt = Instant.parse(assessedAt),
         links = links.translate(),
     )
 }

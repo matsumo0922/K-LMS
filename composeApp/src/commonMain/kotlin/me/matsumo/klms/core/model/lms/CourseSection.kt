@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.CourseSectionEntity
 
@@ -12,8 +13,8 @@ data class CourseSection(
     val sisImportId: Int?,
     val courseId: Int,
     val sisCourseId: String?,
-    val startAt: String?,
-    val endAt: String?,
+    val startAt: Instant?,
+    val endAt: Instant?,
     val restrictEnrollmentsToSectionDates: Boolean?,
     val nonxlistCourseId: Int?,
     val totalStudents: Int?,
@@ -28,8 +29,8 @@ fun CourseSectionEntity.translate(): CourseSection {
         sisImportId = sisImportId,
         courseId = courseId,
         sisCourseId = sisCourseId,
-        startAt = startAt,
-        endAt = endAt,
+        startAt = startAt?.let { Instant.parse(it) },
+        endAt = endAt?.let { Instant.parse(it) },
         restrictEnrollmentsToSectionDates = restrictEnrollmentsToSectionDates,
         nonxlistCourseId = nonxlistCourseId,
         totalStudents = totalStudents,

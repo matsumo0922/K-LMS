@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.SubmissionCommentEntity
 
@@ -10,8 +11,8 @@ data class SubmissionComment(
     val authorName: String,
     val author: LmsUser?,
     val comment: String,
-    val createdAt: String,
-    val editedAt: String?,
+    val createdAt: Instant,
+    val editedAt: Instant?,
     val mediaComment: MediaComment?,
 )
 
@@ -22,8 +23,8 @@ fun SubmissionCommentEntity.translate(): SubmissionComment {
         authorName = authorName,
         author = author?.translate(),
         comment = comment,
-        createdAt = createdAt,
-        editedAt = editedAt,
+        createdAt = Instant.parse(createdAt),
+        editedAt = editedAt?.let { Instant.parse(it) },
         mediaComment = mediaComment?.translate(),
     )
 }

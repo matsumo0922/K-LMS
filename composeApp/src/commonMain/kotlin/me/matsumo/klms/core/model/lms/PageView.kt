@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.PageViewEntity
 
@@ -14,7 +15,7 @@ data class PageView(
     val action: String,
     val contributed: Boolean,
     val interactionSeconds: Double,
-    val createdAt: String,
+    val createdAt: Instant,
     val userRequest: Boolean,
     val renderTime: Double,
     val userAgent: String,
@@ -35,7 +36,7 @@ fun PageViewEntity.translate(): PageView {
         action = action,
         contributed = contributed,
         interactionSeconds = interactionSeconds,
-        createdAt = createdAt,
+        createdAt = Instant.parse(createdAt),
         userRequest = userRequest,
         renderTime = renderTime,
         userAgent = userAgent,

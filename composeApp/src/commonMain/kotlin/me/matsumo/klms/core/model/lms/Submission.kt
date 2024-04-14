@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.SubmissionEntity
 
@@ -17,11 +18,11 @@ data class Submission(
     val score: Double?,
     val submissionComments: List<SubmissionComment>,
     val submissionType: String,
-    val submittedAt: String,
+    val submittedAt: Instant,
     val url: String?,
     val userId: Int,
     val graderId: Int,
-    val gradedAt: String?,
+    val gradedAt: Instant?,
     val user: LmsUser?,
     val late: Boolean,
     val assignmentVisible: Boolean,
@@ -33,7 +34,7 @@ data class Submission(
     val workflowState: String,
     val extraAttempts: Int,
     val anonymousId: String?,
-    val postedAt: String?,
+    val postedAt: Instant?,
     val readStatus: String?,
     val redoRequest: Boolean,
 )
@@ -52,11 +53,11 @@ fun SubmissionEntity.translate(): Submission {
         score = score,
         submissionComments = submissionComments?.map { it.translate() } ?: emptyList(),
         submissionType = submissionType,
-        submittedAt = submittedAt,
+        submittedAt = Instant.parse(submittedAt),
         url = url,
         userId = userId,
         graderId = graderId,
-        gradedAt = gradedAt,
+        gradedAt = gradedAt?.let { Instant.parse(it) },
         user = user?.translate(),
         late = late,
         assignmentVisible = assignmentVisible,
@@ -68,7 +69,7 @@ fun SubmissionEntity.translate(): Submission {
         workflowState = workflowState,
         extraAttempts = extraAttempts,
         anonymousId = anonymousId,
-        postedAt = postedAt,
+        postedAt = postedAt?.let { Instant.parse(it) },
         readStatus = readStatus,
         redoRequest = redoRequest,
     )

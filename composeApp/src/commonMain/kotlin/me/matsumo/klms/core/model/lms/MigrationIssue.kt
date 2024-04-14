@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.MigrationIssueEntity
 
@@ -13,8 +14,8 @@ data class MigrationIssue(
     val issueType: String,
     val errorReportHtmlUrl: String? = null,
     val errorMessage: String? = null,
-    val createdAt: String,
-    val updatedAt: String,
+    val createdAt: Instant,
+    val updatedAt: Instant,
 )
 
 fun MigrationIssueEntity.translate(): MigrationIssue {
@@ -27,7 +28,7 @@ fun MigrationIssueEntity.translate(): MigrationIssue {
         issueType = issueType,
         errorReportHtmlUrl = errorReportHtmlUrl,
         errorMessage = errorMessage,
-        createdAt = createdAt,
-        updatedAt = updatedAt,
+        createdAt = Instant.parse(createdAt),
+        updatedAt = Instant.parse(updatedAt),
     )
 }

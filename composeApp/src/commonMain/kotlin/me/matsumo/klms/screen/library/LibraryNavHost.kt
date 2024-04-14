@@ -22,7 +22,10 @@ fun LibraryNavHost(
         navController = navController,
         startDestination = LibraryHomeRoute,
     ) {
-        libraryHomeScreen()
+        libraryHomeScreen(
+            openDrawer = openDrawer,
+        )
+
         libraryCalendarScreen()
         libraryMessageScreen()
         libraryTimetableScreen()

@@ -20,7 +20,7 @@ open class ApiClient(
 ) {
     suspend fun get(
         url: String,
-        params: Map<String, String> = emptyMap(),
+        params: List<Pair<String, String>> = emptyList(),
     ): HttpResponse = withContext(ioDispatcher) {
         client.get {
             url(url.buildUrl())
@@ -34,7 +34,7 @@ open class ApiClient(
     @OptIn(InternalAPI::class)
     suspend fun post(
         url: String,
-        params: Map<String, String> = emptyMap(),
+        params: List<Pair<String, String>> = emptyList(),
     ): HttpResponse = withContext(ioDispatcher) {
         client.post {
             url(url.buildUrl())
@@ -49,8 +49,8 @@ open class ApiClient(
 
     suspend fun form(
         url: String,
-        params: Map<String, String> = emptyMap(),
-        formParams: Map<String, String> = emptyMap(),
+        params: List<Pair<String, String>> = emptyList(),
+        formParams: List<Pair<String, String>> = emptyList(),
     ): HttpResponse = withContext(ioDispatcher) {
         client.submitForm(
             url = url.buildUrl(),

@@ -8,9 +8,9 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.first
 import me.matsumo.klms.core.datastore.LmsCookieDataStore
 import me.matsumo.klms.core.datastore.LmsLoginDataStore
@@ -22,7 +22,7 @@ import me.matsumo.klms.core.repository.api.UserApi
 interface LmsAuthRepository {
 
     val loginData: Flow<LoginData>
-    val isLoggedIn: StateFlow<Boolean>
+    val isLoggedIn: SharedFlow<Boolean>
 
     suspend fun login()
     suspend fun logout()
@@ -43,10 +43,10 @@ class LmsAuthRepositoryImpl(
 ) : LmsAuthRepository {
 
     private val scope = CoroutineScope(SupervisorJob() + ioDispatcher)
-    private val _isLoggedIn = MutableStateFlow(false)
+    private val _isLoggedIn = MutableSharedFlow<Boolean>(replay = 1)
 
     override val loginData: Flow<LoginData> = loginDataStore.loginData
-    override val isLoggedIn: StateFlow<Boolean> = _isLoggedIn.asStateFlow()
+    override val isLoggedIn: SharedFlow<Boolean> = _isLoggedIn.asSharedFlow()
 
     override suspend fun login() {
         cookieDataStore.clear()
@@ -67,7 +67,7 @@ class LmsAuthRepositoryImpl(
     }
 
     override suspend fun logout() {
-            cookieDataStore.clear()
+        cookieDataStore.clear()
     }
 
     override suspend fun setLoginParams(email: String, password: String, token: String) {
@@ -78,9 +78,9 @@ class LmsAuthRepositoryImpl(
 
     override suspend fun checkLogin() {
         suspendRunCatching {
-            UserApi(client).getSelf()
+            UserApi(client).getSelfProfile()
         }.also {
-            _isLoggedIn.value = it.isSuccess
+            _isLoggedIn.emit(it.isSuccess)
         }
     }
 
@@ -88,24 +88,24 @@ class LmsAuthRepositoryImpl(
         return client.get("$WEB/login/saml").getCsrfToken()
     }
 
-    private suspend fun getMicrosoftLoginUrl(csrfToken: String): Pair<String, Map<String, String>> {
+    private suspend fun getMicrosoftLoginUrl(csrfToken: String): Pair<String, List<Pair<String, String>>> {
         val response = client.form(
             url = "$AUTH/Redirect/SSO",
-            params = mapOf("execution" to "e1s1"),
+            params = listOf("execution" to "e1s1"),
             formParams = createShibIdpSession(csrfToken),
         )
 
         return client.get(response.headers["Location"]!!).getRedirectForm()
     }
 
-    private suspend fun getKeioLoginUrl(loginUrl: String, loginParams: Map<String, String>): Pair<String, Map<String, String>> {
+    private suspend fun getKeioLoginUrl(loginUrl: String, loginParams: List<Pair<String, String>>): Pair<String, List<Pair<String, String>>> {
         return client.form(
             url = loginUrl,
             formParams = loginParams,
         ).getRedirectForm()
     }
 
-    private suspend fun getLoginCsrfToken(loginUrl: String, loginParams: Map<String, String>): String {
+    private suspend fun getLoginCsrfToken(loginUrl: String, loginParams: List<Pair<String, String>>): String {
         val response = client.form(
             url = loginUrl,
             formParams = loginParams,
@@ -114,11 +114,11 @@ class LmsAuthRepositoryImpl(
         return client.get(response.headers["Location"]!!).getCsrfToken()
     }
 
-    private suspend fun keioLogin(email: String, password: String, csrfToken: String): Pair<String, Map<String, String>> {
+    private suspend fun keioLogin(email: String, password: String, csrfToken: String): Pair<String, List<Pair<String, String>>> {
         return client.form(
             url = "$AUTH/POST/SSO",
-            params = mapOf("execution" to "e2s1"),
-            formParams = mapOf(
+            params = listOf("execution" to "e2s1"),
+            formParams = listOf(
                 "csrf_token" to csrfToken,
                 "j_username" to email,
                 "j_password" to password,
@@ -127,14 +127,14 @@ class LmsAuthRepositoryImpl(
         ).getRedirectForm()
     }
 
-    private suspend fun microsoftLogin(loginUrl: String, loginParams: Map<String, String>): Pair<String, Map<String, String>> {
+    private suspend fun microsoftLogin(loginUrl: String, loginParams: List<Pair<String, String>>): Pair<String, List<Pair<String, String>>> {
         return client.form(
             url = loginUrl,
             formParams = loginParams,
         ).getRedirectForm()
     }
 
-    private suspend fun validateLogin(loginUrl: String, loginParams: Map<String, String>): Pair<String, Map<String, String>> {
+    private suspend fun validateLogin(loginUrl: String, loginParams: List<Pair<String, String>>): Pair<String, List<Pair<String, String>>> {
         val response = client.form(
             url = loginUrl,
             formParams = loginParams,
@@ -143,7 +143,7 @@ class LmsAuthRepositoryImpl(
         return client.get(response.headers["Location"]!!).getRedirectForm()
     }
 
-    private suspend fun login(loginUrl: String, loginParams: Map<String, String>) {
+    private suspend fun login(loginUrl: String, loginParams: List<Pair<String, String>>) {
         client.form(
             url = loginUrl,
             formParams = loginParams,
@@ -154,11 +154,12 @@ class LmsAuthRepositoryImpl(
         }
             .onSuccess { Logger.d("Successfully logged in") }
             .onFailure { Logger.e("Failed to login") }
-            .also { _isLoggedIn.value = it.isSuccess }
+
+        checkLogin()
     }
 
-    private fun createShibIdpSession(csrfToken: String): Map<String, String> {
-        return mapOf(
+    private fun createShibIdpSession(csrfToken: String): List<Pair<String, String>> {
+        return listOf(
             "csrf_token" to csrfToken,
             "shib_idp_ls_exception.shib_idp_session_ss" to "",
             "shib_idp_ls_success.shib_idp_session_ss" to "true",
@@ -176,7 +177,7 @@ class LmsAuthRepositoryImpl(
         return document.select("input[name=csrf_token]").attr("value")
     }
 
-    private suspend fun HttpResponse.getRedirectForm(): Pair<String, Map<String, String>> {
+    private suspend fun HttpResponse.getRedirectForm(): Pair<String, List<Pair<String, String>>> {
         val document = Ksoup.parse(bodyAsText())
         val url = document.select("form").attr("action")
         val params = document.select("form input")
@@ -185,7 +186,7 @@ class LmsAuthRepositoryImpl(
 
         require(url.isNotBlank()) { "Redirect form url is blank" }
 
-        return url to params
+        return url to params.toList()
     }
 
     companion object {

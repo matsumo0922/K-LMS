@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.LatePolicyEntity
 
@@ -14,8 +15,8 @@ data class LatePolicy(
     val lateSubmissionInterval: String,
     val lateSubmissionMinimumPercentEnabled: Boolean,
     val lateSubmissionMinimumPercent: Double,
-    val createdAt: String,
-    val updatedAt: String,
+    val createdAt: Instant,
+    val updatedAt: Instant,
 )
 
 fun LatePolicyEntity.translate(): LatePolicy {
@@ -29,7 +30,7 @@ fun LatePolicyEntity.translate(): LatePolicy {
         lateSubmissionInterval = lateSubmissionInterval,
         lateSubmissionMinimumPercentEnabled = lateSubmissionMinimumPercentEnabled,
         lateSubmissionMinimumPercent = lateSubmissionMinimumPercent,
-        createdAt = createdAt,
-        updatedAt = updatedAt,
+        createdAt = Instant.parse(createdAt),
+        updatedAt = Instant.parse(updatedAt),
     )
 }

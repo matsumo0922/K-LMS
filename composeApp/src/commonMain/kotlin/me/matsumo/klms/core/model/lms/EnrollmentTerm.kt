@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.EnrollmentTermEntity
 
@@ -9,8 +10,8 @@ data class EnrollmentTerm(
     val sisTermId: String? = null,
     val sisImportId: Int? = null,
     val name: String,
-    val startAt: String,
-    val endAt: String,
+    val startAt: Instant,
+    val endAt: Instant,
     val workflowState: String,
     val overrides: Overrides,
     val courseCount: Int?,
@@ -23,8 +24,8 @@ data class EnrollmentTerm(
 
     @Serializable
     data class StudentEnrollmentOverrides(
-        val startAt: String,
-        val endAt: String,
+        val startAt: Instant,
+        val endAt: Instant,
     )
 }
 
@@ -34,13 +35,13 @@ fun EnrollmentTermEntity.translate(): EnrollmentTerm {
         sisTermId = sisTermId,
         sisImportId = sisImportId,
         name = name,
-        startAt = startAt,
-        endAt = endAt,
+        startAt = Instant.parse(startAt),
+        endAt = Instant.parse(endAt),
         workflowState = workflowState,
         overrides = EnrollmentTerm.Overrides(
             studentEnrollment = EnrollmentTerm.StudentEnrollmentOverrides(
-                startAt = overrides.studentEnrollment.startAt,
-                endAt = overrides.studentEnrollment.endAt,
+                startAt = Instant.parse(overrides.studentEnrollment.startAt),
+                endAt = Instant.parse(overrides.studentEnrollment.endAt),
             ),
         ),
         courseCount = courseCount,

@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import k_lms.composeapp.generated.resources.Res
 import k_lms.composeapp.generated.resources.error_executed
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import me.matsumo.klms.core.extensions.suspendRunCatching
@@ -19,19 +20,18 @@ class WelcomeLoginViewModel(
     private val lmsRepository: LmsRepository,
 ) : ViewModel() {
 
-    private val _screenState = MutableStateFlow<ScreenState<WelcomeLoginUiState>>(ScreenState.Idle(WelcomeLoginUiState()))
-
-    val screenState = _screenState.asStateFlow()
+    val screenState: StateFlow<ScreenState<WelcomeLoginUiState>>
+      private field: MutableStateFlow<ScreenState<WelcomeLoginUiState>> = MutableStateFlow(ScreenState.Idle(WelcomeLoginUiState()))
 
     fun login(email: String, password: String) {
         viewModelScope.launch {
-            _screenState.value = ScreenState.Loading
-            _screenState.value = suspendRunCatching {
+            screenState.value = ScreenState.Loading
+            screenState.value = suspendRunCatching {
                 lmsAuthRepository.setLoginParams(email, password, "")
                 lmsAuthRepository.login()
 
                 WelcomeLoginUiState(
-                    lmsUser = lmsRepository.getSelf(),
+                    lmsUser = lmsRepository.getSelfUser(),
                     lmsAccount = lmsRepository.getSelfAccount(),
                 )
             }

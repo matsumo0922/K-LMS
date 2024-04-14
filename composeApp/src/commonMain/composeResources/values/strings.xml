@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">K-LMS</string>
+
     <!-- Common -->
     <string name="common_ok">OK</string>
     <string name="common_cancel">キャンセル</string>
@@ -43,7 +45,7 @@
     <string name="unit_second_before">%1$d秒前</string>
 
     <!-- Navigation -->
-    <string name="navigation_home">Home</string>
+    <string name="navigation_home">ホーム</string>
     <string name="navigation_calendar">カレンダー</string>
     <string name="navigation_message">メッセージ</string>
     <string name="navigation_timetable">時間割</string>

@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.EPortfolioPageEntity
 
@@ -10,8 +11,8 @@ data class EPortfolioPage(
     val position: Int,
     val name: String,
     val content: String,
-    val createdAt: String,
-    val updatedAt: String,
+    val createdAt: Instant,
+    val updatedAt: Instant,
 )
 
 fun EPortfolioPageEntity.translate(): EPortfolioPage {
@@ -21,7 +22,7 @@ fun EPortfolioPageEntity.translate(): EPortfolioPage {
         position = position,
         name = name,
         content = content,
-        createdAt = createdAt,
-        updatedAt = updatedAt,
+        createdAt = Instant.parse(createdAt),
+        updatedAt = Instant.parse(updatedAt),
     )
 }

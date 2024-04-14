@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.DiscussionTopicEntity
 
@@ -9,8 +10,8 @@ data class DiscussionTopic(
     val title: String,
     val message: String,
     val htmlUrl: String,
-    val postedAt: String,
-    val lastReplyAt: String,
+    val postedAt: Instant,
+    val lastReplyAt: Instant,
     val requireInitialPost: Boolean,
     val userCanSeePosts: Boolean,
     val discussionSubentryCount: Int,
@@ -19,9 +20,9 @@ data class DiscussionTopic(
     val subscribed: Boolean,
     val subscriptionHold: String? = null,
     val assignmentId: Int? = null,
-    val delayedPostAt: String? = null,
+    val delayedPostAt: Instant? = null,
     val published: Boolean,
-    val lockAt: String? = null,
+    val lockAt: Instant? = null,
     val locked: Boolean,
     val pinned: Boolean,
     val lockedForUser: Boolean,
@@ -59,8 +60,8 @@ fun DiscussionTopicEntity.translate(): DiscussionTopic {
         title = title,
         message = message,
         htmlUrl = htmlUrl,
-        postedAt = postedAt,
-        lastReplyAt = lastReplyAt,
+        postedAt = Instant.parse(postedAt),
+        lastReplyAt = Instant.parse(lastReplyAt),
         requireInitialPost = requireInitialPost,
         userCanSeePosts = userCanSeePosts,
         discussionSubentryCount = discussionSubentryCount,
@@ -69,9 +70,9 @@ fun DiscussionTopicEntity.translate(): DiscussionTopic {
         subscribed = subscribed,
         subscriptionHold = subscriptionHold,
         assignmentId = assignmentId,
-        delayedPostAt = delayedPostAt,
+        delayedPostAt = delayedPostAt?.let { Instant.parse(it) },
         published = published,
-        lockAt = lockAt,
+        lockAt = lockAt?.let { Instant.parse(it) },
         locked = locked,
         pinned = pinned,
         lockedForUser = lockedForUser,

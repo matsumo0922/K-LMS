@@ -24,15 +24,16 @@ class KmpCommonPlugin : Plugin<Project> {
                         optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
                         optIn("org.jetbrains.compose.resources.ExperimentalResourceApi")
                         optIn("org.jetbrains.compose.resources.InternalResourceApi")
+
+                        enableLanguageFeature("ExplicitBackingFields")
                     }
                 }
             }
 
-            tasks.withType(KotlinCompile::class.java) {
-                kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
-                compilerOptions.freeCompilerArgs.addAll(
-                    "-P",
-                    "plugin:androidx.compose.compiler.plugins.kotlin:experimentalStrongSkipping=true",
+            tasks.withType(KotlinCompile::class.java).configureEach {
+                kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString()
+                kotlinOptions.freeCompilerArgs += listOf(
+                    "-Xuse-k2",
                 )
             }
 

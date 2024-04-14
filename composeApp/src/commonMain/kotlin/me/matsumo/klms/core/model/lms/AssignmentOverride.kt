@@ -17,11 +17,11 @@ data class AssignmentOverride(
     val groupId: Int?,
     val courseSectionId: Int?,
     val title: String,
-    val dueAt: String?,
+    val dueAt: Instant?,
     val allDay: Boolean?,
     val allDayDate: Instant?,
-    val unlockAt: String?,
-    val lockAt: String?,
+    val unlockAt: Instant?,
+    val lockAt: Instant?,
 )
 
 fun AssignmentOverrideEntity.translate(): AssignmentOverride {
@@ -37,10 +37,10 @@ fun AssignmentOverrideEntity.translate(): AssignmentOverride {
         groupId = groupId,
         courseSectionId = courseSectionId,
         title = title,
-        dueAt = dueAt,
+        dueAt = dueAt?.let { Instant.parse(it) },
         allDay = allDay,
         allDayDate = allDayDate?.let { Instant.parse(it) },
-        unlockAt = unlockAt,
-        lockAt = lockAt,
+        unlockAt = unlockAt?.let { Instant.parse(it) },
+        lockAt = lockAt?.let { Instant.parse(it) },
     )
 }

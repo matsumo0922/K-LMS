@@ -12,13 +12,13 @@ compileSdk = "34"
 gradle = "8.3.2"
 
 # Kotlin
-kotlin = "1.9.23"
+kotlin = "2.0.0-RC1"
 kotlinCompiler = "1.5.3"
 
 # KotlinX
 kotlinxCoroutines = "1.8.0"
 kotlinxDatetime = "0.5.0"
-kotlinxSerializationJson = "1.6.2"
+kotlinxSerializationJson = "1.6.3"
 kotlinxImmutable = "0.3.7"
 
 # AndroidX
@@ -33,7 +33,7 @@ kmpNavigation = "2.8.0-dev1580"
 kmpPaging = "3.3.0-alpha02-0.5.1"
 
 # KMP
-kmpCompose = "1.6.1"
+kmpCompose = "1.6.10-dev1580"
 kmpComplete = "1.1.0"
 kmpSwiftKlib = "0.5.1"
 mokoPermissions = "0.17.0"
@@ -45,7 +45,7 @@ playServiceAds = "23.0.0"
 playServiceOss = "17.0.1"
 material = "1.11.0"
 accompanist = "0.33.2-alpha"
-ksp = "1.9.23-1.0.19"
+ksp = "2.0.0-RC1-1.0.20"
 gms = "4.4.1"
 
 # Billing

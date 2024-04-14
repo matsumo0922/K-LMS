@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.QuizStatisticsEntity
 
@@ -9,7 +10,7 @@ data class QuizStatistics(
     val quizId: Int?,
     val multipleAttemptsExist: Boolean,
     val includesAllVersions: Boolean,
-    val generatedAt: String,
+    val generatedAt: Instant,
     val url: String,
     val htmlUrl: String,
     val questionStatistics: List<QuizStatisticsQuestionStatistics>?,
@@ -23,7 +24,7 @@ fun QuizStatisticsEntity.translate(): QuizStatistics {
         quizId = quizId,
         multipleAttemptsExist = multipleAttemptsExist,
         includesAllVersions = includesAllVersions,
-        generatedAt = generatedAt,
+        generatedAt = Instant.parse(generatedAt),
         url = url,
         htmlUrl = htmlUrl,
         questionStatistics = questionStatistics?.map { it.translate() },

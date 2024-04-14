@@ -36,6 +36,10 @@ class LmsViewModel(
         initialValue = ScreenState.Loading,
     )
 
+    init {
+        updateState()
+    }
+
     fun initLmsId() {
         viewModelScope.launch {
             userDataRepository.setLmsId(uuid4().toString())

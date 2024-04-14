@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.PlannerOverrideEntity
 
@@ -13,9 +14,9 @@ data class PlannerOverride(
     val workflowState: String,
     val markedComplete: Boolean,
     val dismissed: Boolean,
-    val createdAt: String,
-    val updatedAt: String,
-    val deletedAt: String?,
+    val createdAt: Instant,
+    val updatedAt: Instant,
+    val deletedAt: Instant?,
 )
 
 fun PlannerOverrideEntity.translate(): PlannerOverride {
@@ -28,8 +29,8 @@ fun PlannerOverrideEntity.translate(): PlannerOverride {
         workflowState = workflowState,
         markedComplete = markedComplete,
         dismissed = dismissed,
-        createdAt = createdAt,
-        updatedAt = updatedAt,
-        deletedAt = deletedAt,
+        createdAt = Instant.parse(createdAt),
+        updatedAt = Instant.parse(updatedAt),
+        deletedAt = deletedAt?.let { Instant.parse(it) },
     )
 }

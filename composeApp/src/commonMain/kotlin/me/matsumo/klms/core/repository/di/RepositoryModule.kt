@@ -9,6 +9,7 @@ import io.ktor.client.plugins.logging.Logging
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
+import me.matsumo.klms.core.extensions.formatter
 import me.matsumo.klms.core.repository.CookiesRepository
 import me.matsumo.klms.core.repository.LmsAuthRepository
 import me.matsumo.klms.core.repository.LmsAuthRepositoryImpl
@@ -20,15 +21,8 @@ import org.koin.dsl.module
 
 @OptIn(ExperimentalSerializationApi::class)
 val repositoryModule = module {
-    single {
-        Json {
-            isLenient = true
-            prettyPrint = true
-            ignoreUnknownKeys = true
-            coerceInputValues = true
-            encodeDefaults = true
-            explicitNulls = false
-        }
+    single<Json> {
+        formatter
     }
 
     single {

@@ -1,12 +1,13 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.GradeChangeEventEntity
 
 @Serializable
 data class GradeChangeEvent(
     val id: String,
-    val createdAt: String,
+    val createdAt: Instant,
     val eventType: String,
     val excusedAfter: Boolean,
     val excusedBefore: Boolean,
@@ -21,7 +22,7 @@ data class GradeChangeEvent(
 fun GradeChangeEventEntity.translate(): GradeChangeEvent {
     return GradeChangeEvent(
         id = id,
-        createdAt = createdAt,
+        createdAt = Instant.parse(createdAt),
         eventType = eventType,
         excusedAfter = excusedAfter,
         excusedBefore = excusedBefore,

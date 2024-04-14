@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.QuizReportEntity
 
@@ -12,8 +13,8 @@ data class QuizReport(
     val includesAllVersions: Boolean,
     val anonymous: Boolean,
     val generatable: Boolean,
-    val createdAt: String,
-    val updatedAt: String,
+    val createdAt: Instant,
+    val updatedAt: Instant,
     val url: String,
     val file: LmsFile?,
     val progressUrl: String?,
@@ -29,8 +30,8 @@ fun QuizReportEntity.translate(): QuizReport {
         includesAllVersions = includesAllVersions,
         anonymous = anonymous,
         generatable = generatable,
-        createdAt = createdAt,
-        updatedAt = updatedAt,
+        createdAt = Instant.parse(createdAt),
+        updatedAt = Instant.parse(updatedAt),
         url = url,
         file = file?.translate(),
         progressUrl = progressUrl,

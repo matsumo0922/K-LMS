@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.ContentShareEntity
 
@@ -8,8 +9,8 @@ data class ContentShare(
     val id: Int,
     val name: String,
     val contentType: String,
-    val createdAt: String,
-    val updatedAt: String,
+    val createdAt: Instant,
+    val updatedAt: Instant,
     val userId: Int,
     val sender: LmsUser? = null,
     val receivers: List<LmsUser> = emptyList(),
@@ -34,8 +35,8 @@ fun ContentShareEntity.translate(): ContentShare {
         id = id,
         name = name,
         contentType = contentType,
-        createdAt = createdAt,
-        updatedAt = updatedAt,
+        createdAt = Instant.parse(createdAt),
+        updatedAt = Instant.parse(updatedAt),
         userId = userId,
         sender = sender?.translate(),
         receivers = receivers.map { it.translate() },

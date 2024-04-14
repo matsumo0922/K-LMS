@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.CollaborationEntity
 
@@ -12,8 +13,8 @@ data class Collaboration(
     val contextId: Int,
     val contextType: String,
     val url: String? = null,
-    val createdAt: String,
-    val updatedAt: String,
+    val createdAt: Instant,
+    val updatedAt: Instant,
     val description: String? = null,
     val title: String? = null,
     val type: String,
@@ -30,8 +31,8 @@ fun CollaborationEntity.translate(): Collaboration {
         contextId = contextId,
         contextType = contextType,
         url = url,
-        createdAt = createdAt,
-        updatedAt = updatedAt,
+        createdAt = Instant.parse(createdAt),
+        updatedAt = Instant.parse(updatedAt),
         description = description,
         title = title,
         type = type,

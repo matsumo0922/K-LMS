@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.ConferenceEntity
 
@@ -10,8 +11,8 @@ data class Conference(
     val conferenceKey: String,
     val description: String,
     val duration: Int,
-    val endedAt: String? = null,
-    val startedAt: String? = null,
+    val endedAt: Instant? = null,
+    val startedAt: Instant? = null,
     val title: String,
     val users: List<Int>,
     val hasAdvancedSettings: Boolean,
@@ -31,8 +32,8 @@ fun ConferenceEntity.translate(): Conference {
         conferenceKey = conferenceKey,
         description = description,
         duration = duration,
-        endedAt = endedAt,
-        startedAt = startedAt,
+        endedAt = endedAt?.let { Instant.parse(it) },
+        startedAt = startedAt?.let { Instant.parse(it) },
         title = title,
         users = users,
         hasAdvancedSettings = hasAdvancedSettings,

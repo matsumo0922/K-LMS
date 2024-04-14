@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.HistoryEntity
 
@@ -13,7 +14,7 @@ data class LmsHistory(
     val contextId: Int,
     val contextName: String,
     val visitedUrl: String,
-    val visitedAt: String,
+    val visitedAt: Instant,
     val interactionSeconds: Int,
 )
 
@@ -27,7 +28,7 @@ fun HistoryEntity.translate(): LmsHistory {
         contextId = contextId,
         contextName = contextName,
         visitedUrl = visitedUrl,
-        visitedAt = visitedAt,
+        visitedAt = Instant.parse(visitedAt),
         interactionSeconds = interactionSeconds,
     )
 }

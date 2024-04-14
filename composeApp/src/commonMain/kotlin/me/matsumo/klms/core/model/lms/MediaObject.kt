@@ -1,7 +1,5 @@
 package me.matsumo.klms.core.model.lms
 
-import io.github.alexzhirkevich.cupertino.CupertinoSwitchDefaults.height
-import io.ktor.client.utils.EmptyContent.contentType
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.MediaObjectEntity
 

@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.AccountReportEntity
 
@@ -10,9 +11,9 @@ data class AccountReport(
     val fileUrl: String,
     val attachment: String?,
     val status: String,
-    val createdAt: String,
-    val startedAt: String,
-    val endedAt: String,
+    val createdAt: Instant,
+    val startedAt: Instant,
+    val endedAt: Instant,
     val parameters: Parameters,
     val progress: Int,
     val currentLine: Int,
@@ -20,8 +21,8 @@ data class AccountReport(
     @Serializable
     data class Parameters(
         val courseId: Int,
-        val startAt: String,
-        val endAt: String,
+        val startAt: Instant,
+        val endAt: Instant,
     )
 }
 
@@ -32,15 +33,15 @@ fun AccountReportEntity.translate(): AccountReport {
         fileUrl = fileUrl,
         attachment = attachment,
         status = status,
-        createdAt = createdAt,
-        startedAt = startedAt,
-        endedAt = endedAt,
+        createdAt = Instant.parse(createdAt),
+        startedAt = Instant.parse(startedAt),
+        endedAt = Instant.parse(endedAt),
         progress = progress,
         currentLine = currentLine,
         parameters = AccountReport.Parameters(
             courseId = parameters.courseId,
-            startAt = parameters.startAt,
-            endAt = parameters.endAt,
+            startAt = Instant.parse(parameters.startAt),
+            endAt = Instant.parse(parameters.endAt),
         ),
     )
 }

@@ -1,12 +1,13 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.EPubExportEntity
 
 @Serializable
 data class EPubExport(
     val id: Int,
-    val createdAt: String,
+    val createdAt: Instant,
     val attachment: Attachment? = null,
     val progressUrl: String,
     val userId: Int,
@@ -22,7 +23,7 @@ data class EPubExport(
 fun EPubExportEntity.translate(): EPubExport {
     return EPubExport(
         id = id,
-        createdAt = createdAt,
+        createdAt = Instant.parse(createdAt),
         attachment = attachment?.url?.let {
             EPubExport.Attachment(
                 url = it,

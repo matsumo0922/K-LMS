@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.AssignmentEntity
 import me.matsumo.klms.core.model.lms.entity.LockInfoEntity
@@ -11,11 +12,11 @@ data class Assignment(
     val id: Int,
     val name: String,
     val description: String,
-    val createdAt: String,
-    val updatedAt: String,
-    val dueAt: String?,
-    val lockAt: String?,
-    val unlockAt: String?,
+    val createdAt: Instant,
+    val updatedAt: Instant,
+    val dueAt: Instant?,
+    val lockAt: Instant?,
+    val unlockAt: Instant?,
     val hasOverrides: Boolean,
     val courseId: Int,
     val htmlUrl: String,
@@ -30,7 +31,7 @@ data class Assignment(
     val peerReviews: Boolean,
     val automaticPeerReviews: Boolean,
     val peerReviewCount: Int?,
-    val peerReviewsAssignAt: String?,
+    val peerReviewsAssignAt: Instant?,
     val intraGroupPeerReviews: Boolean,
     val groupCategoryId: Int?,
     val needsGradingCount: Int,
@@ -90,11 +91,11 @@ fun AssignmentEntity.translate(): Assignment {
         id = id,
         name = name,
         description = description,
-        createdAt = createdAt,
-        updatedAt = updatedAt,
-        dueAt = dueAt,
-        lockAt = lockAt,
-        unlockAt = unlockAt,
+        createdAt = Instant.parse(createdAt),
+        updatedAt = Instant.parse(updatedAt),
+        dueAt = dueAt?.let { Instant.parse(it) },
+        lockAt = lockAt?.let { Instant.parse(it) },
+        unlockAt = unlockAt?.let { Instant.parse(it) },
         hasOverrides = hasOverrides,
         courseId = courseId,
         htmlUrl = htmlUrl,
@@ -109,7 +110,7 @@ fun AssignmentEntity.translate(): Assignment {
         peerReviews = peerReviews,
         automaticPeerReviews = automaticPeerReviews,
         peerReviewCount = peerReviewCount,
-        peerReviewsAssignAt = peerReviewsAssignAt,
+        peerReviewsAssignAt = peerReviewsAssignAt?.let { Instant.parse(it) },
         intraGroupPeerReviews = intraGroupPeerReviews,
         groupCategoryId = groupCategoryId,
         needsGradingCount = needsGradingCount,

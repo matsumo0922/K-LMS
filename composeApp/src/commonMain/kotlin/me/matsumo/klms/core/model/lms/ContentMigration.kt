@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.ContentMigrationEntity
 
@@ -13,8 +14,8 @@ data class ContentMigration(
     val progressUrl: String,
     val userId: Int,
     val workflowState: String,
-    val startedAt: String,
-    val finishedAt: String,
+    val startedAt: Instant,
+    val finishedAt: Instant,
     val preAttachment: String?,
 )
 
@@ -28,8 +29,8 @@ fun ContentMigrationEntity.translate(): ContentMigration {
         progressUrl = progressUrl,
         userId = userId,
         workflowState = workflowState,
-        startedAt = startedAt,
-        finishedAt = finishedAt,
+        startedAt = Instant.parse(startedAt),
+        finishedAt = Instant.parse(finishedAt),
         preAttachment = preAttachment,
     )
 }

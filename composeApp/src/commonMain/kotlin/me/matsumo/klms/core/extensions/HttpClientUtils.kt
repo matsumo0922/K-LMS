@@ -5,22 +5,52 @@ import io.ktor.client.call.body
 import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.bodyAsText
 import io.ktor.client.statement.request
+import io.ktor.serialization.kotlinx.serializerForTypeInfo
+import io.ktor.util.reflect.typeInfo
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.InternalSerializationApi
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonArray
+
+@OptIn(ExperimentalSerializationApi::class)
+val formatter = Json {
+    isLenient = true
+    prettyPrint = true
+    ignoreUnknownKeys = true
+    coerceInputValues = true
+    encodeDefaults = true
+    explicitNulls = false
+}
 
 suspend inline fun <reified T> HttpResponse.parse(
     allowRange: IntRange = 200..299,
-    f: ((T?) -> (Unit)) = {},
 ): T? {
     val requestUrl = request.url
     val isOK = this.status.value in allowRange
 
-    if (isOK) {
-        Logger.d("[SUCCESS] Ktor Request: $requestUrl")
-    } else {
-        Logger.d("[FAILED] Ktor Request: $requestUrl")
-        Logger.d("[RESPONSE] ${this.bodyAsText().replace("\n", "")}")
-    }
+    Logger.d("[${ if (isOK) "SUCCESS" else "FAILED" }] Ktor Request: $requestUrl")
+    Logger.d("[RESPONSE] ${this.bodyAsText().replace("\n", "")}")
 
-    return (if (isOK) this.body<T>() else null).also(f)
+    return if (isOK) this.body<T>() else null
+}
+
+@OptIn(InternalSerializationApi::class, ExperimentalSerializationApi::class)
+suspend inline fun <reified T> HttpResponse.parseList(
+    allowRange: IntRange = 200..299,
+    isIgnoreIllegalObject: Boolean = true,
+): List<T>? {
+    val requestUrl = request.url
+    val isOK = this.status.value in allowRange
+
+    Logger.d("[${ if (isOK) "SUCCESS" else "FAILED" }] Ktor Request: $requestUrl")
+    Logger.d("[RESPONSE] ${this.bodyAsText().replace("\n", "")}")
+
+    if (!isOK) return null
+
+    val serializer = formatter.serializersModule.serializerForTypeInfo(typeInfo<T>())
+    val result = this.body<JsonArray>().map { runCatching { formatter.decodeFromJsonElement(serializer, it) as T } }
+
+    return if (isIgnoreIllegalObject) result.mapNotNull { it.getOrNull() } else result.map { it.getOrThrow() }
 }
 
 fun HttpResponse.isSuccess(allowRange: IntRange = 200..299): Boolean {

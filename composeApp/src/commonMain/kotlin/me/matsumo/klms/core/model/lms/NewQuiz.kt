@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.NewQuizEntity
 
@@ -10,9 +11,9 @@ data class NewQuiz(
     val instructions: String,
     val assignmentGroupId: String,
     val pointsPossible: Int,
-    val dueAt: String,
-    val lockAt: String? = null,
-    val unlockAt: String,
+    val dueAt: Instant,
+    val lockAt: Instant? = null,
+    val unlockAt: Instant,
     val published: Boolean,
     val gradingType: String,
     val quizSettings: QuizSettings? = null,
@@ -25,9 +26,9 @@ fun NewQuizEntity.translate(): NewQuiz {
         instructions = instructions,
         assignmentGroupId = assignmentGroupId,
         pointsPossible = pointsPossible,
-        dueAt = dueAt,
-        lockAt = lockAt,
-        unlockAt = unlockAt,
+        dueAt = Instant.parse(dueAt),
+        lockAt = lockAt?.let { Instant.parse(it) },
+        unlockAt = Instant.parse(unlockAt),
         published = published,
         gradingType = gradingType,
         quizSettings = quizSettings?.translate(),

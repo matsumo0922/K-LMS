@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.ConversationEntity
 
@@ -9,7 +10,7 @@ data class Conversation(
     val subject: String,
     val workflowState: String,
     val lastMessage: String,
-    val startAt: String,
+    val startAt: Instant,
     val messageCount: Int,
     val subscribed: Boolean,
     val private: Boolean,
@@ -28,7 +29,7 @@ fun ConversationEntity.translate(): Conversation {
         subject = subject,
         workflowState = workflowState,
         lastMessage = lastMessage,
-        startAt = startAt,
+        startAt = Instant.parse(startAt),
         messageCount = messageCount,
         subscribed = subscribed,
         private = private,

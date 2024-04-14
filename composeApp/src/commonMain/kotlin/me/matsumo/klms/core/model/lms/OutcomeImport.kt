@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.OutcomeImportEntity
 
@@ -7,9 +8,9 @@ import me.matsumo.klms.core.model.lms.entity.OutcomeImportEntity
 data class OutcomeImport(
     val id: Int,
     val learningOutcomeGroupId: Int?,
-    val createdAt: String,
-    val endedAt: String?,
-    val updatedAt: String,
+    val createdAt: Instant,
+    val endedAt: Instant?,
+    val updatedAt: Instant,
     val workflowState: String,
     val data: OutcomeImportData?,
     val progress: Int,
@@ -21,9 +22,9 @@ fun OutcomeImportEntity.translate(): OutcomeImport {
     return OutcomeImport(
         id = id,
         learningOutcomeGroupId = learningOutcomeGroupId,
-        createdAt = createdAt,
-        endedAt = endedAt,
-        updatedAt = updatedAt,
+        createdAt = Instant.parse(createdAt),
+        endedAt = endedAt?.let { Instant.parse(it) },
+        updatedAt = Instant.parse(updatedAt),
         workflowState = workflowState,
         data = data?.translate(),
         progress = progress,

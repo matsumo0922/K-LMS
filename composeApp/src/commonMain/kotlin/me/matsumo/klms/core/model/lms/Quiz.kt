@@ -1,5 +1,6 @@
 package me.matsumo.klms.core.model.lms
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import me.matsumo.klms.core.model.lms.entity.QuizEntity
 
@@ -18,8 +19,8 @@ data class Quiz(
     val hideResults: String?,
     val showCorrectAnswers: Boolean,
     val showCorrectAnswersLastAttempt: Boolean,
-    val showCorrectAnswersAt: String?,
-    val hideCorrectAnswersAt: String?,
+    val showCorrectAnswersAt: Instant?,
+    val hideCorrectAnswersAt: Instant?,
     val oneTimeResults: Boolean,
     val scoringPolicy: String,
     val allowedAttempts: Int,
@@ -29,9 +30,9 @@ data class Quiz(
     val cantGoBack: Boolean,
     val accessCode: String?,
     val ipFilter: String?,
-    val dueAt: String?,
-    val lockAt: String?,
-    val unlockAt: String?,
+    val dueAt: Instant?,
+    val lockAt: Instant?,
+    val unlockAt: Instant?,
     val published: Boolean,
     val unpublishable: Boolean,
     val lockedForUser: Boolean,
@@ -61,8 +62,8 @@ fun QuizEntity.translate(): Quiz {
         hideResults = hideResults,
         showCorrectAnswers = showCorrectAnswers,
         showCorrectAnswersLastAttempt = showCorrectAnswersLastAttempt,
-        showCorrectAnswersAt = showCorrectAnswersAt,
-        hideCorrectAnswersAt = hideCorrectAnswersAt,
+        showCorrectAnswersAt = showCorrectAnswersAt?.let { Instant.parse(it) },
+        hideCorrectAnswersAt = hideCorrectAnswersAt?.let { Instant.parse(it) },
         oneTimeResults = oneTimeResults,
         scoringPolicy = scoringPolicy,
         allowedAttempts = allowedAttempts,
@@ -72,9 +73,9 @@ fun QuizEntity.translate(): Quiz {
         cantGoBack = cantGoBack,
         accessCode = accessCode,
         ipFilter = ipFilter,
-        dueAt = dueAt,
-        lockAt = lockAt,
-        unlockAt = unlockAt,
+        dueAt = dueAt?.let { Instant.parse(it) },
+        lockAt = lockAt?.let { Instant.parse(it) },
+        unlockAt = unlockAt?.let { Instant.parse(it) },
         published = published,
         unpublishable = unpublishable,
         lockedForUser = lockedForUser,
