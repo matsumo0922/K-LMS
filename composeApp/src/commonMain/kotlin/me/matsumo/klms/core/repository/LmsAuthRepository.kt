@@ -17,6 +17,7 @@ import me.matsumo.klms.core.datastore.LmsLoginDataStore
 import me.matsumo.klms.core.extensions.suspendRunCatching
 import me.matsumo.klms.core.model.LoginData
 import me.matsumo.klms.core.repository.api.ApiClient
+import me.matsumo.klms.core.repository.api.SyllabusApi
 import me.matsumo.klms.core.repository.api.UserApi
 
 interface LmsAuthRepository {
@@ -64,6 +65,9 @@ class LmsAuthRepositoryImpl(
         val (loginUrl, loginParams) = validateLogin(mLoginUrl, mLoginParams)
 
         login(loginUrl, loginParams)
+        syllabusLogin()
+
+        checkLogin()
     }
 
     override suspend fun logout() {
@@ -79,6 +83,7 @@ class LmsAuthRepositoryImpl(
     override suspend fun checkLogin() {
         suspendRunCatching {
             UserApi(client).getSelfProfile()
+            SyllabusApi(client).getSyllabus()
         }.also {
             _isLoggedIn.emit(it.isSuccess)
         }
@@ -154,8 +159,29 @@ class LmsAuthRepositoryImpl(
         }
             .onSuccess { Logger.d("Successfully logged in") }
             .onFailure { Logger.e("Failed to login") }
+    }
 
-        checkLogin()
+    private suspend fun syllabusLogin(loginUrl: String, loginParams: List<Pair<String, String>>) {
+        val response = client.form(
+            url = loginUrl,
+            formParams = loginParams,
+        )
+
+        client.get(response.headers["Location"]!!)
+
+        suspendRunCatching {
+            require(cookieDataStore.getCookiesMap().filterKeys { it.startsWith("_shibsession") }.isNotEmpty())
+        }
+            .onSuccess { Logger.d("Successfully logged in to syllabus") }
+            .onFailure { Logger.e("Failed to login to syllabus") }
+    }
+
+    private suspend fun syllabusLogin() {
+        val (loginUrl, loginParams) = client.get("https://gslbs.keio.jp/syllabus/login").getRedirectForm()
+        val (mUrl, mParams) = microsoftLogin(loginUrl, loginParams)
+        val (kUrl, kParams) = validateLogin(mUrl, mParams)
+
+        syllabusLogin(kUrl, kParams)
     }
 
     private fun createShibIdpSession(csrfToken: String): List<Pair<String, String>> {

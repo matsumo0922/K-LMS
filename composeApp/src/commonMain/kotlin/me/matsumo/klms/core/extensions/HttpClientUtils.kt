@@ -29,11 +29,12 @@ suspend inline fun <reified T> HttpResponse.parse(
 ): T? {
     val requestUrl = request.url
     val isOK = this.status.value in allowRange
+    val text = this.bodyAsText()
 
     Logger.d("[${if (isOK) "SUCCESS" else "FAILED"}] Ktor Request: $requestUrl")
-    Logger.d("[RESPONSE] ${this.bodyAsText().replace("\n", "")}")
+    Logger.d("[RESPONSE] ${text.replace("\n", "")}")
 
-    return if (isOK) this.body<T>() else null
+    return if (isOK) formatter.decodeFromString(text) else null
 }
 
 @OptIn(InternalSerializationApi::class, ExperimentalSerializationApi::class)

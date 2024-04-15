@@ -1,21 +1,82 @@
 package me.matsumo.klms.core.repository.api
 
-import kotlinx.coroutines.CoroutineScope
 import me.matsumo.klms.core.extensions.parse
 import me.matsumo.klms.core.model.syllabus.SyllabusDepartmentItems
 import me.matsumo.klms.core.model.syllabus.SyllabusDepartmentItemsEntity
+import me.matsumo.klms.core.model.syllabus.SyllabusFieldItems
+import me.matsumo.klms.core.model.syllabus.SyllabusFieldItemsEntity
+import me.matsumo.klms.core.model.syllabus.SyllabusItems
+import me.matsumo.klms.core.model.syllabus.SyllabusItemsEntity
 import me.matsumo.klms.core.model.syllabus.translate
 
 class SyllabusApi(
     private val client: ApiClient,
-    private val scope: CoroutineScope,
 ) {
-    suspend fun getSyllabus() {
-        client.post("https://gslbs.keio.jp/syllabus/result")
+    suspend fun getSyllabus(params: SyllabusSearchParams = SyllabusSearchParams()): SyllabusItems {
+        return client.form(
+            url = "https://gslbs.keio.jp/syllabus/result",
+            formParams = params.toParams()
+        ).parse<SyllabusItemsEntity>()!!.translate()
     }
 
     suspend fun getDepartments(params: SyllabusSearchDepartmentParams): SyllabusDepartmentItems {
-        return client.post("https://gslbs.keio.jp/syllabus/search", params.toParams()).parse<SyllabusDepartmentItemsEntity>()!!.translate()
+        return client.form(
+            url = "https://gslbs.keio.jp/syllabus/search",
+            formParams = params.toParams()
+        ).parse<SyllabusDepartmentItemsEntity>()!!.translate()
+    }
+
+    suspend fun getFields(params: SyllabusSearchFieldParams): SyllabusFieldItems {
+        return client.form(
+            url = "https://gslbs.keio.jp/syllabus/search",
+            formParams = params.toParams()
+        ).parse<SyllabusFieldItemsEntity>()!!.translate()
+    }
+
+    private fun SyllabusSearchParams.toParams(): List<Pair<String, String>> {
+        val params = mutableListOf(
+            "ACTION_ID" to "SYLLABUS_SEARCH_RESULT",
+            "SUB_ACTION_ID" to "SYLLABUS_SEARCH_KEYWORD_EXECUTE",
+            "KEYWORD_TTBLYR" to year.toString(),
+            "KEYWORD_SMSCD" to semester.id,
+            "KEYWORD_HALFSEMESTER" to halfSemester.id,
+            "KEYWORD_KBS_SMSCD" to "ALL",
+            "KEYWORD_CAMPUS" to campus.id,
+            "KEYWORD_PRGANDFCD" to faculty.fcd,
+            "KEYWORD_KAMOKUNM" to subjectKeyword,
+            "KEYWORD_TANTONM" to teacherKeyword,
+            "KEYWORD_KEYWORD" to keyword,
+            "KEYWORD_SCRGUTP" to "17",
+            "KEYWORD_LESSONLANG" to lessonLanguage.id,
+            "KEYWORD_FLD1CD" to field1.jp,
+            "KEYWORD_FLD2CD" to field2.value,
+            "KEYWORD_FLD1NM" to field1.jp,
+            "KEYWORD_FLD2NM" to field2.value,
+            "NARABIJUN" to "1",
+            "SELECTED_TT_DWCD" to "1",
+        )
+
+        for (department in department) {
+            params += "KEYWORD_DEPCD" to department.value
+        }
+
+        for (level in level) {
+            params += "KEYWORD_LEVEL" to level.toString()
+        }
+
+        for (dayOfWeek in dayOfWeek) {
+            params += "KEYWORD_DOWCD" to dayOfWeek.id
+        }
+
+        for (period in period) {
+            params += "KEYWORD_PDCD" to period.id
+        }
+
+        for (lessonType in lessonType) {
+            params += "KEYWORD_LESSONTYPE" to lessonType.id
+        }
+
+        return params
     }
 
     private fun SyllabusSearchDepartmentParams.toParams(): List<Pair<String, String>> {
@@ -24,14 +85,39 @@ class SyllabusApi(
             "CHANGE_TARGET_SRC" to "KEYWORD_PRGANDFCD",
             "KEYWORD_TTBLYR" to year.toString(),
             "KEYWORD_PRGANDFCD" to faculty,
-            "KEYWORD_SCRGUTP" to "ALL",
+            "KEYWORD_SCRGUTP" to "17",
             "KEYWORD_FLD1CD" to "ALL",
         )
     }
 
+    private fun SyllabusSearchFieldParams.toParams(): List<Pair<String, String>> {
+        return listOf(
+            "ACTION_ID" to "SYLLABUS_SEARCH_KEYWORD_CHANGE_ITEM",
+            "CHANGE_TARGET_SRC" to "KEYWORD_FLD1CD",
+            "KEYWORD_TTBLYR" to year.toString(),
+            "KEYWORD_PRGANDFCD" to faculty,
+            "KEYWORD_SCRGUTP" to "17",
+            "KEYWORD_FLD1CD" to keyword,
+        )
+    }
+
     data class SyllabusSearchParams(
-        val year: Int,
-        val semester: Semester,
+        val year: Int = 2024,
+        val semester: Semester = Semester.ALL,
+        val halfSemester: HalfSemester = HalfSemester.ALL,
+        val campus: Campus = Campus.ALL,
+        val faculty: Faculty = Faculty.ALL,
+        val department: List<SyllabusDepartmentItems.DepartmentItem> = emptyList(),
+        val level: List<Int> = listOf(1, 2, 3, 4),
+        val subjectKeyword: String = "",
+        val teacherKeyword: String = "",
+        val keyword: String = "",
+        val dayOfWeek: List<DayOfWeek> = DayOfWeek.entries.toList(),
+        val period: List<Period> = Period.entries,
+        val lessonType: List<LessonType> = LessonType.entries.toList(),
+        val lessonLanguage: LessonLanguage = LessonLanguage.ALL,
+        val field1: Field = Field.All,
+        val field2: SyllabusFieldItems.FieldItem = SyllabusFieldItems.FieldItem("", "", ""),
     ) {
         enum class Semester(val id: String) {
             ALL("ALL"),
@@ -114,10 +200,56 @@ class SyllabusApi(
             GRADUATE_SCHOOL_OF_ART_CENTER("12__89", "89", "12", "[修士] アート・センター"),
             CENTER_FOR_FOREIGN_LANGUAGE_EDUCATION_AND_RESEARCH("11__94", "94", "11", "外国語教育研究センター"),
             LIBERAL_ARTS_RESEARCH_CENTER("11__95", "95", "11", "教養研究センター"),
-            GIC_CENTER("11__K1", "K1", "11", "ＧＩＣセンター"),
+            GIC_CENTER("11__K1", "K1", "11", "GICセンター"),
             STUDENT_COMPREHENSIVE_CENTER("11__K2", "K2", "11", "学生総合センター"),
             GLOBAL_RESEARCH_INSTITUTE("11__K3", "K3", "11", "グローバルリサーチインスティテュート"),
             MUSEUM_COMMONS("11__K5", "K5", "11", "ミュージアム・コモンズ")
+        }
+
+        enum class DayOfWeek(val id: String) {
+            MONDAY("1"),
+            TUESDAY("2"),
+            WEDNESDAY("3"),
+            THURSDAY("4"),
+            FRIDAY("5"),
+            SATURDAY("6"),
+            SUNDAY("7"),
+        }
+
+        enum class Period(val id: String) {
+            ONE("1"),
+            TWO("2"),
+            THREE("3"),
+            FOUR("4"),
+            FIVE("5"),
+            SIX("6"),
+            SEVEN("7"),
+            OTHER("9"),
+        }
+
+        enum class LessonType(val id: String) {
+            IN_PERSON("1"),
+            ONLINE_REALTIME("2"),
+            ONLINE_NON_REALTIME("3"),
+            ONLINE_ON_DEMAND("4"),
+        }
+
+        enum class LessonLanguage(val id: String) {
+            ALL("ALL"),
+            JAPANESE("1"),
+            ENGLISH("2"),
+            OTHER("9"),
+        }
+
+        enum class Field(
+            val jp: String,
+            val en: String,
+        ) {
+            All("", ""),
+            GENERAL_EDUCATION("総合教育科目", "GENERAL EDUCATION"),
+            FOREIGN_LANGUAGE("外国語科目", "FOREIGN LANGUAGE"),
+            BASIC_EDUCATION_FOR_MAJOR("基礎教育科目", "BASIC EDUCATION FOR MAJOR"),
+            SPECIALIZED_SUBJECT("専門科目", "SPECIALIZED SUBJECT"),
         }
     }
 
@@ -125,4 +257,39 @@ class SyllabusApi(
         val year: Int,
         val faculty: String,
     )
+
+    data class SyllabusSearchFieldParams(
+        val year: Int,
+        val faculty: String,
+        val keyword: String,
+    )
 }
+
+/*val departments = lmsRepository.getDepartments(
+    SyllabusApi.SyllabusSearchDepartmentParams(
+        year = 2024,
+        faculty = "11__18"
+    )
+)
+
+val fields = lmsRepository.getFields(
+    SyllabusApi.SyllabusSearchFieldParams(
+        year = 2024,
+        faculty = "11__18",
+        keyword = "総合教育科目"
+    )
+)
+
+val syllabusItems = lmsRepository.getSyllabus(
+    SyllabusApi.SyllabusSearchParams(
+        year = 2024,
+        faculty = SyllabusApi.SyllabusSearchParams.Faculty.ENGINEERING,
+        department = departments.changeTarget.departmentItems.take(3),
+        keyword = "応用確率",
+        field1 = SyllabusApi.SyllabusSearchParams.Field.SPECIALIZED_SUBJECT,
+    )
+)
+
+Logger.d("departments: $departments")
+Logger.d("fields: $fields")
+Logger.d("syllabusItems: $syllabusItems")*/

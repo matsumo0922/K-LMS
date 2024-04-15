@@ -34,6 +34,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -108,6 +109,7 @@ private fun WelcomeLoginScreen(
     modifier: Modifier = Modifier,
 ) {
     val focusManager = LocalFocusManager.current
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     val (email, setEmail) = rememberSaveable { mutableStateOf("") }
     val (password, setPassword) = rememberSaveable() { mutableStateOf("") }
@@ -170,7 +172,10 @@ private fun WelcomeLoginScreen(
             onValueChange = setPassword,
             label = { Text(stringResource(Res.string.welcome_login_password)) },
             keyboardActions = KeyboardActions(
-                onDone = { onClickLogin.invoke(email, password) },
+                onDone = {
+                    keyboardController?.hide()
+                    onClickLogin.invoke(email, password)
+                },
             ),
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Password,

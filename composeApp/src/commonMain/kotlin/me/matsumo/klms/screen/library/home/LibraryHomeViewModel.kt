@@ -4,6 +4,7 @@ import androidx.compose.runtime.Stable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
+import co.touchlab.kermit.Logger
 import k_lms.composeapp.generated.resources.Res
 import k_lms.composeapp.generated.resources.error_executed
 import kotlinx.coroutines.flow.Flow
@@ -18,6 +19,7 @@ import me.matsumo.klms.core.model.lms.Course
 import me.matsumo.klms.core.model.lms.DashboardCard
 import me.matsumo.klms.core.repository.LmsRepository
 import me.matsumo.klms.core.repository.UserDataRepository
+import me.matsumo.klms.core.repository.api.SyllabusApi
 
 class LibraryHomeViewModel(
     private val userDataRepository: UserDataRepository,

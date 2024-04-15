@@ -14,7 +14,7 @@ data class LmsUser(
     val sisUserId: String?,
     val sisImportId: Int?,
     val integrationId: String?,
-    val loginId: String,
+    val loginId: String?,
     val avatarUrl: String,
     val avatarState: String?,
     val enrollments: List<Enrollment>?,

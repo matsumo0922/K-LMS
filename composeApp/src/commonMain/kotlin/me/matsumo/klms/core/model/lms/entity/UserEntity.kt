@@ -34,7 +34,7 @@ data class UserEntity(
     val integrationId: String?,
     // Login ID
     @SerialName("login_id")
-    val loginId: String,
+    val loginId: String?,
     // Avatar URL (if enabled)
     @SerialName("avatar_url")
     val avatarUrl: String,
