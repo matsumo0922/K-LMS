@@ -3,6 +3,7 @@ package me.matsumo.klms.screen.library.home
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBarDefaults
@@ -17,10 +18,10 @@ import app.cash.paging.compose.collectAsLazyPagingItems
 import me.matsumo.klms.core.extensions.koinViewModel
 import me.matsumo.klms.core.model.ScreenState
 import me.matsumo.klms.core.model.UserData
-import me.matsumo.klms.core.model.lms.Course
 import me.matsumo.klms.core.model.lms.DashboardCard
 import me.matsumo.klms.core.ui.AsyncLoadContents
 import me.matsumo.klms.core.ui.LazyPagingItemsLoadContents
+import me.matsumo.klms.screen.library.home.components.LibraryHomeIdleSection
 import me.matsumo.klms.screen.library.home.components.LibraryHomeTopBar
 
 @Composable
@@ -74,10 +75,15 @@ private fun LibraryHomeScreen(
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
     ) {
         LazyPagingItemsLoadContents(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .padding(it)
+                .fillMaxSize(),
             lazyPagingItems = dashboardCardsPager,
         ) {
-
+            LibraryHomeIdleSection(
+                modifier = Modifier.fillMaxSize(),
+                pagingAdapter = dashboardCardsPager,
+            )
         }
     }
 }
