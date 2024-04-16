@@ -19,7 +19,6 @@ import me.matsumo.klms.core.model.lms.Course
 import me.matsumo.klms.core.model.lms.DashboardCard
 import me.matsumo.klms.core.repository.LmsRepository
 import me.matsumo.klms.core.repository.UserDataRepository
-import me.matsumo.klms.core.repository.api.SyllabusApi
 
 class LibraryHomeViewModel(
     private val userDataRepository: UserDataRepository,
@@ -33,6 +32,10 @@ class LibraryHomeViewModel(
         viewModelScope.launch {
             screenState.value = ScreenState.Loading
             screenState.value = suspendRunCatching {
+                lmsRepository.getSyllabusDetail("2024", "40848").also {
+                    Logger.d { "SyllabusDetail: $it" }
+                }
+
                 LibraryHomeUiState(
                     userData = userDataRepository.userData.first(),
                     coursesPaging = lmsRepository.getCourses(),

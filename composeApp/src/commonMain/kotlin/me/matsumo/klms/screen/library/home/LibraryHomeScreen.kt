@@ -40,7 +40,8 @@ fun LibraryHomeRoute(
 
     AsyncLoadContents(
         modifier = modifier,
-        screenState = screenState
+        screenState = screenState,
+        retryAction = { viewModel.fetch() },
     ) {
         val dashboardCardsPager = it.dashboardCardsPaging.collectAsLazyPagingItems()
 

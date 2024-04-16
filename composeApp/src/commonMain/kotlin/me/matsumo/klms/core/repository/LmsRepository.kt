@@ -20,8 +20,9 @@ class LmsRepository(
 
     // SyllabusApi
     suspend fun getSyllabus(params: SyllabusApi.SyllabusSearchParams) = syllabusApi.getSyllabus(params)
-    suspend fun getDepartments(params: SyllabusApi.SyllabusSearchDepartmentParams) = syllabusApi.getDepartments(params)
-    suspend fun getFields(params: SyllabusApi.SyllabusSearchFieldParams) = syllabusApi.getFields(params)
+    suspend fun getSyllabusDepartments(params: SyllabusApi.SyllabusSearchDepartmentParams) = syllabusApi.getDepartments(params)
+    suspend fun getSyllabusFields(params: SyllabusApi.SyllabusSearchFieldParams) = syllabusApi.getFields(params)
+    suspend fun getSyllabusDetail(year: String, id: String) = syllabusApi.getDetail(year, id)
 
     // UserApi
     suspend fun getSelfUser() = userApi.getSelfUser()

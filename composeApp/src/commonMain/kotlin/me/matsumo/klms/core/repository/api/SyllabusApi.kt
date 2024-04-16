@@ -1,8 +1,12 @@
 package me.matsumo.klms.core.repository.api
 
+import com.fleeksoft.ksoup.Ksoup
+import io.ktor.client.statement.bodyAsText
+import kotlinx.serialization.json.JsonNull.content
 import me.matsumo.klms.core.extensions.parse
 import me.matsumo.klms.core.model.syllabus.SyllabusDepartmentItems
 import me.matsumo.klms.core.model.syllabus.SyllabusDepartmentItemsEntity
+import me.matsumo.klms.core.model.syllabus.SyllabusDetail
 import me.matsumo.klms.core.model.syllabus.SyllabusFieldItems
 import me.matsumo.klms.core.model.syllabus.SyllabusFieldItemsEntity
 import me.matsumo.klms.core.model.syllabus.SyllabusItems
@@ -31,6 +35,58 @@ class SyllabusApi(
             url = "https://gslbs.keio.jp/syllabus/search",
             formParams = params.toParams()
         ).parse<SyllabusFieldItemsEntity>()!!.translate()
+    }
+
+    suspend fun getDetail(year: String, id: String): SyllabusDetail {
+        val response = client.get(
+            url = "https://gslbs.keio.jp/syllabus/detail",
+            params = listOf(
+                "ttblyr" to year,
+                "entno" to id,
+                "lang" to "jp",
+            )
+        )
+
+        val document = Ksoup.parse(response.bodyAsText())
+        val className = document.getElementsByClass("class-name").text()
+        val table = document.getElementsByClass("table table-sm").first()
+        val details = table?.select("tr")?.map { it.select("th").text() to it.select("td").text() }?.toMap().orEmpty()
+
+        val sections = document.getElementsByClass("syllabus-section")
+        val syllabus = sections[0].let { it.getElementsByClass("sub-title").text() to it.getElementsByClass("contents").text() }
+        val activeLearning = sections[1].let { it.getElementsByClass("sub-title").text() to it.getElementsByClass("contents").text() }
+        val preparation = sections[2].let { it.getElementsByClass("sub-title").text() to it.getElementsByClass("contents").text() }
+        val grading = sections[4].let { it.getElementsByClass("sub-title").text() to it.getElementsByClass("contents").text() }
+        val textbook = sections[5].let { it.getElementsByClass("sub-title").text() to it.getElementsByClass("contents").text() }
+        val reference = sections[6].let { it.getElementsByClass("sub-title").text() to it.getElementsByClass("contents").text() }
+        val comment = sections[7].let { it.getElementsByClass("sub-title").text() to it.getElementsByClass("contents").text() }
+        val question = sections[8].let { it.getElementsByClass("sub-title").text() to it.getElementsByClass("contents").text() }
+
+        val contentTitle = sections[3].getElementsByClass("sub-title").text()
+        val contentPlans = mutableMapOf<String, String>()
+
+        for (content in sections[3].getElementsByClass("syllabus-plan-outer")) {
+            val headings = content.getElementsByClass("syllabus-plan-heading").text()
+            val plan = content.getElementsByClass("syllabus-plan-content").text()
+
+            contentPlans += (headings to plan)
+        }
+
+        return SyllabusDetail(
+            id = id,
+            year = year,
+            className = className,
+            details = details,
+            syllabus = syllabus,
+            activeLearning = activeLearning,
+            preparation = preparation,
+            grading = grading,
+            textbook = textbook,
+            reference = reference,
+            comment = comment,
+            question = question,
+            contents = contentTitle to contentPlans,
+        )
     }
 
     private fun SyllabusSearchParams.toParams(): List<Pair<String, String>> {
