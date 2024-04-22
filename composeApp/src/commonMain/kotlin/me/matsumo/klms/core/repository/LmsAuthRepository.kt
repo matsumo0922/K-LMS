@@ -81,9 +81,14 @@ class LmsAuthRepositoryImpl(
     }
 
     override suspend fun checkLogin() {
-        suspendRunCatching {
-            UserApi(client).getSelfProfile()
-            SyllabusApi(client).getSyllabus()
+        runCatching {
+            suspendRunCatching { UserApi(client).getSelfProfile() }.onFailure {
+                login()
+            }
+
+            suspendRunCatching { SyllabusApi(client).getSyllabus() }.onFailure {
+                syllabusLogin()
+            }
         }.also {
             _isLoggedIn.emit(it.isSuccess)
         }

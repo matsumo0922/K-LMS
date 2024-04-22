@@ -32,10 +32,6 @@ class LibraryHomeViewModel(
         viewModelScope.launch {
             screenState.value = ScreenState.Loading
             screenState.value = suspendRunCatching {
-                lmsRepository.getSyllabusDetail("2024", "40848").also {
-                    Logger.d { "SyllabusDetail: $it" }
-                }
-
                 LibraryHomeUiState(
                     userData = userDataRepository.userData.first(),
                     coursesPaging = lmsRepository.getCourses(),

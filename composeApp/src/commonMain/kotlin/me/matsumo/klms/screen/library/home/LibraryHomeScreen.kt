@@ -50,6 +50,9 @@ fun LibraryHomeRoute(
             userData = it.userData,
             dashboardCardsPager = dashboardCardsPager,
             onClickDrawer = openDrawer,
+            onClickCourse = {},
+            onClickAnnouncement = {},
+            onClickDiscussion = {},
         )
     }
 }
@@ -60,6 +63,9 @@ private fun LibraryHomeScreen(
     userData: UserData,
     dashboardCardsPager: LazyPagingItems<DashboardCard>,
     onClickDrawer: () -> Unit,
+    onClickCourse: (String) -> Unit,
+    onClickAnnouncement: (String) -> Unit,
+    onClickDiscussion: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(snapAnimationSpec = null, flingAnimationSpec = null)
@@ -84,6 +90,9 @@ private fun LibraryHomeScreen(
             LibraryHomeIdleSection(
                 modifier = Modifier.fillMaxSize(),
                 pagingAdapter = dashboardCardsPager,
+                onClickCourse = onClickCourse,
+                onClickAnnouncement = onClickAnnouncement,
+                onClickDiscussion = onClickDiscussion,
             )
         }
     }

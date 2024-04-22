@@ -32,7 +32,6 @@ class WelcomeLoginViewModel(
 
                 WelcomeLoginUiState(
                     lmsUser = lmsRepository.getSelfUser(),
-                    lmsAccount = lmsRepository.getSelfAccount(),
                 )
             }
                 .onFailure { lmsAuthRepository.setLoginParams("", "", "") }
@@ -47,5 +46,4 @@ class WelcomeLoginViewModel(
 data class WelcomeLoginUiState(
     val isLoggedIn: Boolean = false,
     val lmsUser: LmsUser? = null,
-    val lmsAccount: LmsAccount? = null,
 )

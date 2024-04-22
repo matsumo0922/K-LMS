@@ -47,14 +47,14 @@ import org.jetbrains.compose.resources.stringResource
 fun DashboardCardItem(
     dashboardCard: DashboardCard,
     onClickCourse: (String) -> Unit,
-    onClickAnnouncement: () -> Unit,
-    onClickDiscussion: () -> Unit,
+    onClickAnnouncement: (String) -> Unit,
+    onClickDiscussion: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Card(
         modifier = modifier
             .clip(RoundedCornerShape(8.dp))
-            .clickable { onClickCourse.invoke(dashboardCard.courseCode) },
+            .clickable { onClickCourse.invoke(dashboardCard.id) },
         shape = RoundedCornerShape(8.dp),
         colors = CardDefaults.cardColors(MaterialTheme.colorScheme.surfaceColorAtElevation(2.dp)),
     ) {
@@ -133,8 +133,8 @@ private fun DashboardImage(
 @Composable
 private fun DashboardButtons(
     dashboardCard: DashboardCard,
-    onClickAnnouncement: () -> Unit,
-    onClickDiscussion: () -> Unit,
+    onClickAnnouncement: (String) -> Unit,
+    onClickDiscussion: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -144,7 +144,7 @@ private fun DashboardButtons(
     ) {
         IconButton(
             modifier = Modifier.size(32.dp),
-            onClick = onClickAnnouncement
+            onClick = { onClickAnnouncement.invoke(dashboardCard.id) }
         ) {
             Icon(
                 modifier = Modifier.size(22.dp),
@@ -155,7 +155,7 @@ private fun DashboardButtons(
 
         IconButton(
             modifier = Modifier.size(32.dp),
-            onClick = onClickDiscussion
+            onClick = { onClickDiscussion.invoke(dashboardCard.id) }
         ) {
             Icon(
                 modifier = Modifier.size(20.dp),

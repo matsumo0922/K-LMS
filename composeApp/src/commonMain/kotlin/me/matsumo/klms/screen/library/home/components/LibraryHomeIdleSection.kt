@@ -16,6 +16,9 @@ import me.matsumo.klms.core.ui.component.DashboardCardItem
 @Composable
 fun LibraryHomeIdleSection(
     pagingAdapter: LazyPagingItems<DashboardCard>,
+    onClickCourse: (String) -> Unit,
+    onClickAnnouncement: (String) -> Unit,
+    onClickDiscussion: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -32,9 +35,9 @@ fun LibraryHomeIdleSection(
                 DashboardCardItem(
                     modifier = Modifier.fillMaxHeight(),
                     dashboardCard = dashboardCard,
-                    onClickCourse = {},
-                    onClickAnnouncement = {},
-                    onClickDiscussion = {},
+                    onClickCourse = onClickCourse,
+                    onClickAnnouncement = onClickAnnouncement,
+                    onClickDiscussion = onClickDiscussion,
                 )
             }
         }
